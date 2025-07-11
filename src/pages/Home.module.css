@@ -4,10 +4,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f3f4f6;
+  /* background: #fff; */
   padding: 3.5rem 1.5rem 2rem 1.5rem;
   box-sizing: border-box;
 }
+
 .heroContent {
   text-align: center;
   color: #2d2d2d;
