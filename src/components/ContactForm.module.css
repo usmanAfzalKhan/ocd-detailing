@@ -1,4 +1,4 @@
-.contactSection {
+.contactFormSection {
   min-height: 80vh;
   display: flex;
   align-items: center;
@@ -6,7 +6,7 @@
   background: #fff;
 }
 
-.form {
+.contactForm {
   background: #fff;
   border-radius: 13px;
   box-shadow: 0 6px 28px #0002;
@@ -22,63 +22,32 @@
 
 .heading {
   color: #18181a;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.3rem;
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-align: center;
 }
 
-/* Force all text inputs, date, and phone to be same width */
-.inputLabel {
-  color: #18181a;
-  font-weight: 500;
-  margin: 0.7rem 0 0.18rem 0;
-  align-self: flex-start;
-  font-size: 1rem;
-}
-
 .input {
   width: 100%;
-  min-width: 0;
   padding: 0.53rem 0.8rem;
   border-radius: 6px;
   background: #fff;
   color: #18181a;
   border: 1.3px solid #bbb;
   font-size: 1.05rem;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.18rem;
   outline: none;
   transition: border 0.18s;
-  box-sizing: border-box;
 }
 
-/* Phone number row */
-.phoneRow {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.1rem;
-}
-.plusOne {
-  background: #f3f3fa;
-  border: 1.3px solid #bbb;
-  border-right: none;
-  border-radius: 6px 0 0 6px;
-  padding: 0.53rem 0.7rem;
-  color: #888;
-  font-size: 1rem;
-  font-weight: 600;
-}
-.phoneRow .input {
-  border-radius: 0 6px 6px 0;
-  border-left: none;
-  margin-bottom: 0;
+.input:focus, .textarea:focus {
+  border: 1.3px solid #6366f1;
 }
 
 .textarea {
   width: 100%;
-  min-width: 0;
   padding: 0.57rem 0.8rem;
   border-radius: 7px;
   background: #fff;
@@ -88,10 +57,9 @@
   min-height: 52px;
   margin-bottom: 0.25rem;
   resize: vertical;
-  box-sizing: border-box;
 }
 
-.label {
+.servicesLabel {
   color: #18181a;
   font-weight: 500;
   margin: 0.85rem 0 0.3rem 0;
@@ -145,9 +113,26 @@ input[type="radio"] {
   height: 1.13em;
 }
 
-.req {
-  color: #e32424;
-  margin-left: 0.13em;
+.phoneGroup {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.1rem;
+}
+.plusOne {
+  background: #f3f3fa;
+  border: 1.3px solid #bbb;
+  border-right: none;
+  border-radius: 6px 0 0 6px;
+  padding: 0.53rem 0.7rem;
+  color: #888;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.phoneGroup .input {
+  border-radius: 0 6px 6px 0;
+  border-left: none;
+  margin-bottom: 0;
 }
 
 .error {
@@ -177,7 +162,7 @@ input[type="radio"] {
   background: #4f46e5;
 }
 
-.success {
+.successMsg {
   background: #f2f2f6;
   color: #222;
   border-radius: 11px;
@@ -189,14 +174,14 @@ input[type="radio"] {
 }
 
 @media (max-width: 600px) {
-  .form {
+  .contactForm {
     padding: 1.15rem 0.35rem 0.75rem 0.35rem;
     max-width: 97vw;
   }
   .heading {
     font-size: 1.13rem;
   }
-  .contactSection {
+  .contactFormSection {
     padding-top: 1rem;
     min-height: 60vh;
   }
