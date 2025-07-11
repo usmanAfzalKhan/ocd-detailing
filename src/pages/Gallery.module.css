@@ -1,0 +1,22 @@
+.gallery {
+  max-width: 1050px;
+  margin: 2rem auto;
+  padding: 2rem 1rem;
+}
+.gallery h2 { margin-bottom: 1rem; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+.placeholder {
+  background: #ececec;
+  height: 110px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 1.1rem;
+  font-weight: 600;
+}

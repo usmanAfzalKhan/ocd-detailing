@@ -1,0 +1,22 @@
+.hero {
+  width: 100%;
+  min-height: 46vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+  padding: 3.5rem 1.5rem 2rem 1.5rem;
+  box-sizing: border-box;
+}
+.heroContent {
+  text-align: center;
+  color: #2d2d2d;
+}
+.heroContent h1 {
+  font-size: 2.1rem;
+  letter-spacing: 2px;
+  margin-bottom: 0.7rem;
+}
+@media (max-width: 700px) {
+  .heroContent h1 { font-size: 1.25rem; }
+}
