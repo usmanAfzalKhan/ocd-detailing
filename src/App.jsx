@@ -8,7 +8,8 @@ import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import Faq from "./pages/Faq";
 import Reviews from "./pages/ReviewsPage";
-import Services from "./pages/Services";
+import ServicesPage from "./pages/ServicesPage";
+import ServiceDetailPage from "./pages/ServiceDetailPage";
 import "./App.css";
 
 const App = () => (
@@ -22,7 +23,8 @@ const App = () => (
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/reviews" element={<Reviews />} />
-        <Route path="/services" element={<Services />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/services/:id" element={<ServiceDetailPage />} />
       </Routes>
     </main>
     <Footer />
