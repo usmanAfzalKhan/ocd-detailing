@@ -7,7 +7,7 @@ import About from "./pages/About";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import Faq from "./pages/Faq";
-import Reviews from "./pages/Reviews";
+import Reviews from "./pages/ReviewsPage";
 import Services from "./pages/Services";
 import "./App.css";
 
