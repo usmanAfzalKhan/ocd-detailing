@@ -5,12 +5,12 @@ import styles from './ServicesPage.module.css';
 
 export default function ServicesPage() {
   return (
-    <section className={styles.servicesPage}>
+    <div className={styles.servicesPage}>
       <h1 className={styles.title}>Our Services</h1>
-      <div className={styles.grid}>
-        {services.map(s => (
+      <div className={styles.servicesGrid}>
+        {services.map((s) => (
           <div key={s.id} className={styles.card}>
-            <div className={styles.imageWrapper}>
+            <div className={styles.imageWrap}>
               <img src={s.imgUrl} alt={s.title} className={styles.image} />
             </div>
             <h2 className={styles.name}>{s.title}</h2>
@@ -20,6 +20,6 @@ export default function ServicesPage() {
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 }
