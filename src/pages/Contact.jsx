@@ -1,6 +1,9 @@
+// src/pages/Contact.jsx
+
 import React, { useState } from "react";
 import styles from "./Contact.module.css";
 
+// Example services & vehicle types (adjust as needed)
 const servicesList = [
   "Exterior Wash",
   "Interior Detailing",
@@ -10,7 +13,6 @@ const servicesList = [
   "Pet Hair Removal",
   "Other"
 ];
-
 const vehicleTypes = [
   "Sedan",
   "SUV",
@@ -30,17 +32,46 @@ const initialState = {
   otherService: "",
   vehicle: "",
   otherVehicle: "",
-  message: "",
+  message: ""
 };
 
-const Contact = () => {
+export default function Contact() {
   const [form, setForm] = useState(initialState);
   const [touched, setTouched] = useState({});
+  const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const today = new Date().toISOString().split("T")[0];
+  // Validation
+  function validate(f) {
+    const err = {};
+    if (!f.name.trim()) err.name = "Name is required.";
+    if (!f.phone || f.phone.replace(/\D/g, "").length !== 10)
+      err.phone = "Valid Canadian phone number required.";
+    if (!f.date) err.date = "Preferred date is required.";
+    if (!f.services.length) err.services = "Select at least one service.";
+    if (f.services.includes("Other") && !f.otherService.trim())
+      err.otherService = "Please specify the service.";
+    if (!f.vehicle) err.vehicle = "Select a vehicle type.";
+    if (f.vehicle === "Other" && !f.otherVehicle.trim())
+      err.otherVehicle = "Please specify the vehicle type.";
+    return err;
+  }
 
-  const handleChange = (e) => {
+  // Phone formatting
+  function handlePhoneChange(e) {
+    let digits = e.target.value.replace(/\D/g, "");
+    if (digits.length > 10) digits = digits.slice(0, 10);
+    let formatted = digits;
+    if (digits.length > 6)
+      formatted = `${digits.slice(0,3)}-${digits.slice(3,6)}-${digits.slice(6)}`;
+    else if (digits.length > 3)
+      formatted = `${digits.slice(0,3)}-${digits.slice(3)}`;
+    setForm((f) => ({ ...f, phone: formatted }));
+  }
+
+  // Handle input change
+  function handleChange(e) {
     const { name, value, type, checked } = e.target;
     if (type === "checkbox" && name === "services") {
       setForm((f) =>
@@ -51,48 +82,42 @@ const Contact = () => {
     } else {
       setForm((f) => ({ ...f, [name]: value }));
     }
-  };
-
-  const handlePhoneChange = (e) => {
-    let digits = e.target.value.replace(/\D/g, "");
-    if (digits.length > 10) digits = digits.slice(0, 10);
-    let formatted = digits;
-    if (digits.length > 6) formatted = `${digits.slice(0,3)}-${digits.slice(3,6)}-${digits.slice(6)}`;
-    else if (digits.length > 3) formatted = `${digits.slice(0,3)}-${digits.slice(3)}`;
-    setForm((f) => ({ ...f, phone: formatted }));
-  };
-
-  const handleBlur = (e) => {
+  }
+  function handleBlur(e) {
     setTouched((t) => ({ ...t, [e.target.name]: true }));
-  };
+  }
 
-  // Validation
-  const errors = {};
-  if (!form.name) errors.name = "Name is required.";
-  if (!form.phone || form.phone.replace(/\D/g, "").length !== 10) errors.phone = "Valid Canadian phone number required.";
-  if (!form.date) errors.date = "Preferred date is required.";
-  if (!form.services.length) errors.services = "Please select at least one service.";
-  if (form.services.includes("Other") && !form.otherService) errors.otherService = "Please specify the other service.";
-  if (!form.vehicle) errors.vehicle = "Please select a vehicle type.";
-  if (form.vehicle === "Other" && !form.otherVehicle) errors.otherVehicle = "Please specify the vehicle type.";
-
-  const handleSubmit = (e) => {
+  // Submit handler
+  async function handleSubmit(e) {
     e.preventDefault();
+    const currentErrors = validate(form);
+    setErrors(currentErrors);
     setTouched({
-      name: true,
-      phone: true,
-      date: true,
-      services: true,
-      otherService: true,
-      vehicle: true,
-      otherVehicle: true
+      name: true, phone: true, date: true,
+      services: true, otherService: true,
+      vehicle: true, otherVehicle: true
     });
-    if (Object.keys(errors).length === 0) {
-      setSubmitted(true);
-      // submit logic here
-    }
-  };
+    if (Object.keys(currentErrors).length) return;
 
+    setSubmitting(true);
+    try {
+      const res = await fetch("/.netlify/functions/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form)
+      });
+      if (res.ok) setSubmitted(true);
+      else alert("Something went wrong. Please try again later.");
+    } catch {
+      alert("Could not submit form. Try again later.");
+    }
+    setSubmitting(false);
+  }
+
+  // Today's date for min
+  const today = new Date().toISOString().split("T")[0];
+
+  // Show success message
   if (submitted) {
     return (
       <section className={styles.contactSection}>
@@ -109,72 +134,56 @@ const Contact = () => {
         <h2 className={styles.heading}>Contact Us</h2>
 
         {/* Name */}
-        <label className={styles.inputLabel} htmlFor="name">
-          Name<span className={styles.req}>*</span>
-        </label>
+        <label className={styles.label} htmlFor="name">Name<span className={styles.req}>*</span></label>
         <input
           type="text"
           id="name"
           name="name"
-          placeholder="Your Name"
           className={styles.input}
+          placeholder="Your Name"
           value={form.name}
           onChange={handleChange}
           onBlur={handleBlur}
-          required
           autoComplete="off"
         />
-        {touched.name && errors.name && (
-          <div className={styles.error}>{errors.name}</div>
-        )}
+        {touched.name && errors.name && <div className={styles.error}>{errors.name}</div>}
 
         {/* Phone */}
-        <label className={styles.inputLabel} htmlFor="phone">
-          Phone Number<span className={styles.req}>*</span>
-        </label>
+        <label className={styles.label} htmlFor="phone">Phone Number<span className={styles.req}>*</span></label>
         <div className={styles.phoneRow}>
           <span className={styles.plusOne}>+1</span>
           <input
             type="text"
             id="phone"
             name="phone"
-            placeholder="647-555-1234"
             className={styles.input}
+            placeholder="647-555-1234"
             value={form.phone}
             onChange={handlePhoneChange}
             onBlur={handleBlur}
-            required
             autoComplete="tel"
             inputMode="numeric"
             maxLength={12}
-            style={{ borderRadius: "0 6px 6px 0", borderLeft: "none" }}
           />
         </div>
-        {touched.phone && errors.phone && (
-          <div className={styles.error}>{errors.phone}</div>
-        )}
+        {touched.phone && errors.phone && <div className={styles.error}>{errors.phone}</div>}
 
-        {/* Preferred Date */}
-        <label className={styles.inputLabel} htmlFor="date">
-          Preferred Date<span className={styles.req}>*</span>
-        </label>
+        {/* Date */}
+        <label className={styles.label} htmlFor="date">Preferred Date<span className={styles.req}>*</span></label>
         <input
           type="date"
           id="date"
           name="date"
           className={styles.input}
           value={form.date}
-          min={today}
           onChange={handleChange}
           onBlur={handleBlur}
-          required
+          min={today}
         />
-        {touched.date && errors.date && (
-          <div className={styles.error}>{errors.date}</div>
-        )}
+        {touched.date && errors.date && <div className={styles.error}>{errors.date}</div>}
 
         {/* Services */}
-        <label className={styles.label}>Services Interested In*:</label>
+        <label className={styles.label}>Services Interested In<span className={styles.req}>*</span>:</label>
         <div className={styles.servicesGrid}>
           {servicesList.map((service) => (
             <label key={service} className={styles.checkboxLabel}>
@@ -190,27 +199,26 @@ const Contact = () => {
             </label>
           ))}
         </div>
-        {touched.services && errors.services && (
-          <div className={styles.error}>{errors.services}</div>
-        )}
+        {touched.services && errors.services && <div className={styles.error}>{errors.services}</div>}
         {form.services.includes("Other") && (
           <>
-            <textarea
+            <input
+              type="text"
               name="otherService"
-              className={styles.textarea}
-              placeholder="Please specify the other service*"
+              className={styles.input}
+              placeholder="Please specify the service"
               value={form.otherService}
               onChange={handleChange}
               onBlur={handleBlur}
-              required
-              rows={2}
             />
-            {touched.otherService && errors.otherService && <div className={styles.error}>{errors.otherService}</div>}
+            {touched.otherService && errors.otherService && (
+              <div className={styles.error}>{errors.otherService}</div>
+            )}
           </>
         )}
 
         {/* Vehicle type */}
-        <label className={styles.label}>Vehicle Type*:</label>
+        <label className={styles.label}>Vehicle Type<span className={styles.req}>*</span>:</label>
         <div className={styles.vehicleGrid}>
           {vehicleTypes.map((type) => (
             <label key={type} className={styles.radioLabel}>
@@ -226,41 +234,40 @@ const Contact = () => {
             </label>
           ))}
         </div>
-        {touched.vehicle && errors.vehicle && (
-          <div className={styles.error}>{errors.vehicle}</div>
-        )}
+        {touched.vehicle && errors.vehicle && <div className={styles.error}>{errors.vehicle}</div>}
         {form.vehicle === "Other" && (
           <>
-            <textarea
+            <input
+              type="text"
               name="otherVehicle"
-              className={styles.textarea}
-              placeholder="Please specify the vehicle type*"
+              className={styles.input}
+              placeholder="Please specify the vehicle type"
               value={form.otherVehicle}
               onChange={handleChange}
               onBlur={handleBlur}
-              required
-              rows={2}
             />
-            {touched.otherVehicle && errors.otherVehicle && <div className={styles.error}>{errors.otherVehicle}</div>}
+            {touched.otherVehicle && errors.otherVehicle && (
+              <div className={styles.error}>{errors.otherVehicle}</div>
+            )}
           </>
         )}
 
-        {/* Message (optional) */}
+        {/* Message */}
+        <label className={styles.label} htmlFor="message">Your Message (optional)</label>
         <textarea
+          id="message"
           name="message"
-          placeholder="Your Message (optional)"
           className={styles.textarea}
           rows={4}
+          placeholder="Let us know more details (optional)"
           value={form.message}
           onChange={handleChange}
         />
 
-        <button type="submit" className={styles.submitBtn}>
-          Send
+        <button type="submit" className={styles.submitBtn} disabled={submitting}>
+          {submitting ? "Sending..." : "Send"}
         </button>
       </form>
     </section>
   );
-};
-
-export default Contact;
+}

@@ -7,7 +7,7 @@
 }
 
 .form {
-  background: #fff;
+  background: #fff;             /* White, no purple */
   border-radius: 13px;
   box-shadow: 0 6px 28px #0002;
   padding: 2.3rem 1.3rem 1.7rem 1.3rem;
@@ -17,56 +17,77 @@
   flex-direction: column;
   align-items: center;
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  color: #18181a;
 }
 
 .heading {
-  color: #18181a;
-  margin-bottom: 1.4rem;
+  color: #222;
+  margin-bottom: 1.2rem;
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-align: center;
 }
 
-/* Force all text inputs, date, and phone to be same width */
-.inputLabel {
-  color: #18181a;
-  font-weight: 500;
-  margin: 0.7rem 0 0.18rem 0;
+/* Label & required asterisk */
+.label {
+  color: #232323;
+  font-weight: 600;
+  margin: 0.95rem 0 0.3rem 0;
   align-self: flex-start;
-  font-size: 1rem;
+  font-size: 1.01rem;
 }
 
+.req {
+  color: #c00;
+  margin-left: 0.18em;
+  font-weight: bold;
+}
+
+/* Input, textarea: full width, consistent style */
 .input {
   width: 100%;
-  min-width: 0;
   padding: 0.53rem 0.8rem;
   border-radius: 6px;
-  background: #fff;
-  color: #18181a;
-  border: 1.3px solid #bbb;
+  background: #fafbfc;
+  color: #111;
+  border: 1.3px solid #c2c6d6;
   font-size: 1.05rem;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.12rem;
   outline: none;
   transition: border 0.18s;
-  box-sizing: border-box;
 }
 
-/* Phone number row */
+.input:focus,
+.textarea:focus {
+  border: 1.3px solid #6366f1;
+}
+
+.textarea {
+  width: 100%;
+  padding: 0.57rem 0.8rem;
+  border-radius: 7px;
+  background: #fafbfc;
+  color: #111;
+  border: 1.3px solid #c2c6d6;
+  font-size: 1.06rem;
+  min-height: 95px;
+  margin-bottom: 0.25rem;
+  resize: vertical;
+}
+
 .phoneRow {
   width: 100%;
   display: flex;
   align-items: center;
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.12rem;
 }
 .plusOne {
-  background: #f3f3fa;
-  border: 1.3px solid #bbb;
+  background: #ededed;
+  border: 1.3px solid #c2c6d6;
   border-right: none;
   border-radius: 6px 0 0 6px;
   padding: 0.53rem 0.7rem;
-  color: #888;
+  color: #444;
   font-size: 1rem;
   font-weight: 600;
 }
@@ -76,29 +97,7 @@
   margin-bottom: 0;
 }
 
-.textarea {
-  width: 100%;
-  min-width: 0;
-  padding: 0.57rem 0.8rem;
-  border-radius: 7px;
-  background: #fff;
-  color: #18181a;
-  border: 1.3px solid #bbb;
-  font-size: 1.06rem;
-  min-height: 52px;
-  margin-bottom: 0.25rem;
-  resize: vertical;
-  box-sizing: border-box;
-}
-
-.label {
-  color: #18181a;
-  font-weight: 500;
-  margin: 0.85rem 0 0.3rem 0;
-  align-self: flex-start;
-  font-size: 1rem;
-}
-
+/* Services (checkboxes) */
 .servicesGrid {
   display: flex;
   flex-wrap: wrap;
@@ -110,10 +109,10 @@
 .checkboxLabel {
   display: flex;
   align-items: center;
-  font-size: 0.97rem;
+  font-size: 1rem;
   cursor: pointer;
-  gap: 0.45em;
-  color: #222;
+  gap: 0.47em;
+  color: #333;
 }
 
 input[type="checkbox"] {
@@ -122,6 +121,7 @@ input[type="checkbox"] {
   height: 1.13em;
 }
 
+/* Vehicles (radios) */
 .vehicleGrid {
   display: flex;
   flex-wrap: wrap;
@@ -133,10 +133,10 @@ input[type="checkbox"] {
 .radioLabel {
   display: flex;
   align-items: center;
-  font-size: 0.97rem;
+  font-size: 1rem;
   cursor: pointer;
-  gap: 0.45em;
-  color: #222;
+  gap: 0.47em;
+  color: #333;
 }
 
 input[type="radio"] {
@@ -145,24 +145,20 @@ input[type="radio"] {
   height: 1.13em;
 }
 
-.req {
-  color: #e32424;
-  margin-left: 0.13em;
-}
-
 .error {
-  color: #e32424;
-  background: #fff0f1;
+  color: #d31a1a;
+  background: #ffd8d8;
   padding: 0.22rem 0.6rem;
-  font-size: 0.95rem;
+  font-size: 0.96rem;
   border-radius: 4px;
-  margin-bottom: 0.18rem;
+  margin-bottom: 0.19rem;
   align-self: flex-start;
 }
 
+/* Button */
 .submitBtn {
-  margin-top: 1.1rem;
-  padding: 0.65rem 0;
+  margin-top: 1.0rem;
+  padding: 0.67rem 0;
   background: #6366f1;
   color: #fff;
   border: none;
@@ -172,32 +168,40 @@ input[type="radio"] {
   cursor: pointer;
   width: 100%;
   transition: background 0.19s;
+  letter-spacing: 0.01em;
 }
-.submitBtn:hover {
+.submitBtn:disabled {
+  background: #bcbaf5;
+  cursor: not-allowed;
+}
+.submitBtn:hover:not(:disabled) {
   background: #4f46e5;
 }
 
+/* Success box */
 .success {
-  background: #f2f2f6;
-  color: #222;
+  background: #e6faed;
+  color: #186640;
   border-radius: 11px;
   padding: 2.7rem 1.2rem;
   font-size: 1.13rem;
   text-align: center;
-  box-shadow: 0 4px 18px #0003;
+  box-shadow: 0 4px 18px #0001;
   margin: 2rem auto;
+  border: 1.7px solid #bbf7d0;
 }
 
+/* Mobile responsiveness */
 @media (max-width: 600px) {
   .form {
     padding: 1.15rem 0.35rem 0.75rem 0.35rem;
-    max-width: 97vw;
+    max-width: 99vw;
   }
   .heading {
     font-size: 1.13rem;
   }
   .contactSection {
-    padding-top: 1rem;
-    min-height: 60vh;
+    padding-top: 0.6rem;
+    min-height: 55vh;
   }
 }
