@@ -104,9 +104,9 @@
   position: absolute;
   bottom: 1rem;
   right: 2rem;       /* moved 1rem further left */
-  width: 50px;
-  opacity: 0.9;
-  background: #fff;
+  width: 45px;
+  opacity: 0.5;
+  background: #000000;
 }
 
 /* Mobile: reduce hero height and harmonize overlay content */
