@@ -1,7 +1,7 @@
-import React from 'react';
-import Hero from '../components/Hero';
-import OffersRow from '../components/OffersRow';
-import styles from './Home.module.css';
+import React from "react";
+import Hero from "../components/Hero";
+import OffersRow from "../components/OffersRow";
+import styles from "./Home.module.css";
 
 export default function Home() {
   return (
@@ -12,17 +12,26 @@ export default function Home() {
         <h1>Obsessive Compulsion Detailing</h1>
         <p>
           At OCD Detailing, we’re passionate about perfection—inside and out.
-          Whether it’s precision paint correction, advanced ceramic coatings,
-          or mobile interior and exterior care, our expert team brings
+          Whether it’s precision paint correction, advanced ceramic coatings, or
+          mobile interior and exterior care, our expert team brings
           showroom-quality results straight to your door.
           <br />
         </p>
       </section>
-      <p>
-        <strong>
-          Trust us to obsess over every detail so you can drive with confidence and style.
-        </strong>
-      </p>
+<p
+  style={{
+    textAlign: "center",
+    fontWeight: 700,
+    fontSize: "1.2rem",
+    margin: "0.4rem 0",
+    paddingLeft: "0.8rem",
+    paddingRight: "0.8rem", // Add side padding for both desktop and mobile
+  }}
+>
+  Trust us to obsess over every detail so you can drive with confidence and style.
+</p>
+
+
       <OffersRow />
     </div>
   );
