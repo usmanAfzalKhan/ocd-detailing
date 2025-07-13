@@ -1,22 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+
 .footer {
-  background: #18181b;
+  background: var(--panel-bg, #1a1a1a);
   color: #fff;
-  padding: 2rem 0 1.3rem 0;
-  margin-top: 2rem;
+  padding: 0.42rem 0 0.23rem 0;
+  margin-top: 0.7rem;
   text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
 }
+
 .content {
-  max-width: 1050px;
+  max-width: 900px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.18rem;
   align-items: center;
-  font-size: 1rem;
 }
-.socials a {
-  color: #a3a3a3;
+
+.brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.04rem;
+  font-weight: 700;
+  margin-bottom: 0.01rem;
+  letter-spacing: 0.01em;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0.10rem 0 0.01rem 0;
+  justify-content: center;
+}
+
+.iconLink {
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  margin: 0 0.3rem;
 }
-.socials a:hover { color: #6366f1; }
+
+.iconCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.07rem;
+  height: 2.07rem;
+  border-radius: 50%;
+  background: #242428;
+  transition: background 0.18s, box-shadow 0.14s;
+  box-shadow: 0 2px 8px #0001;
+  margin-right: 0.07rem;
+}
+.iconCircle:hover {
+  background: #353555;
+  box-shadow: 0 2px 8px #0002, 0 0 0 2px #6366f166;
+}
+
+.icon {
+  color: #fff;
+  font-size: 1.12rem;
+  transition: color 0.18s, transform 0.14s;
+}
+.iconLink:focus .icon,
+.iconCircle:hover .icon {
+  color: #6366f1;
+  transform: scale(1.13);
+}
+
+/* Location as an icon + text, no underline! */
+.locationText {
+  margin-left: 0.32rem;
+  font-size: 1rem;
+  color: #bdbdbd;
+  font-family: inherit;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.14s;
+}
+.iconLink:hover .locationText {
+  color: #fff;
+}
+
+/* Remove underline even on focus/hover */
+.iconLink .locationText {
+  text-decoration: none !important;
+}
+
+.tagline {
+  color: #bdbdbd;
+  font-size: 0.93rem;
+  margin-top: 0.01rem;
+  letter-spacing: 0.01em;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.18;
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 0.32rem 0 0.14rem 0;
+    font-size: 0.94rem;
+  }
+  .brand {
+    font-size: 0.93rem;
+  }
+  .iconCircle {
+    width: 1.53rem;
+    height: 1.53rem;
+  }
+  .icon {
+    font-size: 0.93rem;
+  }
+  .locationText {
+    font-size: 0.89rem;
+  }
+  .tagline {
+    font-size: 0.86rem;
+  }
+}
