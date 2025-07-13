@@ -1,0 +1,95 @@
+/* src/components/OffersRow.module.css */
+.offersSection {
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  color: #fff;
+  margin-bottom: 0.5rem; /* tighter under-heading gap */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem; /* some gap between tiles */
+  align-items: start;
+}
+
+.card {
+  background: rgba(24,24,24,0.6);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px #0003;
+  transition: border-color 0.3s;
+}
+
+.card.open {
+  border-color: #fff;
+}
+
+.image {
+  width: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+.details {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1rem;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.details.open {
+  max-height: 200px; /* fits text + button */
+  padding: 0.5rem 1rem 1rem; /* reduced top padding */
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  color: #fff;
+  font-size: 1.2rem;
+  margin: 0.25rem 0; /* moved up to reduce wasted space */
+}
+
+.text {
+  font-family: 'Inter', sans-serif;
+  color: #ccc;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}
+
+.button {
+  width: 100%;
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid #fff;
+  padding: 0.5rem 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.button:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* mobile: 1 per row */
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  transition: border-color 0.3s ease;
+}
+
+/* On hover, show a white border */
+.card:hover {
+  border-color: #fff;
+}

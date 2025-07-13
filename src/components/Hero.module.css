@@ -104,7 +104,7 @@
   position: absolute;
   bottom: 1rem;
   right: 2rem;       /* moved 1rem further left */
-  width: 45px;
+  width: 50px;
   opacity: 0.5;
   background: #000000;
 }
