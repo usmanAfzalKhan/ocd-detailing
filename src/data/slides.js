@@ -1,45 +1,44 @@
-// src/data/slides.js
 export const slides = [
   {
-    id: 'welcome',
-    title: 'Obsessive Compulsion Detailing',
-    description: 'Premium Detailing, Perfection Obsessed.',
-    imgUrl: '/images/hero-welcome.png',             // replace with real hero image
-    button: { label: 'View Our Services', path: '/services' }
+    id: 1,
+    imgUrl: '/images/hero-welcome.png',
+    title: 'Welcome to OCD Detailing',
+    description: "Premium mobile detailing and paint perfection, delivered.",
+    button: { label: "View Services", path: "/services" }
   },
   {
-    id: 'mobile-detailing',
-    title: 'Mobile Detailing',
-    description: 'Complete exterior & interior cleaning at your location — wax, vacuum, windows, tires.',
+    id: 2,
     imgUrl: '/images/hero-mobile-detailing.png',
-    button: { label: 'View Service', path: '/services/mobile-detailing' }
+    title: 'Mobile Detailing',
+    description: "Full-service car cleaning at your doorstep.",
+    button: { label: "See Details", path: "/services/mobile-detailing" }
   },
   {
-    id: 'ceramic-coating',
-    title: 'Ceramic Coating',
-    description: 'Hydrophobic ceramic layers that protect paint from UV, dirt & scratches.',
+    id: 3,
     imgUrl: '/images/hero-ceramic-coating.png',
-    button: { label: 'View Service', path: '/services/ceramic-coating' }
+    title: 'Ceramic Coating',
+    description: "Lasting shine & protection for your paint.",
+    button: { label: "See Details", path: "/services/ceramic-coating" }
   },
   {
-    id: 'paint-correction',
-    title: 'Paint Correction',
-    description: 'Machine-polish swirl marks & scratches for a flawless finish.',
+    id: 4,
     imgUrl: '/images/hero-paint-correction.png',
-    button: { label: 'View Service', path: '/services/paint-correction' }
+    title: 'Paint Correction',
+    description: "Remove scratches and restore your car’s gloss.",
+    button: { label: "See Details", path: "/services/paint-correction" }
   },
   {
-    id: 'shampoo-carpets-seats',
-    title: 'Shampooing Carpets & Seats',
-    description: 'Deep steam clean upholstery, carpets & mats—remove stains, odors & grime.',
+    id: 5,
     imgUrl: '/images/hero-shampoo-carpets-seats.png',
-    button: { label: 'View Service', path: '/services/shampoo-carpets-seats' }
+    title: 'Carpet & Seat Shampoo',
+    description: "Deep cleaning for seats, carpets, and mats.",
+    button: { label: "See Details", path: "/services/shampoo-carpets-seats" }
   },
   {
-    id: 'clay-bar',
-    title: 'Clay Bar Treatment',
-    description: 'Decontaminate paint—tar, sap & bonded contaminants removed.',
+    id: 6,
     imgUrl: '/images/hero-clay-bar.png',
-    button: { label: 'View Service', path: '/services/clay-bar' }
+    title: 'Clay Bar Treatment',
+    description: "Ultra-smooth paint finish—removes hidden contaminants.",
+    button: { label: "See Details", path: "/services/clay-bar" }
   }
 ];

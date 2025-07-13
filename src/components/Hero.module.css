@@ -37,6 +37,22 @@
   font-family: 'Inter', sans-serif;
 }
 
+@media (max-width: 768px) {
+  .overlayContent {
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 220px;
+    width: 90%;
+    background: rgba(24,24,24,0.28);  /* lighter overlay */
+    padding: 0.55rem 0.6rem;
+    border-radius: 8px;
+    font-size: 0.94rem;
+  }
+}
+
+
+
 .heading {
   font-family: 'Playfair Display', serif;
   color: #fff;
@@ -156,5 +172,35 @@
   .dot {
     width: 10px;
     height: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 33vh;
+    min-height: 110px;
+    max-height: 250px;
+  }
+  .arrow {
+    top: auto;
+    bottom: 0.2rem;    /* Even closer to the bottom now */
+    transform: none;
+    font-size: 1.5rem;
+    padding: 0.35rem 0.7rem;
+  }
+  .left  { left: 16vw; }
+  .right { right: 16vw; }
+  .indicators {
+    bottom: 0.4rem;
+  }
+  .bottomLogo {
+    top: 0.65rem;       /* Move to top */
+    bottom: auto;
+    right: 1.2rem;
+    left: auto;
+    width: 42px;
+    position: absolute;
+    opacity: 0.68;
+    background: transparent;
   }
 }
