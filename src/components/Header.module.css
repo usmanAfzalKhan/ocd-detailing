@@ -2,31 +2,27 @@
 
 /* 100% width header bar, no card! */
 .header {
-  border-bottom: 2px solid #6366f1;
+  border-bottom: 2px solid #fff;      /* white border */
   position: sticky;
   top: 0;
   z-index: 50;
-  width: 100vw;        /* FORCE full viewport width */
+  width: 100vw;
   left: 0;
-  background: #fff;    /* Bar background, remove if you want transparent */
+  background: #1a1a1a;                 /* dark panel-bg */
   box-shadow: 0 2px 18px #0003;
-  margin: 0;           /* No margin */
-  padding: 0;          /* No padding */
-  border-radius: 0;    /* No rounding! */
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
 }
 
-/* Inner flex content, NO max-width, NO background, NO shadow */
+/* Inner flex content */
 .headerInner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0.65rem 2vw;
+  padding: 1rem 2vw;
   box-sizing: border-box;
-  background: none;
-  margin: 0;
-  box-shadow: none;
-  border-radius: 0;
 }
 
 /* Brand section */
@@ -35,98 +31,72 @@
   align-items: center;
   text-decoration: none;
   gap: 0.72rem;
-  background: none !important;
-  box-shadow: none !important;
-  border: none !important;
 }
 
 /* Logo (text or img) */
 .headerLogo {
-  width: 60px;
-  height: 60px;
-  background: #ececec;
+  width: 70px;
+  height: 70px;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   font-weight: 700;
   color: #232735;
-  font-size: 1.2rem;
-  border: 2.5px solid #6366f1;
-  transition: 
+  font-size: 1.4rem;
+  border: 2.5px solid #fff;             /* white border */
+  transition:
     transform 0.2s,
     border-color 0.18s,
     box-shadow 0.23s;
-  background-clip: padding-box;
   user-select: none;
 }
 .headerLogo:hover {
   transform: scale(1.08) rotate(-1deg);
-  border-color: #6366f1cc;
-  box-shadow: 0 0 26px 6px #6366f1cc, 0 2px 22px #23273533;
+  border-color: #ffffffcc;              /* semi-transparent white */
+  box-shadow: 0 0 26px 6px #ffffffcc, 0 2px 22px #23273533;
 }
 
+/* Brand text (stacked) */
 .headerBrandText {
   display: flex;
   flex-direction: column;
-  line-height: 0.92;
-  background: none !important;
-  box-shadow: none !important;
-  border: none !important;
+  line-height: 1;
 }
-.headerBrandMain {
+.headerBrandText span {
   font-family: 'Playfair Display', serif;
-  font-size: 2.1rem;
+  font-size: 1.3rem;
   font-weight: 700;
-  color: #232735;
-  letter-spacing: 0.02em;
-  text-shadow: 0 2px 12px #181b2025;
-  background: none !important;
-}
-.headerBrandDot {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.34rem;
-  font-weight: 700;
-  color: #6366f1;
-  letter-spacing: 0.12em;
-  margin-top: -0.18em;
-  opacity: 0.97;
-  text-shadow: 0 1px 9px #6366f120;
-  background: none !important;
+  color: #fff;                          /* white text */
+  white-space: nowrap;
 }
 
-/* Nav links - desktop default, no card/background/margin */
+/* Nav links */
 .headerNav {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
   margin-left: auto;
-  background: none;
-  border: none;
-  box-shadow: none;
-  padding: 0;
 }
 .headerLink {
   display: block;
   padding: 0.48rem 1.35rem;
   border-radius: 10px;
   background: none;
-  color: #232735;
+  color: #fff;                          /* white nav text */
   font-size: 1.08rem;
   font-weight: 500;
   text-decoration: none;
   transition: background 0.18s, color 0.15s;
-  outline: none;
-  border: none;
-  box-shadow: none;
 }
 .headerLink:hover,
 .headerLink:focus {
-  background: #6366f1;
+  background: rgba(255,255,255,0.1);
   color: #fff;
 }
 .active {
-  background: #6366f1;
+  background: rgba(255,255,255,0.1);
   color: #fff;
 }
 
@@ -143,23 +113,23 @@
   display: block;
   width: 24px;
   height: 3px;
-  background-color: #6366f1;
+  background-color: #fff !important;    /* ensure white bars */
   margin: 4px 0;
   border-radius: 2px;
   transition: all 0.22s;
 }
 
-/* Mobile menu styling (when isOpen class is added by React) */
+/* Mobile menu styling */
 .headerNav.isOpen {
   display: flex !important;
   flex-direction: column;
   position: absolute;
   top: 100%;
   right: 1.2rem;
-  background: #fff;
-  border: 2.5px solid #6366f1;
+  background: #1a1a1a;                  /* match header */
+  border: 2.5px solid #fff;             /* white border */
   border-radius: 13px;
-  padding: 0.39rem 0.44rem 0.39rem 0.44rem;
+  padding: 0.39rem 0.44rem;
   box-shadow: 0 8px 32px #13162444, 0 1.5px 10px #6366f124;
   min-width: 166px;
   z-index: 99;
@@ -169,16 +139,17 @@
   padding: 0.32rem 0.98rem;
   font-size: 0.98rem;
   border-radius: 10px;
-  box-shadow: none;
+  background: none;
+  color: #fff;                          /* white menu item text */
   text-align: center;
-  background: #ececec;
 }
+.headerNav.isOpen .headerLink:hover,
 .headerNav.isOpen .active {
-  background: #6366f1;
+  background: rgba(255,255,255,0.1);
   color: #fff;
 }
 
-/* RESPONSIVE: COLLAPSE NAV TO HAMBURGER BELOW 1200px */
+/* Collapse nav to hamburger below 1200px */
 @media (max-width: 1200px) {
   .headerBurger {
     display: block !important;
@@ -186,12 +157,9 @@
   .headerNav {
     display: none !important;
   }
-  .headerNav.isOpen {
-    display: flex !important;
-  }
 }
 
-/* DESKTOP NAV: SHOW ONLY ABOVE 1200px */
+/* Show desktop nav above 1200px */
 @media (min-width: 1201px) {
   .headerBurger {
     display: none !important;
@@ -202,25 +170,28 @@
     flex-direction: row;
     gap: 0.5rem;
     margin-left: auto;
-    background: none;
-    border: none;
-    box-shadow: none;
     padding: 0;
   }
 }
 
-/* SMALLER LOGO ON MOBILE */
+/* Smaller logo/font on mobile */
 @media (max-width: 700px) {
   .headerLogo {
-    width: 48px !important;
-    height: 48px !important;
-    font-size: 0.95rem !important;
+    width: 56px;
+    height: 56px;
+    font-size: 1.1rem;
+  }
+  .headerBrandText span {
+    font-size: 1.1rem;
   }
 }
 @media (max-width: 500px) {
   .headerLogo {
-    width: 38px !important;
-    height: 38px !important;
-    font-size: 0.82rem !important;
+    width: 48px;
+    height: 48px;
+    font-size: 1rem;
+  }
+  .headerBrandText span {
+    font-size: 1rem;
   }
 }

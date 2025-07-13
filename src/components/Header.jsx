@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-// import logoImg from '../assets/images/logo.png';
+import logoImg from '../assets/images/logo.png';
 import styles from './Header.module.css';
 
 export default function Header() {
@@ -8,11 +8,12 @@ export default function Header() {
   const wrapperRef = useRef(null);
   const location = useLocation();
 
-  // Close menu when clicking outside OR on route change
+  // Close menu on route change
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
 
+  // Close menu when clicking outside
   useEffect(() => {
     function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
@@ -27,16 +28,19 @@ export default function Header() {
     <header className={styles.header} ref={wrapperRef}>
       <div className={styles.headerInner}>
         <Link to="/" className={styles.headerBrand} onClick={() => setMenuOpen(false)}>
-          {/* If you want to use an image logo, uncomment below */}
-          {/* <img src={logoImg} alt="OCD Detailing logo" className={styles.headerLogo} draggable={false} /> */}
-          <div className={styles.headerLogo}>
-            OCD
-          </div>
+          <img
+            src={logoImg}
+            alt="OCD Detailing logo"
+            className={styles.headerLogo}
+            draggable={false}
+          />
           <div className={styles.headerBrandText}>
-            <span className={styles.headerBrandMain}>OCD</span>
-            <span className={styles.headerBrandDot}> Detailing</span>
+            <span className={styles.headerWord}>Obsessive</span>
+            <span className={styles.headerWord}>Compulsive</span>
+            <span className={styles.headerWord}>Detailing</span>
           </div>
         </Link>
+
         <button
           className={`${styles.headerBurger}${menuOpen ? ' ' + styles.isOpen : ''}`}
           onClick={() => setMenuOpen(o => !o)}
@@ -46,6 +50,7 @@ export default function Header() {
           <span className={styles.burgerBar} />
           <span className={styles.burgerBar} />
         </button>
+
         <nav className={`${styles.headerNav}${menuOpen ? ' ' + styles.isOpen : ''}`}>
           <NavLink to="/"         className={({isActive}) => `${styles.headerLink}${isActive ? ' ' + styles.active : ''}`} onClick={() => setMenuOpen(false)} end>Home</NavLink>
           <NavLink to="/services" className={({isActive}) => `${styles.headerLink}${isActive ? ' ' + styles.active : ''}`} onClick={() => setMenuOpen(false)}>Services</NavLink>
