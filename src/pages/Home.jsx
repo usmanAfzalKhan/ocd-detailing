@@ -16,11 +16,13 @@ export default function Home() {
           or mobile interior and exterior care, our expert team brings
           showroom-quality results straight to your door.
           <br />
-          <strong>
-            Trust us to obsess over every detail so you can drive with confidence and style.
-          </strong>
         </p>
       </section>
+      <p>
+        <strong>
+          Trust us to obsess over every detail so you can drive with confidence and style.
+        </strong>
+      </p>
       <OffersRow />
     </div>
   );

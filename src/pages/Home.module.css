@@ -5,16 +5,18 @@
   align-items: center;
 }
 
+/* WELCOME SECTION */
 .homepageWelcome {
   max-width: 800px;
-  padding: 2rem 1rem 0.5rem 1rem;
+  padding: 3.5rem 1rem 0.2rem 1rem;   /* increased top padding ONLY */
   text-align: center;
+  margin-bottom: 1.1rem;              /* section gap below */
 }
 
 .homepageWelcome h1 {
   font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
   color: #fff;
 }
 
@@ -22,28 +24,31 @@
   font-family: 'Inter', sans-serif;
   font-size: 1.125rem;
   color: #ccc;
+  margin-bottom: 0;
 }
 
+:global(.offersSection) {
+  margin-top: 0;
+  margin-bottom: 2.1rem;
+}
+
+/* MOBILE STYLES */
 @media (max-width: 600px) {
   .homepageWelcome {
-    padding-top: 0.7rem;   /* reduced from 2rem to pull up content */
-    padding-bottom: 0.3rem;
+    padding-top: 2.3rem;    /* was 0.6rem, now much more down on mobile too */
+    padding-bottom: 0.06rem;
+    margin-bottom: 0.85rem;
   }
   .homepageWelcome h1 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem; /* less gap to next element */
+    font-size: 1.48rem;
+    margin-bottom: 0.34rem;
   }
   .homepageWelcome p {
     font-size: 1rem;
+    margin-bottom: 0;
+  }
+  :global(.offersSection) {
     margin-top: 0;
-  }
-}
-
-@media (max-width: 600px) {
-  .homepageWelcome {
-    padding-bottom: 0.1rem;   /* Nearly no gap at bottom */
-  }
-  .homepageWelcome p {
-    margin-bottom: 0.25rem;   /* Minimal space below paragraph */
+    margin-bottom: 1.4rem;
   }
 }

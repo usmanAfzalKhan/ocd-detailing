@@ -7,6 +7,7 @@ export default function OffersRow() {
   const [expandedIdx, setExpandedIdx] = useState(null)
   const navigate = useNavigate()
 
+  // Only TWO offers now!
   const offers = [
     {
       id: 1,
@@ -23,14 +24,6 @@ export default function OffersRow() {
       alt: 'Free Ceramic Spray Sealant',
       desc:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.'
-    },
-    {
-      id: 3,
-      title: 'Friends With Benefits?',
-      imgUrl: '/images/logo.png',
-      alt: 'Friends With Benefits',
-      desc:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.'
     }
   ]
 
@@ -39,6 +32,10 @@ export default function OffersRow() {
 
   const handleLearnMore = title =>
     navigate('/contact', { state: { service: title } })
+
+  // *** This grid will still display 3 columns on desktop, but last column will be blank (using a dummy) ***
+  const numCards = offers.length
+  const emptySlots = numCards === 2 ? 1 : 0 // If only 2 offers, fill third column
 
   return (
     <section className={styles.offersSection}>
@@ -71,6 +68,9 @@ export default function OffersRow() {
             </div>
           )
         })}
+        {/* Add a dummy empty card for grid balance if only 2 offers */}
+        {emptySlots > 0 &&
+          <div className={styles.card} style={{ background: 'none', boxShadow: 'none', border: 'none', pointerEvents: 'none' }} />}
       </div>
     </section>
   )
