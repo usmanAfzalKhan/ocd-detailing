@@ -7,7 +7,6 @@
 
 .homepageWelcome {
   max-width: 800px;
-  /* pulled up further by reducing bottom padding */
   padding: 2rem 1rem 0.5rem 1rem;
   text-align: center;
 }
@@ -26,6 +25,25 @@
 }
 
 @media (max-width: 600px) {
-  .homepageWelcome h1 { font-size: 2rem; }
-  .homepageWelcome p  { font-size: 1rem; }
+  .homepageWelcome {
+    padding-top: 0.7rem;   /* reduced from 2rem to pull up content */
+    padding-bottom: 0.3rem;
+  }
+  .homepageWelcome h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem; /* less gap to next element */
+  }
+  .homepageWelcome p {
+    font-size: 1rem;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .homepageWelcome {
+    padding-bottom: 0.1rem;   /* Nearly no gap at bottom */
+  }
+  .homepageWelcome p {
+    margin-bottom: 0.25rem;   /* Minimal space below paragraph */
+  }
 }
