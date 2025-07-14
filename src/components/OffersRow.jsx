@@ -1,4 +1,3 @@
-// src/components/OffersRow.jsx
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './OffersRow.module.css'
@@ -7,23 +6,20 @@ export default function OffersRow() {
   const [expandedIdx, setExpandedIdx] = useState(null)
   const navigate = useNavigate()
 
-  // Only TWO offers now!
   const offers = [
     {
       id: 1,
-      title: '50% Off To Start',
-      imgUrl: '/images/logo.png',
-      alt: '50% Off To Start',
+      title: 'Refer a Friend & Save 20%',
+      imgUrl: '/images/offer-refer-friend.png',
       desc:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.'
+        'Share OCD Detailing with a friend—you both get 20% off your next service when you book together. Mention each other at checkout!'
     },
     {
       id: 2,
-      title: 'Free Ceramic Spray Sealant',
-      imgUrl: '/images/logo.png',
-      alt: 'Free Ceramic Spray Sealant',
+      title: 'First Time Detail 20% Off',
+      imgUrl: '/images/offer-first-time.png',
       desc:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.'
+        'New customers enjoy 20% off their first full mobile detail. Experience showroom-fresh shine at an exclusive introductory rate.'
     }
   ]
 
@@ -33,9 +29,8 @@ export default function OffersRow() {
   const handleLearnMore = title =>
     navigate('/contact', { state: { service: title } })
 
-  // *** This grid will still display 3 columns on desktop, but last column will be blank (using a dummy) ***
-  const numCards = offers.length
-  const emptySlots = numCards === 2 ? 1 : 0 // If only 2 offers, fill third column
+  // If only two offers, add an empty filler for layout balance
+  const emptySlots = offers.length === 2 ? 1 : 0
 
   return (
     <section className={styles.offersSection}>
@@ -45,18 +40,19 @@ export default function OffersRow() {
           const isOpen = expandedIdx === idx
           return (
             <div key={offer.id} className={styles.card}>
-              <img
-                src={offer.imgUrl}
-                alt={offer.alt}
-                className={styles.image}
-                onClick={() => toggleExpand(idx)}
-              />
               <div
-                className={`${styles.details} ${
-                  isOpen ? styles.open : ''
-                }`}
+                className={styles.imageWrapper}
+                onClick={() => toggleExpand(idx)}
               >
-                <h3 className={styles.title}>Coming Soon</h3>
+                <img
+                  src={offer.imgUrl}
+                  alt={offer.title}
+                  className={styles.image}
+                />
+              </div>
+
+              <div className={`${styles.details} ${isOpen ? styles.open : ''}`}>
+                <h3 className={styles.title}>{offer.title}</h3>
                 <p className={styles.text}>{offer.desc}</p>
                 <button
                   className={styles.button}
@@ -68,9 +64,18 @@ export default function OffersRow() {
             </div>
           )
         })}
-        {/* Add a dummy empty card for grid balance if only 2 offers */}
-        {emptySlots > 0 &&
-          <div className={styles.card} style={{ background: 'none', boxShadow: 'none', border: 'none', pointerEvents: 'none' }} />}
+
+        {emptySlots > 0 && (
+          <div
+            className={styles.card}
+            style={{
+              background: 'none',
+              boxShadow: 'none',
+              border: 'none',
+              pointerEvents: 'none'
+            }}
+          />
+        )}
       </div>
     </section>
   )

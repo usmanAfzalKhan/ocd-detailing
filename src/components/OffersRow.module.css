@@ -5,25 +5,24 @@
 }
 
 .heading {
-  font-family: "Playfair Display", serif;
-  font-size: 1.75rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;       /* desktop size */
   color: #fff;
-  margin-bottom: 0.5rem; /* tighter under-heading gap */
+  margin-bottom: 0.5rem;
 }
 
 .grid {
   display: flex;
-  justify-content: center;       /* Center cards in the row */
-  gap: 2.5rem;                   /* Space between cards */
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
   margin: 0 auto;
-  max-width: 700px;              /* Prevents stretching across the screen */
   align-items: start;
 }
 
 @media (max-width: 900px) {
   .grid {
-    gap: 1.2rem;
-    max-width: 100%;
+    gap: 1.5rem;
   }
 }
 
@@ -31,80 +30,98 @@
   .grid {
     flex-direction: column;
     align-items: center;
+    justify-content: center;   /* truly center on mobile */
     gap: 1rem;
-    max-width: 250px;
-  }
-  .card {
-    max-width: 250px;
+    max-width: 100%;
     margin: 0 auto;
   }
 }
 
 .card {
+  width: 100%;             /* allow responsive shrinking */
+  max-width: 300px;        /* desktop card width */
   background: rgba(24, 24, 24, 0.6);
   border: 2px solid transparent;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 12px #0003;
   transition: border-color 0.3s;
+}
+
+@media (max-width: 600px) {
+  .card {
+    max-width: 250px;      /* slightly smaller on mobile */
+    margin: 0 auto;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .card.open {
   border-color: #fff;
 }
 
-.image {
-  width: 100%;
-  display: block;
-  cursor: pointer;
-}
-
 .details {
   max-height: 0;
   overflow: hidden;
-  padding: 0 1rem;
   transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 1rem;
 }
 
 .details.open {
-  max-height: 200px; /* fits text + button */
-  padding: 0.5rem 1rem 1rem; /* reduced top padding */
+  max-height: 300px;
+  padding: 1rem 1rem 1.5rem;
 }
 
 .title {
-  font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
   color: #fff;
-  font-size: 1.2rem;
-  margin: 0.25rem 0; /* moved up to reduce wasted space */
+  font-size: 1.3rem;
+  margin: 0.5rem 0 0.25rem;
 }
 
 .text {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   color: #ccc;
-  font-size: 0.95rem;
-  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
+/* Hero-style button behavior */
 .button {
   width: 100%;
   background: transparent;
   color: #fff;
+  font-weight: 600;
   border: 1.5px solid #fff;
-  padding: 0.5rem 0;
   border-radius: 6px;
+  padding: 0.75rem 0;
+  box-shadow: 0 2px 12px #0008;
   cursor: pointer;
-  transition: background 0.2s;
+  transition:
+    color 0.16s,
+    background 0.17s,
+    border-color 0.16s,
+    box-shadow 0.13s;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
 }
 
-.button:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.card {
-  transition: border-color 0.3s ease;
-}
-
-/* On hover, show a white border */
-.card:hover {
+.button:hover,
+.button:focus {
+  /* same hover behavior as your hero buttons */
+  background: rgba(239, 240, 243, 0.84);
+  color: #181b20;
   border-color: #fff;
+  box-shadow: 0 3px 20px #d6bfbf26, 0 2px 9px #181b2010;
 }
