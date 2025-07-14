@@ -1,5 +1,7 @@
+// src/App.jsx
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -14,6 +16,8 @@ import "./App.css";
 
 const App = () => (
   <BrowserRouter>
+    <ScrollToTop />
+
     <Header />
     <main style={{ minHeight: "calc(100vh - 120px)" }}>
       <Routes>
