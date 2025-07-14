@@ -40,7 +40,7 @@ const Footer = () => (
           aria-label="View Milton, ON on Google Maps"
         >
           <span className={styles.iconCircle}><FaMapMarkerAlt className={styles.icon} /></span>
-          <span className={styles.locationText}>Milton, ON</span>
+          <span className={styles.locationText}></span>
         </a>
       </span>
       <span className={styles.tagline}>

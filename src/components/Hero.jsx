@@ -1,4 +1,3 @@
-// src/components/Hero.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Hero.module.css';
@@ -33,11 +32,13 @@ export default function Hero() {
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
+      <img src={logo} alt="OCD Logo" className={styles.logoCorner} />
+
       <button
         className={`${styles.arrow} ${styles.left}`}
         onClick={prev}
         aria-label="Previous slide"
-      >&lt;</button>
+      >‹</button>
 
       <div
         className={styles.slider}
@@ -70,7 +71,7 @@ export default function Hero() {
         className={`${styles.arrow} ${styles.right}`}
         onClick={next}
         aria-label="Next slide"
-      >&gt;</button>
+      >›</button>
 
       <div className={styles.indicators}>
         {slides.map((_, idx) => (
@@ -81,8 +82,6 @@ export default function Hero() {
           />
         ))}
       </div>
-
-      <img src={logo} alt="logo" className={styles.bottomLogo} />
     </section>
   );
 }
