@@ -1,14 +1,15 @@
+/* src/components/Header.module.css */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 
 /* 100% width header bar, no card! */
 .header {
-  border-bottom: 2px solid #fff;      /* white border */
+  border-bottom: 2px solid #fff;
   position: sticky;
   top: 0;
   z-index: 50;
   width: 100vw;
   left: 0;
-  background: #1a1a1a;                 /* dark panel-bg */
+  background: #1a1a1a;
   box-shadow: 0 2px 18px #0003;
   margin: 0;
   padding: 0;
@@ -33,7 +34,7 @@
   gap: 0.72rem;
 }
 
-/* Logo (text or img) */
+/* Logo */
 .headerLogo {
   width: 70px;
   height: 70px;
@@ -45,20 +46,17 @@
   font-weight: 700;
   color: #232735;
   font-size: 1.4rem;
-  border: 2.5px solid #fff;             /* white border */
-  transition:
-    transform 0.2s,
-    border-color 0.18s,
-    box-shadow 0.23s;
+  border: 2.5px solid #fff;
+  transition: transform 0.2s, border-color 0.18s, box-shadow 0.23s;
   user-select: none;
 }
 .headerLogo:hover {
   transform: scale(1.08) rotate(-1deg);
-  border-color: #ffffffcc;              /* semi-transparent white */
+  border-color: #ffffffcc;
   box-shadow: 0 0 26px 6px #ffffffcc, 0 2px 22px #23273533;
 }
 
-/* Brand text (stacked) */
+/* Brand text */
 .headerBrandText {
   display: flex;
   flex-direction: column;
@@ -68,7 +66,7 @@
   font-family: 'Playfair Display', serif;
   font-size: 1.3rem;
   font-weight: 700;
-  color: #fff;                          /* white text */
+  color: #fff;
   white-space: nowrap;
 }
 
@@ -84,8 +82,8 @@
   padding: 0.48rem 1.35rem;
   border-radius: 10px;
   background: none;
-  color: #fff;                          /* white nav text */
-  font-family: 'Playfair Display', serif; /* match logo font */
+  color: #fff;
+  font-family: 'Playfair Display', serif;
   font-size: 1.08rem;
   font-weight: 500;
   text-decoration: none;
@@ -101,7 +99,7 @@
   color: #fff;
 }
 
-/* Hamburger (hidden by default) */
+/* Hamburger */
 .headerBurger {
   background: none;
   border: none;
@@ -114,7 +112,7 @@
   display: block;
   width: 24px;
   height: 3px;
-  background-color: #fff !important;    /* ensure white bars */
+  background-color: #fff !important;
   margin: 4px 0;
   border-radius: 2px;
   transition: all 0.22s;
@@ -127,32 +125,34 @@
   position: absolute;
   top: 100%;
   right: 1.2rem;
-  background: #1a1a1a;                   /* solid dark panel, no transparency */
-  border: 2.5px solid #fff;             /* white border */
+  background: #1a1a1a;
+  border: 2.5px solid #fff;
   border-radius: 13px;
-  padding: 0.5rem 0;                     /* breathing room */
+  padding: 0.5rem 0;
   box-shadow: 0 8px 32px #13162444, 0 1.5px 10px #6366f124;
   min-width: 180px;
   z-index: 99;
 }
+/* Reduced spacing between items */
 .headerNav.isOpen .headerLink {
-  margin: 0;
-  padding: 0.75rem 1.2rem;               /* larger tap area */
+  margin: 0.2rem 0;               /* tighter vertical spacing */
+  padding: 0.75rem 1.2rem;
   font-family: 'Playfair Display', serif;
   font-size: 1.05rem;
   font-weight: 700;
   color: #fff;
   text-align: center;
-  background: none;                     /* no transparency */
-  border-bottom: 1px solid #fff;        /* separator between items */
+  background: none;
+  border-radius: 6px;
+  transition: background 0.2s;
 }
-.headerNav.isOpen .headerLink:last-child {
-  border-bottom: none;                  /* no border on last */
+.headerNav.isOpen .headerLink:not(:last-child) {
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.2);
 }
 .headerNav.isOpen .headerLink:hover,
 .headerNav.isOpen .headerLink:focus,
 .headerNav.isOpen .active {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.1);
   color: #fff;
 }
 
@@ -175,7 +175,7 @@
     display: flex !important;
     position: static;
     flex-direction: row;
-    gap: 0.5rem;
+    gap: 0.4rem;
     margin-left: auto;
     padding: 0;
   }

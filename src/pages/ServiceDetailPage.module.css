@@ -1,4 +1,3 @@
-/* src/pages/ServiceDetailPage.module.css */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 
 /* Wrapper */
@@ -80,7 +79,6 @@
 }
 
 /* unified list styling */
-/* ← CHANGED list-style-position to outside and bumped padding-left for proper wrap indent */
 .included ul,
 .benefitsSection ul,
 .whySection ul {
@@ -141,8 +139,8 @@
 }
 .button:hover,
 .button:focus {
-  background: rgba(32,34,43,0.84);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.84);
+  color: #000000;
   border-color: #fff;
   box-shadow: 0 3px 20px rgba(255,255,255,0.15), 0 2px 9px #181b2010;
 }
@@ -166,25 +164,33 @@
 }
 .backBtn:hover,
 .backBtn:focus {
-  background: rgba(32,34,43,0.84);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.84);
+  color: #000000;
   border-color: #fff;
-  box-shadow: 0 3px 20px rgba(255,255,255,0.15), 0 2px 9px #181b2010;
+  box-shadow: 0 3px 20px rgba(255, 255, 255, 0.15), 0 2px 9px #181b2010;
 }
 
 /* Responsive tweaks */
 @media (max-width: 768px) {
+  /* stack everything full-width */
+  .detail {
+    max-width: 100%;
+    margin: 1rem;
+    padding: 1rem;
+  }
   .row,
   .row2 {
     flex-direction: column;
+    gap: 1rem;
   }
-  .pricingBox,
   .included,
+  .pricingBox,
   .benefitsSection,
   .whySection {
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 0.75rem;
   }
+  /* smaller image on narrow */
   .imageContainer {
     max-width: 240px;
     height: 140px;

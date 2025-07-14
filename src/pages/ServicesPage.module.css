@@ -108,8 +108,8 @@
 /* Hero-style hover behavior with white accent */
 .button:hover,
 .button:focus {
-  background: rgba(32, 34, 43, 0.84);
-  color: #fff;               /* keep text white */
+  background: rgba(255, 255, 255, 0.84);
+  color: #000000;               /* keep text white */
   border-color: #fff;        /* white border */
   box-shadow: 0 3px 20px rgba(255,255,255,0.15), 0 2px 9px #181b2010;
 }

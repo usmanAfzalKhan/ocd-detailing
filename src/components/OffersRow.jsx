@@ -65,7 +65,7 @@ export default function OffersRow() {
                   className={styles.button}
                   onClick={() => handleLearnMore(offer.title)}
                 >
-                  Learn More
+                  Book Now
                 </button>
               </div>
             </div>
