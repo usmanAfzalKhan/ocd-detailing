@@ -92,6 +92,9 @@ export default function ReviewsPage() {
   return (
     <div className={styles.reviewsPage}>
       <div className={styles.title}>Customer Reviews</div>
+      <p style={{ textAlign: 'center', marginBottom: '1.5rem', fontFamily: 'Inter, sans-serif' }}>
+        Here are some of the latest testimonials from our satisfied customers.
+      </p>
 
       {error && <div className={styles.errorMsg}>{error}</div>}
 
