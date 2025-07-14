@@ -1,18 +1,33 @@
 /* src/pages/Faq.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
 .faq {
   max-width: 650px;
   margin: 2rem auto;
-  background: #fff;
+  background-color: var(--panel-bg);
+  color: var(--text-primary);
   padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
 .faq h2 {
   text-align: center;
+  margin-bottom: 0.5rem;
+  font-size: 2.2rem;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Intro paragraph styling */
+.intro {
+  text-align: center;
   margin-bottom: 1.5rem;
-  font-size: 1.8rem;
-  color: #232735;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: var(--text-primary);
 }
 
 .item + .item {
@@ -26,8 +41,9 @@
   padding: 0.75rem 1rem;
   text-align: left;
   font-size: 1.05rem;
-  font-weight: 500;
-  color: #111;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  color: var(--text-primary);
   cursor: pointer;
   position: relative;
   border-radius: 6px;
@@ -35,7 +51,7 @@
 }
 
 .question:hover {
-  background: #f0f0f0;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .icon {
@@ -44,6 +60,7 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 1.2rem;
+  color: var(--text-primary);
 }
 
 .answer {
@@ -55,12 +72,14 @@
 
 .answer.open {
   padding: 0.5rem 1rem 1rem;
-  max-height: 200px; /* enough for most answers */
+  max-height: 200px;
 }
 
 .answer p {
   margin: 0;
-  color: #333;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: var(--text-primary);
   line-height: 1.5;
   font-size: 1rem;
 }
