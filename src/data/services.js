@@ -3,7 +3,7 @@ export const services = [
   {
     id: 'mobile-detailing',
     title: 'Mobile Detailing',
-    imgUrl: '/images/mobile-detailing.jpg',
+    imgUrl: '/images/mobile-detailing.png',
     description:
       'Complete exterior and interior cleaning at your location—wax, vacuum, windows, tires.',
     whatsIncluded: [
@@ -24,7 +24,7 @@ export const services = [
   {
     id: 'ceramic-coating',
     title: 'Ceramic Coating',
-    imgUrl: '/images/ceramic-coating.jpg',
+    imgUrl: '/images/ceramic-coating.png',
     description:
       'Long-lasting hydrophobic coating that protects paint from UV, dirt, and minor scratches.',
     whatsIncluded: [
@@ -43,7 +43,7 @@ export const services = [
   {
     id: 'paint-correction',
     title: 'Paint Correction',
-    imgUrl: '/images/paint-correction.jpg',
+    imgUrl: '/images/paint-correction.png',
     description:
       'Machine-polish to remove swirl marks, scratches, and oxidation for a flawless finish.',
     whatsIncluded: [
@@ -63,7 +63,7 @@ export const services = [
   {
     id: 'shampoo-carpets-seats',
     title: 'Shampooing Carpets & Seats',
-    imgUrl: '/images/shampoo-carpets-seats.jpg',
+    imgUrl: '/images/shampoo-carpets-seats.png',
     description:
       'Deep-clean upholstery, carpets, and mats to remove stains, odors, and grime.',
     whatsIncluded: [
@@ -83,7 +83,7 @@ export const services = [
   {
     id: 'clay-bar',
     title: 'Clay Bar Treatment',
-    imgUrl: '/images/clay-bar.jpg',
+    imgUrl: '/images/clay-bar.png',
     description:
       'Removes bonded contaminants—tar, overspray, tree sap—for a super-smooth surface.',
     whatsIncluded: [
