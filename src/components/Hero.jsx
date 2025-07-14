@@ -32,13 +32,11 @@ export default function Hero() {
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      <img src={logo} alt="OCD Logo" className={styles.logoCorner} />
-
       <button
         className={`${styles.arrow} ${styles.left}`}
         onClick={prev}
         aria-label="Previous slide"
-      >‹</button>
+      >&lt;</button>
 
       <div
         className={styles.slider}
@@ -71,7 +69,7 @@ export default function Hero() {
         className={`${styles.arrow} ${styles.right}`}
         onClick={next}
         aria-label="Next slide"
-      >›</button>
+      >&gt;</button>
 
       <div className={styles.indicators}>
         {slides.map((_, idx) => (
@@ -82,6 +80,9 @@ export default function Hero() {
           />
         ))}
       </div>
+
+      {/* use the new logoCorner class so mobile pushes it into the top‐right */}
+      <img src={logo} alt="logo" className={styles.logoCorner} />
     </section>
   );
 }
