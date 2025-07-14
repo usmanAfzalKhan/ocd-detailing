@@ -11,7 +11,8 @@ export const services = [
       'Vacuum carpets & seats',
       'Clean windows inside/out',
       'Tire shine & rim cleaning',
-      'Dashboard & trim wipe down'
+      'Dashboard & trim wipe down',
+      'Interior leather & vinyl conditioning'
     ],
     price: '$120',
     pros: [
@@ -19,6 +20,12 @@ export const services = [
       'Protects paint and interior',
       'Restores “like-new” shine',
       'Great for regular maintenance'
+    ],
+    why: [
+      'Save time—professionals come to you.',
+      'Keep your car looking brand new year-round.',
+      'Protects paint and interior from daily wear.',
+      'Boosts resale value with consistent upkeep.'
     ]
   },
   {
@@ -30,7 +37,8 @@ export const services = [
     whatsIncluded: [
       'Paint decontamination & prep',
       'Application of multi-layer ceramic',
-      'Curing time & final inspection'
+      'Curing time & final inspection',
+      'Hydrophobic topcoat application'
     ],
     price: '$400',
     pros: [
@@ -38,6 +46,12 @@ export const services = [
       'UV fade protection',
       'Keeps car cleaner longer',
       'Enhances gloss & depth'
+    ],
+    why: [
+      'Long-term protection against elements.',
+      'Maintains deep gloss finish.',
+      'Reduces frequent washing.',
+      'Preserves paint’s value and appearance.'
     ]
   },
   {
@@ -50,7 +64,8 @@ export const services = [
       'Multi-stage machine polishing',
       'Scratch & swirl removal',
       'Surface refinement',
-      'Protective sealant applied'
+      'Protective sealant applied',
+      'Precision polishing to remove micro-marring'
     ],
     price: '$250',
     pros: [
@@ -58,6 +73,12 @@ export const services = [
       'Removes visible imperfections',
       'Preps surface for coatings',
       'Makes paint look showroom-fresh'
+    ],
+    why: [
+      'Erase scratches and swirls permanently.',
+      'Restore deep, showroom shine.',
+      'Prep for further protective layers.',
+      'Enhance overall paint durability.'
     ]
   },
   {
@@ -70,7 +91,8 @@ export const services = [
       'High-pressure steam cleaning',
       'Stain treatment & extraction',
       'Fabric protectant optional',
-      'Odor neutralization'
+      'Odor neutralization',
+      'Anti-allergen treatment'
     ],
     price: '$90',
     pros: [
@@ -78,6 +100,12 @@ export const services = [
       'Improves air quality',
       'Restores fabric brightness',
       'Ideal for pet owners'
+    ],
+    why: [
+      'Remove deep-set stains safely.',
+      'Neutralize stubborn odors.',
+      'Protect fabrics from future spills.',
+      'Keep cabin looking and smelling fresh.'
     ]
   },
   {
@@ -89,7 +117,8 @@ export const services = [
     whatsIncluded: [
       'Lubrication & clay bar decontamination',
       'Surface smoothing',
-      'Ready for polish or wax'
+      'Ready for polish or wax',
+      'Deep contaminant removal'
     ],
     price: '$80',
     pros: [
@@ -97,6 +126,12 @@ export const services = [
       'Enhances polish/gloss results',
       'Preps paint for coatings',
       'Removes unseen contaminants'
+    ],
+    why: [
+      'Deep decontamination for smooth finish.',
+      'Maximize polish and wax adhesion.',
+      'Reveal true depth of your paint.',
+      'Protect against future environmental damage.'
     ]
   }
 ];

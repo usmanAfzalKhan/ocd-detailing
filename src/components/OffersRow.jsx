@@ -1,3 +1,4 @@
+// src/components/OffersRow.jsx
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './OffersRow.module.css'
@@ -16,7 +17,7 @@ export default function OffersRow() {
     },
     {
       id: 2,
-      title: 'First Time Detail 20% Off',
+      title: 'First Time Detail – 20% Off',
       imgUrl: '/images/offer-first-time.png',
       desc:
         'New customers enjoy 20% off their first full mobile detail. Experience showroom-fresh shine at an exclusive introductory rate.'
@@ -28,9 +29,6 @@ export default function OffersRow() {
 
   const handleLearnMore = title =>
     navigate('/contact', { state: { service: title } })
-
-  // If only two offers, add an empty filler for layout balance
-  const emptySlots = offers.length === 2 ? 1 : 0
 
   return (
     <section className={styles.offersSection}>
@@ -50,8 +48,11 @@ export default function OffersRow() {
                   className={styles.image}
                 />
               </div>
-
-              <div className={`${styles.details} ${isOpen ? styles.open : ''}`}>
+              <div
+                className={`${styles.details} ${
+                  isOpen ? styles.open : ''
+                }`}
+              >
                 <h3 className={styles.title}>{offer.title}</h3>
                 <p className={styles.text}>{offer.desc}</p>
                 <button
@@ -64,18 +65,6 @@ export default function OffersRow() {
             </div>
           )
         })}
-
-        {emptySlots > 0 && (
-          <div
-            className={styles.card}
-            style={{
-              background: 'none',
-              boxShadow: 'none',
-              border: 'none',
-              pointerEvents: 'none'
-            }}
-          />
-        )}
       </div>
     </section>
   )
