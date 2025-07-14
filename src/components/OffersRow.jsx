@@ -47,6 +47,12 @@ export default function OffersRow() {
                   alt={offer.title}
                   className={styles.image}
                 />
+                {/* logo overlay */}
+                <img
+                  src="/images/logo-hero.png"
+                  alt="OCD logo"
+                  className={styles.logoOverlay}
+                />
               </div>
               <div
                 className={`${styles.details} ${

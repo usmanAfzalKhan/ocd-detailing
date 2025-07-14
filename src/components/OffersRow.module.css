@@ -67,6 +67,16 @@
   object-fit: cover;
 }
 
+/* logo positioned bottom-right */
+.logoOverlay {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  width: 40px;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
 .card.open {
   border-color: #fff;
 }
@@ -119,7 +129,6 @@
 
 .button:hover,
 .button:focus {
-  /* same hover behavior as your hero buttons */
   background: rgba(239, 240, 243, 0.84);
   color: #181b20;
   border-color: #fff;
