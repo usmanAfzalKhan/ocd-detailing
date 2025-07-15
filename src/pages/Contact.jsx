@@ -153,7 +153,7 @@ if (submitted) {
         <div style={{ fontWeight: 700, fontSize: "1.15rem", marginBottom: "0.35em" }}>
           Thank you! Your request has been received.
         </div>
-        <div style={{ color: "#232323", fontSize: "1.04rem" }}>
+        <div style={{ color: "#ffffffff", fontSize: "1.04rem" }}>
           We’ll contact you back in 2–3 business days.
         </div>
       </div>
