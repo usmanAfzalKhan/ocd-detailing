@@ -25,6 +25,7 @@
   font-weight: 700;
   margin-bottom: 0.01rem;
   letter-spacing: 0.01em;
+  color: #fff;
 }
 
 .socials {
@@ -89,7 +90,7 @@
 }
 
 .tagline {
-  color: #bdbdbd;
+  color: #ffffff;
   font-size: 0.93rem;
   margin-top: 0.01rem;
   letter-spacing: 0.01em;
