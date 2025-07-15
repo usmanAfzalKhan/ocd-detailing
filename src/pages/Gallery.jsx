@@ -15,10 +15,15 @@ export default function Gallery() {
     return () => { document.body.style.overflow = ""; };
   }, [modalOpen]);
 
-  const openModal = idx => setModalOpen(true) || setCurrentIdx(idx);
+  const openModal = idx => {
+    setCurrentIdx(idx);
+    setModalOpen(true);
+  };
   const closeModal = () => setModalOpen(false);
-  const prevImage = () => setCurrentIdx(i => (i - 1 + flatImages.length) % flatImages.length);
-  const nextImage = () => setCurrentIdx(i => (i + 1) % flatImages.length);
+  const prevImage = () =>
+    setCurrentIdx(i => (i - 1 + flatImages.length) % flatImages.length);
+  const nextImage = () =>
+    setCurrentIdx(i => (i + 1) % flatImages.length);
 
   // keyboard nav
   const onKeyDown = useCallback(e => {
@@ -34,7 +39,16 @@ export default function Gallery() {
 
   return (
     <section className={styles.gallery}>
-      <h1 className={styles.title}>Before &amp; After</h1>
+      <h1 className={styles.mainTitle}>Gallery</h1>
+      <p className={styles.intro}>
+        Take a look at our work—before and after detailing! Each photo captures the dramatic transformations we achieve, from deep‑cleaned interiors and crystal‑clear windows to showroom‑shine exteriors and protected finishes. Explore how OCD Detailing brings out the best in every vehicle, restoring beauty and extending its life.
+      </p>
+
+
+      <h2 className={styles.subtitle}>Before &amp; After</h2>
+      <div className={styles.aboutGalleryInstruction}>
+        <i>Tap any image to enlarge</i>
+      </div>
 
       <div className={styles.grid}>
         {flatImages.map((src, idx) => (
@@ -67,18 +81,16 @@ export default function Gallery() {
               ×
             </button>
 
-            <div className={styles.modalImageWrapper}>
-              <img
-                src={flatImages[currentIdx]}
-                alt=""
-                className={styles.modalImage}
-              />
-              <img
-                src="/images/logo-hero.png"
-                alt="logo watermark"
-                className={styles.logoOverlayLarge}
-              />
-            </div>
+            <img
+              src={flatImages[currentIdx]}
+              alt=""
+              className={styles.modalImage}
+            />
+            <img
+              src="/images/logo-hero.png"
+              alt="logo watermark"
+              className={styles.logoOverlayLarge}
+            />
 
             <button
               className={`${styles.navBtn} ${styles.prevBtn}`}

@@ -1,5 +1,3 @@
-/* src/pages/Gallery.module.css */
-
 /* Gallery container */
 .gallery {
   max-width: 1050px;
@@ -8,14 +6,43 @@
   background: #18181a;
 }
 
-/* Section title */
-.title {
+/* Main title */
+.mainTitle {
   text-align: center;
   font-family: 'Playfair Display', serif;
   font-size: 2.2rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   color: #f3f3fa;
+}
+
+/* Intro paragraph */
+.intro {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #d1d5db;
+  margin-bottom: 1.5rem;
+}
+
+/* Subtitle (Before & After) */
+.subtitle {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #f3f3fa;
+}
+
+/* “Tap any image to enlarge” instruction */
+.aboutGalleryInstruction {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #d1d5db;
+  margin-bottom: 1.5rem;
+  font-style: italic;
 }
 
 /* Image grid: 4 columns on desktop */
@@ -37,22 +64,26 @@
   }
 }
 
-/* Each thumbnail wrapper */
+/* Thumbnail wrapper */
 .imageWrapper {
   position: relative;
   cursor: pointer;
 }
 
-/* Grid image: uniform squares */
+/* Grid image: square, cover */
 .gridImage {
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 8px;
   display: block;
+  transition: border 0.2s ease;
+}
+.gridImage:hover {
+  border: 2px solid #fff;
 }
 
-/* Watermark logo on thumbnails */
+/* Thumbnail watermark */
 .logoOverlay {
   position: absolute;
   bottom: 6px;
@@ -61,7 +92,7 @@
   opacity: 0.7;
 }
 
-/* Modal overlay: dark, full-screen, no background scroll */
+/* Modal overlay */
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -77,11 +108,11 @@
   overflow: hidden;
 }
 
-/* Modal content wrapper: adds dark panel behind image and controls */
+/* Modal content panel */
 .modalContent {
   position: relative;
-  background: #111;            /* dark panel behind everything */
-  padding: 2rem 4rem;          /* space for controls around image */
+  background: #111;
+  padding: 2rem 4rem;
   border-radius: 12px;
   max-width: 80vw;
   max-height: 80vh;
@@ -92,7 +123,7 @@
   justify-content: center;
 }
 
-/* Modal image styling: contained within panel */
+/* Modal image */
 .modalImage {
   max-width: 100%;
   max-height: 100%;
@@ -101,23 +132,22 @@
   cursor: zoom-in;
 }
 
-/* Large watermark in modal */
+/* Modal watermark */
 .logoOverlayLarge {
   position: absolute;
-  /* match the modalContent padding so it sits in the bottom‑right corner of the panel */
   bottom: 2rem;
   right: 4rem;
   width: 32px;
   opacity: 0.7;
 }
 
-/* Navigation buttons (< and >) */
+/* Nav buttons */
 .navBtn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: none;            /* no bg */
-  color: #fff;                 /* bright white */
+  background: none;
+  color: #fff;
   text-shadow: 0 0 6px rgba(0,0,0,0.8);
   border: none;
   width: 40px;
@@ -132,13 +162,13 @@
 .prevBtn { left: 12px; }
 .nextBtn { right: 12px; }
 
-/* Close button (×) */
+/* Close button */
 .closeBtn {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: none;            /* no bg */
-  color: #fff;                 /* bright white */
+  background: none;
+  color: #fff;
   text-shadow: 0 0 6px rgba(0,0,0,0.8);
   border: none;
   width: 32px;
@@ -151,7 +181,7 @@
   z-index: 1;
 }
 
-/* Mobile tweaks for modal controls */
+/* Mobile tweaks */
 @media (max-width: 600px) {
   .modalContent {
     padding: 1.5rem 2rem;
@@ -159,8 +189,6 @@
   .prevBtn { left: 8px; }
   .nextBtn { right: 8px; }
   .closeBtn { top: 8px; right: 8px; }
-
-  /* reposition the watermark to match smaller padding */
   .logoOverlayLarge {
     bottom: 1.5rem;
     right: 2rem;
