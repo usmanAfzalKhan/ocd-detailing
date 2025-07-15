@@ -29,6 +29,9 @@ Services: ${(data.services || []).map(s =>
   s === "Other" && data.otherService ? `Other: ${data.otherService}` : s
 ).join(", ")}
 Vehicle: ${data.vehicle === "Other" && data.otherVehicle ? `Other: ${data.otherVehicle}` : data.vehicle}
+First Time: ${typeof data.firstTime !== "undefined" ? data.firstTime : "–"}
+Referred: ${typeof data.referred !== "undefined" ? data.referred : "–"}
+${data.referred === "Yes" && data.referredBy ? `Referred By: ${data.referredBy}` : ""}
 Message: ${data.message ? data.message : "– none –"}
 
 Sent from ocdautocare.netlify.app
@@ -67,6 +70,19 @@ Sent from ocdautocare.netlify.app
             ${data.vehicle === "Other" && data.otherVehicle
               ? `Other: ${data.otherVehicle}`
               : data.vehicle}
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight:bold;padding:4px 0;">First Time:</td>
+          <td style="padding:4px 0;">${typeof data.firstTime !== "undefined" ? data.firstTime : "<span style='color:#aaa;'>–</span>"}</td>
+        </tr>
+        <tr>
+          <td style="font-weight:bold;padding:4px 0;">Referred:</td>
+          <td style="padding:4px 0;">
+            ${typeof data.referred !== "undefined" ? data.referred : "<span style='color:#aaa;'>–</span>"}
+            ${data.referred === "Yes" && data.referredBy
+              ? `<div style="color:#666;margin-top:2px;">Referred By: <b>${data.referredBy}</b></div>`
+              : ""}
           </td>
         </tr>
         <tr>

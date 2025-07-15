@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import servicesList from "../data/services"; // Array of service objects: [{ name, slug }]
 import styles from "./ContactForm.module.css";
+import ocdLogo from "../assets/ocd-logo.png"; // Update this path if your logo is elsewhere
 
 const vehicleTypes = [
   "Sedan", "SUV", "Truck", "Van", "Coupe", "Convertible", "Wagon", "Other"
@@ -17,7 +18,10 @@ export default function ContactForm() {
     vehicle: "",
     otherVehicle: "",
     otherVehicleDetail: "",
-    message: ""
+    message: "",
+    firstTime: "",         // "Yes" or "No"
+    referred: "",          // "Yes" or "No"
+    whoReferred: "",
   });
   const [touched, setTouched] = useState({});
   const [submitted, setSubmitted] = useState(false);
@@ -34,6 +38,10 @@ export default function ContactForm() {
   if (!form.vehicle) errors.vehicle = "Please select a vehicle type.";
   if (form.vehicle === "Other" && !form.otherVehicleDetail)
     errors.otherVehicleDetail = "Please specify the vehicle type.";
+  if (!form.firstTime) errors.firstTime = "Please select an option.";
+  if (!form.referred) errors.referred = "Please select an option.";
+  if (form.referred === "Yes" && !form.whoReferred)
+    errors.whoReferred = "Please specify who referred you.";
 
   // Date logic: disable past dates
   const today = new Date().toISOString().split("T")[0];
@@ -51,6 +59,12 @@ export default function ContactForm() {
       setForm((f) => ({
         ...f,
         phone: value.replace(/\D/g, "").slice(0, 10)
+      }));
+    } else if (name === "referred") {
+      setForm((f) => ({
+        ...f,
+        referred: value,
+        whoReferred: value === "Yes" ? f.whoReferred : ""
       }));
     } else {
       setForm((f) => ({ ...f, [name]: value }));
@@ -78,7 +92,10 @@ export default function ContactForm() {
       services: true,
       otherServiceDetail: true,
       vehicle: true,
-      otherVehicleDetail: true
+      otherVehicleDetail: true,
+      firstTime: true,
+      referred: true,
+      whoReferred: true,
     });
     if (Object.keys(errors).length === 0) {
       setSubmitted(true);
@@ -90,7 +107,9 @@ export default function ContactForm() {
     return (
       <section className={styles.contactFormSection}>
         <div className={styles.successMsg}>
-          <span>Thank you! Your request has been received.</span>
+          <img src={ocdLogo} alt="OCD Logo" style={{ width: 90, marginBottom: 16 }} />
+          <div style={{ fontWeight: 700, fontSize: 20, marginBottom: 8 }}>Thank you!</div>
+          <span>Your request has been received.<br />You will be contacted in 2-3 business days.</span>
         </div>
       </section>
     );
@@ -99,8 +118,6 @@ export default function ContactForm() {
   return (
     <section className={styles.contactFormSection}>
       <form onSubmit={handleSubmit} className={styles.contactForm} noValidate>
-        <h2 className={styles.heading}>Contact Us</h2>
-
         {/* Name */}
         <input
           type="text"
@@ -223,6 +240,77 @@ export default function ContactForm() {
               rows={2}
             />
             {touched.otherVehicleDetail && errors.otherVehicleDetail && <div className={styles.error}>{errors.otherVehicleDetail}</div>}
+          </>
+        )}
+
+        {/* First time with OCD */}
+        <div className={styles.servicesLabel}>Is this your first time with OCD?*</div>
+        <div className={styles.radioGroup}>
+          <label className={styles.radioLabel}>
+            <input
+              type="radio"
+              name="firstTime"
+              value="Yes"
+              checked={form.firstTime === "Yes"}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              required
+            /> Yes
+          </label>
+          <label className={styles.radioLabel}>
+            <input
+              type="radio"
+              name="firstTime"
+              value="No"
+              checked={form.firstTime === "No"}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              required
+            /> No
+          </label>
+        </div>
+        {touched.firstTime && errors.firstTime && <div className={styles.error}>{errors.firstTime}</div>}
+
+        {/* Referred */}
+        <div className={styles.servicesLabel}>Were you referred to us?*</div>
+        <div className={styles.radioGroup}>
+          <label className={styles.radioLabel}>
+            <input
+              type="radio"
+              name="referred"
+              value="Yes"
+              checked={form.referred === "Yes"}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              required
+            /> Yes
+          </label>
+          <label className={styles.radioLabel}>
+            <input
+              type="radio"
+              name="referred"
+              value="No"
+              checked={form.referred === "No"}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              required
+            /> No
+          </label>
+        </div>
+        {touched.referred && errors.referred && <div className={styles.error}>{errors.referred}</div>}
+        {form.referred === "Yes" && (
+          <>
+            <input
+              type="text"
+              name="whoReferred"
+              className={styles.input}
+              placeholder="Who referred you?*"
+              value={form.whoReferred}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              required
+            />
+            {touched.whoReferred && errors.whoReferred && <div className={styles.error}>{errors.whoReferred}</div>}
           </>
         )}
 
