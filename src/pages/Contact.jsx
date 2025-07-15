@@ -1,6 +1,7 @@
 // src/pages/Contact.jsx
 
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import styles from "./Contact.module.css";
 
 // Example services & vehicle types (adjust as needed)
@@ -39,7 +40,11 @@ const initialState = {
 };
 
 export default function Contact() {
-  const [form, setForm] = useState(initialState);
+  const location = useLocation();
+  // Prefill if available (from OffersRow)
+  const initialPrefill = { ...initialState, ...(location.state || {}) };
+  const [form, setForm] = useState(initialPrefill);
+
   const [touched, setTouched] = useState({});
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
@@ -72,9 +77,7 @@ export default function Contact() {
     if (digits.length > 10) digits = digits.slice(0, 10);
     let formatted = digits;
     if (digits.length > 6)
-      formatted = `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(
-        6
-      )}`;
+      formatted = `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
     else if (digits.length > 3)
       formatted = `${digits.slice(0, 3)}-${digits.slice(3)}`;
     setForm((f) => ({ ...f, phone: formatted }));
@@ -140,27 +143,32 @@ export default function Contact() {
   // Today's date for min
   const today = new Date().toISOString().split("T")[0];
 
-// Show success message
-if (submitted) {
-  return (
-    <section className={styles.contactSection}>
-      <div className={styles.success}>
-        <img
-          src="/images/logo-hero.png"
-          alt="OCD Detailing Logo"
-          style={{ width: "84px", marginBottom: "1.2rem", display: "block", marginLeft: "auto", marginRight: "auto" }}
-        />
-        <div style={{ fontWeight: 700, fontSize: "1.15rem", marginBottom: "0.35em" }}>
-          Thank you! Your request has been received.
+  // Show success message
+  if (submitted) {
+    return (
+      <section className={styles.contactSection}>
+        <div className={styles.success}>
+          <img
+            src="/images/logo-hero.png"
+            alt="OCD Detailing Logo"
+            style={{
+              width: "84px",
+              marginBottom: "1.2rem",
+              display: "block",
+              marginLeft: "auto",
+              marginRight: "auto"
+            }}
+          />
+          <div style={{ fontWeight: 700, fontSize: "1.15rem", marginBottom: "0.35em", textAlign: "center" }}>
+            Thank you! Your request has been received.
+          </div>
+          <div style={{ color: "#fff", fontSize: "1.04rem", textAlign: "center" }}>
+            We’ll contact you back in 2–3 business days.
+          </div>
         </div>
-        <div style={{ color: "#ffffffff", fontSize: "1.04rem" }}>
-          We’ll contact you back in 2–3 business days.
-        </div>
-      </div>
-    </section>
-  );
-}
-
+      </section>
+    );
+  }
 
   return (
     <section className={styles.contactSection}>

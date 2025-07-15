@@ -1,4 +1,5 @@
 // src/components/OffersRow.jsx
+
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './OffersRow.module.css'
@@ -13,22 +14,25 @@ export default function OffersRow() {
       title: 'Refer a Friend & Save 20%',
       imgUrl: '/images/offer-refer-friend.png',
       desc:
-        'Share OCD Detailing with a friend—you both get 20% off your next service when you book together. Mention each other at checkout!'
+        'Share OCD Detailing with a friend—you both get 20% off your next service when you book together. Mention each other at checkout!',
+      state: { referred: 'Yes' }
     },
     {
       id: 2,
       title: 'First Time Detail – 20% Off',
       imgUrl: '/images/offer-first-time.png',
       desc:
-        'New customers enjoy 20% off their first full mobile detail. Experience showroom-fresh shine at an exclusive introductory rate.'
+        'New customers enjoy 20% off their first full mobile detail. Experience showroom-fresh shine at an exclusive introductory rate.',
+      state: { firstTime: 'Yes' }
     }
   ]
 
   const toggleExpand = idx =>
     setExpandedIdx(expandedIdx === idx ? null : idx)
 
-  const handleLearnMore = title =>
-    navigate('/contact', { state: { service: title } })
+  // Pass only the relevant field to Contact page
+  const handleLearnMore = offer =>
+    navigate('/contact', { state: offer.state })
 
   return (
     <section className={styles.offersSection}>
@@ -55,15 +59,13 @@ export default function OffersRow() {
                 />
               </div>
               <div
-                className={`${styles.details} ${
-                  isOpen ? styles.open : ''
-                }`}
+                className={`${styles.details} ${isOpen ? styles.open : ''}`}
               >
                 <h3 className={styles.title}>{offer.title}</h3>
                 <p className={styles.text}>{offer.desc}</p>
                 <button
                   className={styles.button}
-                  onClick={() => handleLearnMore(offer.title)}
+                  onClick={() => handleLearnMore(offer)}
                 >
                   Book Now
                 </button>
