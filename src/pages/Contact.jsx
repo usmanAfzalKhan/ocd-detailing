@@ -140,16 +140,27 @@ export default function Contact() {
   // Today's date for min
   const today = new Date().toISOString().split("T")[0];
 
-  // Show success message
-  if (submitted) {
-    return (
-      <section className={styles.contactSection}>
-        <div className={styles.success}>
-          <div>Thank you! Your request has been received.</div>
+// Show success message
+if (submitted) {
+  return (
+    <section className={styles.contactSection}>
+      <div className={styles.success}>
+        <img
+          src="/images/logo.png"
+          alt="OCD Detailing Logo"
+          style={{ width: "84px", marginBottom: "1.2rem", display: "block", marginLeft: "auto", marginRight: "auto" }}
+        />
+        <div style={{ fontWeight: 700, fontSize: "1.15rem", marginBottom: "0.35em" }}>
+          Thank you! Your request has been received.
         </div>
-      </section>
-    );
-  }
+        <div style={{ color: "#232323", fontSize: "1.04rem" }}>
+          We’ll contact you back in 2–3 business days.
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
   return (
     <section className={styles.contactSection}>
