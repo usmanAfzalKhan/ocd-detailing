@@ -3,17 +3,9 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./Contact.module.css";
+import { services } from "../data/services";
 
-// Example services & vehicle types (adjust as needed)
-const servicesList = [
-  "Exterior Wash",
-  "Interior Detailing",
-  "Paint Correction",
-  "Ceramic Coating",
-  "Engine Bay Cleaning",
-  "Pet Hair Removal",
-  "Other",
-];
+const servicesList = [...services.map((s) => s.title), "Other"];
 const vehicleTypes = [
   "Sedan",
   "SUV",
@@ -41,16 +33,13 @@ const initialState = {
 
 export default function Contact() {
   const location = useLocation();
-  // Prefill if available (from OffersRow)
   const initialPrefill = { ...initialState, ...(location.state || {}) };
   const [form, setForm] = useState(initialPrefill);
-
   const [touched, setTouched] = useState({});
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  // Validation
   function validate(f) {
     const err = {};
     if (!f.name.trim()) err.name = "Name is required.";
@@ -63,27 +52,22 @@ export default function Contact() {
     if (!f.vehicle) err.vehicle = "Select a vehicle type.";
     if (f.vehicle === "Other" && !f.otherVehicle.trim())
       err.otherVehicle = "Please specify the vehicle type.";
-    if (!f.firstTime)
-      err.firstTime = "Please indicate if this is your first time.";
+    if (!f.firstTime) err.firstTime = "Please indicate if this is your first time.";
     if (!f.referred) err.referred = "Please indicate if you were referred.";
     if (f.referred === "Yes" && !f.referredBy.trim())
       err.referredBy = "Please specify who referred you.";
     return err;
   }
 
-  // Phone formatting
   function handlePhoneChange(e) {
-    let digits = e.target.value.replace(/\D/g, "");
-    if (digits.length > 10) digits = digits.slice(0, 10);
+    let digits = e.target.value.replace(/\D/g, "").slice(0, 10);
     let formatted = digits;
     if (digits.length > 6)
       formatted = `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
-    else if (digits.length > 3)
-      formatted = `${digits.slice(0, 3)}-${digits.slice(3)}`;
+    else if (digits.length > 3) formatted = `${digits.slice(0, 3)}-${digits.slice(3)}`;
     setForm((f) => ({ ...f, phone: formatted }));
   }
 
-  // Handle input change
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
     if (type === "checkbox" && name === "services") {
@@ -102,11 +86,11 @@ export default function Contact() {
       setForm((f) => ({ ...f, [name]: value }));
     }
   }
+
   function handleBlur(e) {
     setTouched((t) => ({ ...t, [e.target.name]: true }));
   }
 
-  // Submit handler
   async function handleSubmit(e) {
     e.preventDefault();
     const currentErrors = validate(form);
@@ -140,10 +124,8 @@ export default function Contact() {
     setSubmitting(false);
   }
 
-  // Today's date for min
   const today = new Date().toISOString().split("T")[0];
 
-  // Show success message
   if (submitted) {
     return (
       <section className={styles.contactSection}>
@@ -156,13 +138,26 @@ export default function Contact() {
               marginBottom: "1.2rem",
               display: "block",
               marginLeft: "auto",
-              marginRight: "auto"
+              marginRight: "auto",
             }}
           />
-          <div style={{ fontWeight: 700, fontSize: "1.15rem", marginBottom: "0.35em", textAlign: "center" }}>
+          <div
+            style={{
+              fontWeight: 700,
+              fontSize: "1.15rem",
+              marginBottom: "0.35em",
+              textAlign: "center",
+            }}
+          >
             Thank you! Your request has been received.
           </div>
-          <div style={{ color: "#fff", fontSize: "1.04rem", textAlign: "center" }}>
+          <div
+            style={{
+              color: "#fff",
+              fontSize: "1.04rem",
+              textAlign: "center",
+            }}
+          >
             We’ll contact you back in 2–3 business days.
           </div>
         </div>
@@ -179,24 +174,22 @@ export default function Contact() {
           <a href="tel:+14167006670" className={styles.link}>
             +1&nbsp;416-700-6670
           </a>
-          , DM us on
+          , DM us on{" "}
           <a
-            href="https://www.instagram.com/ocd.detailinggta/?igsh=ZmJ5MTFnb242dzdr#"
+            href="https://www.instagram.com/ocd.detailinggta"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.link}
           >
-            {" "}
-            Instagram{" "}
-          </a>
-          or
+            Instagram
+          </a>{" "}
+          or{" "}
           <a
-            href="https://www.facebook.com/ocd.detailinggta?rdid=JbcjbL3eUCWUoRup&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1GJqLKZkhZ%2F#"
+            href="https://www.facebook.com/ocd.detailinggta"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.link}
           >
-            {" "}
             Facebook
           </a>
           — we’ll get back to you ASAP!
@@ -263,7 +256,7 @@ export default function Contact() {
           <div className={styles.error}>{errors.date}</div>
         )}
 
-        {/* Services */}
+        {/* Services Interested In */}
         <label className={styles.label}>
           Services Interested In<span className={styles.req}>*</span>:
         </label>
@@ -302,7 +295,7 @@ export default function Contact() {
           </>
         )}
 
-        {/* Vehicle type */}
+        {/* Vehicle Type */}
         <label className={styles.label}>
           Vehicle Type<span className={styles.req}>*</span>:
         </label>
@@ -341,7 +334,7 @@ export default function Contact() {
           </>
         )}
 
-        {/* First time field */}
+        {/* First Time */}
         <label className={styles.label}>
           Is this your first time with OCD?<span className={styles.req}>*</span>
         </label>
@@ -373,7 +366,7 @@ export default function Contact() {
           <div className={styles.error}>{errors.firstTime}</div>
         )}
 
-        {/* Referred field */}
+        {/* Referred */}
         <label className={styles.label}>
           Were you referred to us?<span className={styles.req}>*</span>
         </label>
@@ -435,11 +428,7 @@ export default function Contact() {
           onChange={handleChange}
         />
 
-        <button
-          type="submit"
-          className={styles.submitBtn}
-          disabled={submitting}
-        >
+        <button type="submit" className={styles.submitBtn} disabled={submitting}>
           {submitting ? "Sending..." : "Send"}
         </button>
       </form>

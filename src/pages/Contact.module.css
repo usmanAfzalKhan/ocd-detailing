@@ -11,13 +11,15 @@
   align-items: center;
   justify-content: center;
   background: #18181a; /* dark bg */
+  padding-top: 1rem;   /* pull form up a bit */
 }
 
 .form {
   background: #232327; /* dark panel */
   border-radius: 13px;
   box-shadow: 0 6px 28px #0007;
-  padding: 2.3rem 1.3rem 1.7rem 1.3rem;
+  padding: 1.8rem 1.3rem 1.7rem 1.3rem; /* reduced top padding */
+  margin-top: -0.5rem;                  /* pull form up */
   width: 100%;
   max-width: 420px;
   display: flex;
@@ -30,19 +32,36 @@
 
 .heading {
   color: #fff;
-  margin-bottom: 1.2rem;
+  margin-top: 0.2rem;    /* pull heading up */
+  margin-bottom: 0.6rem; /* tighten below */
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-align: center;
+  font-family: 'Playfair Display', serif; /* match other headings */
 }
 
+.intro {
+  color: #d1d5db;
+  font-size: 1rem;
+  margin-top: 0;         /* no extra top gap */
+  margin-bottom: 0.8rem; /* tighten below */
+  text-align: center;
+}
+
+/* question labels */
 .label {
   color: #d1d5db;
-  font-weight: 600;
+  font-weight: 700;      /* full bold now */
   margin: 0;
-  font-size: 1.01rem;
+  font-size: 1.25rem;       /* increased for clarity */
   align-self: flex-start;
+}
+
+@media (max-width: 600px) {
+  .label {
+    font-size: 1.15rem;     /* a bit smaller on mobile */
+  }
 }
 
 .req {
@@ -87,6 +106,7 @@
   display: flex;
   align-items: center;
   gap: 0;
+  margin-top: -0.4rem; /* move inputs up closer */
 }
 
 .plusOne {
@@ -111,8 +131,10 @@
 .servicesGrid {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem 1.12rem;
+  gap: 0.58rem 1.12rem;  /* match vehicleGrid */
   width: 100%;
+  margin-top: -0.4rem;   /* move options up closer */
+  margin-bottom: 0.6rem; /* consistent spacing */
 }
 
 .checkboxLabel {
@@ -137,6 +159,7 @@ input[type="checkbox"] {
   flex-wrap: wrap;
   gap: 0.58rem 1.12rem;
   width: 100%;
+  margin-top: -0.4rem;   /* move options up closer */
 }
 
 .radioLabel {
@@ -171,7 +194,7 @@ input[type="radio"] {
   color: #fff;
   font-weight: 700;
   border: 1.5px solid #fff;
-  border-radius: 99px;      /* pill style, but matches your site! */
+  border-radius: 99px;      /* pill style */
   font-size: 1.18rem;
   cursor: pointer;
   width: 75%;
@@ -201,8 +224,6 @@ input[type="radio"] {
 .submitBtn:active {
   transform: scale(0.97);
 }
-
-
 
 /* Success box */
 .success {
@@ -244,19 +265,12 @@ input[type="radio"] {
   transition: color 0.15s;
 }
 
-.link:hover { 
-  color: #fff;    /* Optional: light blue on hover for feedback */
+.link:hover {
+  color: #fff;
   text-decoration: none;
 }
 
-.heading {
-  color: #fff;
-  font-family: 'Playfair Display', 'Inter', serif; /* Add your custom font here */
-  margin-bottom: 1.2rem;
-  font-size: 2rem;         /* Adjust to match other headings */
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-align: center;
-  line-height: 1.2;
+/* small gap below each question label */
+.field {
+  margin-bottom: 0.8rem;
 }
-

@@ -1,4 +1,5 @@
 // src/pages/ServiceDetailPage.jsx
+
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { services } from '../data/services';
@@ -38,7 +39,7 @@ export default function ServiceDetailPage() {
           <button
             className={styles.button}
             onClick={() =>
-              navigate('/contact', { state: { service: service.title } })
+              navigate('/contact', { state: { services: [service.title] } })
             }
           >
             Book Now
