@@ -165,32 +165,44 @@ input[type="radio"] {
 
 /* Button */
 .submitBtn {
-  margin-top: 1.0rem;
-  padding: 0.67rem 0;
-  background: linear-gradient(90deg,#6366f1,#38bdf8 99%);
+  margin-top: 1.4rem;
+  padding: 0.85rem 0;
+  background: transparent;
   color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.13rem;
-  font-weight: 600;
+  font-weight: 700;
+  border: 1.5px solid #fff;
+  border-radius: 99px;      /* pill style, but matches your site! */
+  font-size: 1.18rem;
   cursor: pointer;
-  width: 60%;
-  max-width: 180px;
+  width: 75%;
+  min-width: 145px;
+  max-width: 290px;
   align-self: center;
-  transition: background 0.19s, transform 0.13s;
+  box-shadow: 0 2px 12px #0008;
+  transition:
+    color 0.16s,
+    background 0.17s,
+    border-color 0.16s,
+    box-shadow 0.13s,
+    transform 0.12s;
+  font-family: 'Inter', sans-serif;
   letter-spacing: 0.01em;
-  box-shadow: 0 2px 8px #0ea5e94a;
 }
 
-.submitBtn:disabled {
-  background: #bcbaf5;
-  cursor: not-allowed;
+.submitBtn:hover,
+.submitBtn:focus {
+  background: rgba(239, 240, 243, 0.84);
+  color: #181b20;
+  border-color: #fff;
+  box-shadow: 0 3px 20px #d6bfbf26, 0 2px 9px #181b2010;
+  transform: scale(1.025);
 }
 
-.submitBtn:hover:not(:disabled) {
-  background: linear-gradient(90deg,#4f46e5,#0284c7 99%);
-  transform: translateY(-1px) scale(1.045);
+.submitBtn:active {
+  transform: scale(0.97);
 }
+
+
 
 /* Success box */
 .success {
