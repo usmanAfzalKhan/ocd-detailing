@@ -91,7 +91,7 @@ export default function ReviewsPage() {
 
   return (
     <div className={styles.reviewsPage}>
-      <div className={styles.title}>Customer Reviews</div>
+      <h1 className={styles.title}>Customer Reviews</h1>
       <p style={{ textAlign: 'center', marginBottom: '1.5rem', fontFamily: 'Inter, sans-serif' }}>
         Here are some of the latest testimonials from our satisfied customers.
       </p>

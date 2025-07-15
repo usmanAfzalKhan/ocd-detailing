@@ -30,15 +30,14 @@
   color: #fff;
 }
 
-.heading {
-  color: #fff;
-  margin-top: 0.2rem;    /* pull heading up */
-  margin-bottom: 0.6rem; /* tighten below */
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+/* Heading uses the logo’s serif font */
+.title {
   text-align: center;
-  font-family: 'Playfair Display', serif; /* match other headings */
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
 }
 
 .intro {

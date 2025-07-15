@@ -168,7 +168,7 @@ export default function Contact() {
   return (
     <section className={styles.contactSection}>
       <form className={styles.form} onSubmit={handleSubmit} noValidate>
-        <h2 className={styles.heading}>Contact Us</h2>
+        <h1 className={styles.title}>Contact Us</h1>
         <p className={styles.intro}>
           Have a question? Call us at{" "}
           <a href="tel:+14167006670" className={styles.link}>

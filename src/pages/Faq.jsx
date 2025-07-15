@@ -9,7 +9,7 @@ export default function Faq() {
 
   return (
     <section className={styles.faq}>
-      <h2>Frequently Asked Questions</h2>
+      <h1 className={styles.title}>Frequently Asked Questions</h1>
       <p style={{ textAlign: 'center', marginBottom: '1.5rem', fontFamily: 'Inter, sans-serif' }}>
         Below are some of the most common car detailing questions, answered by our detailing expert.
       </p>
