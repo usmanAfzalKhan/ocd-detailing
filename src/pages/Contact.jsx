@@ -146,7 +146,7 @@ if (submitted) {
     <section className={styles.contactSection}>
       <div className={styles.success}>
         <img
-          src="/images/logo.png"
+          src="/images/logo-hero.png"
           alt="OCD Detailing Logo"
           style={{ width: "84px", marginBottom: "1.2rem", display: "block", marginLeft: "auto", marginRight: "auto" }}
         />
