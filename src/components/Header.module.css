@@ -1,5 +1,5 @@
 /* src/components/Header.module.css */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
 
 /* 100% width header bar, no card! */
 .header {
@@ -83,11 +83,13 @@
   line-height: 1;
 }
 .headerBrandText span {
-  font-family: 'Playfair Display', serif;
+  /* switched to the logo’s exact serif */
+  font-family: 'Michroma', sans-serif;
   font-size: 1.3rem;
   font-weight: 700;
   color: #fff;
   white-space: nowrap;
+  letter-spacing: 0;
 }
 
 /* Nav links */
