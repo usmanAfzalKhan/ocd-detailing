@@ -23,11 +23,37 @@
   margin-bottom: 2rem;
 }
 
-/* Profile wrapper for founder picture */
+/* Pop-in animation for the first paragraph only */
+.about .text:first-of-type {
+  opacity: 0;
+  transform: translateY(36px) scale(0.95);
+  animation: bubblePop 0.67s cubic-bezier(.25,1.7,.38,.96) 0.06s both;
+}
+
+/* Profile wrapper for founder picture (POP-IN animation, staggered after text) */
 .profileWrapper {
   position: relative;
   display: inline-block;
   margin-bottom: 2rem;
+
+  opacity: 0;
+  transform: translateY(36px) scale(0.95);
+  animation: bubblePop 0.75s cubic-bezier(.25,1.7,.38,.96) 0.19s both;
+}
+
+@keyframes bubblePop {
+  0% {
+    opacity: 0;
+    transform: translateY(36px) scale(0.95);
+  }
+  60% {
+    opacity: 0.93;
+    transform: translateY(-8px) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .profileImage {
@@ -106,4 +132,39 @@
   cursor: pointer;
   text-shadow: 0 0 6px rgba(0,0,0,0.8);
   z-index: 1;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .about {
+    padding: 1.1rem 0.6rem;
+    border-radius: 9px;
+  }
+  .heading {
+    font-size: 1.15rem;
+  }
+  .profileImage {
+    width: 125px;
+    height: 125px;
+  }
+  .logoOverlay {
+    width: 23px;
+    bottom: 4px;
+    right: 4px;
+  }
+  .modalContent {
+    padding: 1.3rem 0.6rem;
+    max-width: 98vw;
+    max-height: 90vh;
+  }
+  .logoOverlayLarge {
+    width: 23px;
+    bottom: 1.1rem;
+    right: 1.1rem;
+  }
+  .closeBtn {
+    top: 7px;
+    right: 7px;
+    font-size: 1.5rem;
+  }
 }
