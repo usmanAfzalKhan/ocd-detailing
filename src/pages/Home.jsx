@@ -9,7 +9,7 @@ export default function Home() {
       <Hero />
 
       <section className={styles.homepageWelcome}>
-        <h1>Obsessive Compulsion Detailing</h1>
+        <h1>Obsessive Compulsive Detailing</h1>
         <p>
           At OCD Detailing, we’re passionate about perfection—inside and out.
           Whether it’s precision paint correction, advanced ceramic coatings, or
