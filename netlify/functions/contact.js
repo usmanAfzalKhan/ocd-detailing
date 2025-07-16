@@ -51,7 +51,7 @@ Sent from ocdautocare.netlify.app
           <td style="padding:4px 0;">${data.phone}</td>
         </tr>
         <tr>
-          <td style="font-weight:bold;padding:4px 0;">Preferred Date:</td>
+          <td style="font-weight:bold;padding:4px 0;">Preferred Date (YYYY/MM/DD):</td>
           <td style="padding:4px 0;">${data.date}</td>
         </tr>
         <tr>
