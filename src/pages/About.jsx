@@ -1,27 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react";
+// src/pages/About.jsx
+import React from "react";
 import styles from "./About.module.css";
-import { tabishImage } from "../data/founder";
 
 export default function About() {
-  const [modalOpen, setModalOpen] = useState(false);
-
-  // lock background scroll
-  useEffect(() => {
-    document.body.style.overflow = modalOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [modalOpen]);
-
-  // close on Escape
-  const onKeyDown = useCallback(e => {
-    if (!modalOpen) return;
-    if (e.key === "Escape") setModalOpen(false);
-  }, [modalOpen]);
-
-  useEffect(() => {
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [onKeyDown]);
-
   return (
     <section className={styles.about}>
       <h2 className={styles.heading}>About OCD Detailing</h2>
@@ -34,49 +15,28 @@ export default function About() {
         of driving a vehicle that looks—and feels—absolutely flawless.
       </p>
 
-      <h2 className={styles.heading}>Meet Tabish</h2>
+      <h2 className={styles.heading}>Why Choose Us</h2>
       <div className={styles.profileWrapper}>
-        <img
-          src={tabishImage}
-          alt="Tabish, Founder & Lead Detailer"
-          className={styles.profileImage}
-          onClick={() => setModalOpen(true)}
-        />
-        <img
-          src="/images/logo-hero.png"
-          alt="OCD logo watermark"
-          className={styles.logoOverlay}
-        />
         <p className={styles.text}>
-          Tabish, our founder and lead detailer, brings over a decade of experience
-          transforming vehicles into showroom masterpieces—fueled by passion and
-          precision.
+          Discover the OCD Detailing difference: precision‑driven service, premium‑grade products,
+          and a passion for perfection that ensures every surface gleams brighter and stays
+          protected longer. Our expert technicians combine cutting‑edge techniques with
+          unrivaled attention to detail—treating your vehicle as their own to deliver lasting
+          shine, ultimate protection, and peace of mind. Choose the gold standard in automotive
+          care and drive with confidence.
         </p>
       </div>
 
-      {modalOpen && (
-        <div className={styles.modalOverlay} onClick={() => setModalOpen(false)}>
-          <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
-            <button
-              className={styles.closeBtn}
-              onClick={() => setModalOpen(false)}
-              aria-label="Close"
-            >
-              ×
-            </button>
-            <img
-              src={tabishImage}
-              alt="Tabish, enlarged"
-              className={styles.modalImage}
-            />
-            <img
-              src="/images/logo-hero.png"
-              alt="OCD logo watermark"
-              className={styles.logoOverlayLarge}
-            />
-          </div>
-        </div>
-      )}
+      {/* Website logo at bottom with pop-in animation */}
+      <img
+        src="/images/logo-hero.png"
+        alt="OCD Detailing logo"
+        style={{
+          display: "block",
+          margin: "-3rem auto 0",
+          width: "200px",
+        }}
+      />
     </section>
   );
 }
