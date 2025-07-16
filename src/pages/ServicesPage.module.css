@@ -9,6 +9,26 @@
   background-color: var(--panel-bg);
   color: var(--text-primary);
   font-family: 'Inter', sans-serif;
+
+  /* Fade/slide in page container */
+  opacity: 0;
+  transform: translateY(38px);
+  animation: servicesPageFadeIn 1s cubic-bezier(.28,1.28,.35,.97) 0.08s both;
+}
+
+@keyframes servicesPageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(38px);
+  }
+  60% {
+    opacity: 0.8;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Heading uses the logo’s serif font */
@@ -29,7 +49,7 @@
   gap: 1.5rem;
 }
 
-/* Card styling updated to dark theme */
+/* Card styling updated to dark theme + pop-in animation */
 .card {
   flex: 1 1 calc((100% - 2 * 1.5rem) / 3);
   max-width: 340px;
@@ -42,7 +62,37 @@
   align-items: center;
   text-align: center;
   transition: box-shadow 0.2s, border-color 0.2s;
+
+  /* Bubble pop-in animation (staggered) */
+  opacity: 0;
+  transform: translateY(44px) scale(0.85);
+  animation: cardPopIn 0.88s cubic-bezier(.25,1.7,.38,.96) both;
 }
+
+@keyframes cardPopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(44px) scale(0.85);
+  }
+  60% {
+    opacity: 0.92;
+    transform: translateY(-8px) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Stagger animation for cards */
+.card:nth-child(1) { animation-delay: 0.18s; }
+.card:nth-child(2) { animation-delay: 0.34s; }
+.card:nth-child(3) { animation-delay: 0.5s; }
+.card:nth-child(4) { animation-delay: 0.66s; }
+.card:nth-child(5) { animation-delay: 0.82s; }
+.card:nth-child(6) { animation-delay: 0.98s; }
+/* Add more if more cards */
+
 .card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
@@ -105,12 +155,11 @@
   text-decoration: none;
 }
 
-/* Hero-style hover behavior with white accent */
 .button:hover,
 .button:focus {
   background: rgba(255, 255, 255, 0.84);
-  color: #000000;               /* keep text white */
-  border-color: #fff;        /* white border */
+  color: #000000;
+  border-color: #fff;
   box-shadow: 0 3px 20px rgba(255,255,255,0.15), 0 2px 9px #181b2010;
 }
 
