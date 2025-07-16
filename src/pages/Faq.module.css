@@ -31,6 +31,39 @@
   color: var(--text-primary);
 }
 
+/* FAQ item pop-in animation */
+.item {
+  /* animation */
+  opacity: 0;
+  transform: translateY(34px) scale(0.97);
+  animation: bubblePop 0.73s cubic-bezier(.25,1.7,.38,.96) both;
+}
+.item:nth-child(1) { animation-delay: 0.08s; }
+.item:nth-child(2) { animation-delay: 0.19s; }
+.item:nth-child(3) { animation-delay: 0.31s; }
+.item:nth-child(4) { animation-delay: 0.43s; }
+.item:nth-child(5) { animation-delay: 0.55s; }
+.item:nth-child(6) { animation-delay: 0.67s; }
+.item:nth-child(7) { animation-delay: 0.79s; }
+.item:nth-child(8) { animation-delay: 0.91s; }
+.item:nth-child(9) { animation-delay: 1.03s; }
+.item:nth-child(10) { animation-delay: 1.15s; }
+
+@keyframes bubblePop {
+  0% {
+    opacity: 0;
+    transform: translateY(34px) scale(0.97);
+  }
+  60% {
+    opacity: 0.92;
+    transform: translateY(-7px) scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .item + .item {
   margin-top: 1rem;
 }
