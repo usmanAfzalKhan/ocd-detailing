@@ -8,6 +8,26 @@
   text-align: center;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
+
+  /* Subtle pop/fade in on mount */
+  opacity: 0;
+  transform: translateY(32px) scale(0.98);
+  animation: footerPopIn 0.7s cubic-bezier(.26,1.18,.36,.97) 0.10s both;
+}
+
+@keyframes footerPopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(32px) scale(0.98);
+  }
+  60% {
+    opacity: 0.94;
+    transform: translateY(-5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .content {
