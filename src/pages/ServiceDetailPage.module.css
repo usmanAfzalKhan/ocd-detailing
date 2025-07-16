@@ -9,6 +9,56 @@
   color: var(--text-secondary);
   font-family: 'Inter', sans-serif;
   border-radius: 8px;
+
+  /* Ultra-smooth entrance animation */
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  will-change: opacity, transform;
+  animation: detailFadeIn 1s cubic-bezier(.28,1.28,.35,.97) 0.07s both;
+}
+
+@keyframes detailFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  60% {
+    opacity: 0.85;
+    transform: translateY(10px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Bubble pop for key content blocks */
+.pricingBox,
+.benefitsSection,
+.whySection {
+  opacity: 0;
+  transform: translateY(44px) scale(0.87);
+  animation: bubblePop 0.85s cubic-bezier(.25,1.7,.38,.96) both;
+}
+
+/* Staggered delays for pop-in order */
+.pricingBox   { animation-delay: 0.28s; }
+.benefitsSection { animation-delay: 0.45s; }
+.whySection      { animation-delay: 0.62s; }
+
+@keyframes bubblePop {
+  0% {
+    opacity: 0;
+    transform: translateY(44px) scale(0.87);
+  }
+  60% {
+    opacity: 0.93;
+    transform: translateY(-7px) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Title */
