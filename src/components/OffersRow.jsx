@@ -36,7 +36,19 @@ export default function OffersRow() {
 
   return (
     <section className={styles.offersSection}>
-      <h2 className={styles.heading}>Our Special Offers</h2>
+<h2 className={styles.heading}>Our Special Offers</h2>
+<p
+  className={styles.intro}
+  style={{
+    marginBottom: '2rem',
+    fontSize: '1rem',
+    color: '#ccc'
+  }}
+>
+  Explore our limited‑time specials below and discover how you can save on premium detailing services—unlock your exclusive discount today!
+</p>
+
+   
       <div className={styles.grid}>
         {offers.map((offer, idx) => {
           const isOpen = expandedIdx === idx
