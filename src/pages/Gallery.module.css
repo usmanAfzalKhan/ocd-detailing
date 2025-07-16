@@ -3,7 +3,7 @@
 /* Smooth scroll for in-page links */
 html { scroll-behavior: smooth; }
 
-/* Gallery container */
+/* Gallery container (NO animation, instant render) */
 .gallery {
   max-width: 1050px;
   margin: 2rem auto;
@@ -74,6 +74,42 @@ html { scroll-behavior: smooth; }
   cursor: pointer;
   transition: border 0.2s ease;
 }
+
+/* Bubble pop-in animation ONLY for grid gallery images */
+.grid .imageWrapper {
+  opacity: 0;
+  transform: translateY(34px) scale(0.90);
+  animation: bubblePop 0.82s cubic-bezier(.25,1.7,.38,.96) both;
+}
+
+.grid .imageWrapper:nth-child(1) { animation-delay: 0.18s; }
+.grid .imageWrapper:nth-child(2) { animation-delay: 0.32s; }
+.grid .imageWrapper:nth-child(3) { animation-delay: 0.46s; }
+.grid .imageWrapper:nth-child(4) { animation-delay: 0.60s; }
+.grid .imageWrapper:nth-child(5) { animation-delay: 0.74s; }
+.grid .imageWrapper:nth-child(6) { animation-delay: 0.88s; }
+.grid .imageWrapper:nth-child(7) { animation-delay: 1.02s; }
+.grid .imageWrapper:nth-child(8) { animation-delay: 1.16s; }
+.grid .imageWrapper:nth-child(9) { animation-delay: 1.30s; }
+.grid .imageWrapper:nth-child(10) { animation-delay: 1.44s; }
+.grid .imageWrapper:nth-child(11) { animation-delay: 1.58s; }
+.grid .imageWrapper:nth-child(12) { animation-delay: 1.72s; }
+
+@keyframes bubblePop {
+  0% {
+    opacity: 0;
+    transform: translateY(34px) scale(0.90);
+  }
+  60% {
+    opacity: 0.92;
+    transform: translateY(-8px) scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .imageWrapper:hover {
   border: 2px solid #fff;
   border-radius: 8px;
@@ -198,4 +234,3 @@ html { scroll-behavior: smooth; }
     right: 2rem;
   }
 }
-
