@@ -2,11 +2,108 @@
   max-width: 650px;
   margin: 2rem auto;
   padding: 2rem 1rem;
-  background: #fafafa;
+  background: #232327;
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  color: #fff;
   text-align: center;
+  font-family: 'Inter', sans-serif;
 }
-.about h2 {
+
+/* Headings use the site’s serif font */
+.heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
   margin-bottom: 1rem;
+  color: #f3f3fa;
+}
+
+.text {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Profile wrapper for founder picture */
+.profileWrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.profileImage {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Watermark overlay */
+.logoOverlay {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 32px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Modal overlay */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+/* Modal panel behind image */
+.modalContent {
+  position: relative;
+  background: #111;
+  padding: 2rem 4rem;
+  border-radius: 12px;
+  max-width: 80vw;
+  max-height: 80vh;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Enlarged image */
+.modalImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* Watermark in modal */
+.logoOverlayLarge {
+  position: absolute;
+  bottom: 2rem;
+  right: 4rem;
+  width: 32px;
+  opacity: 0.7;
+}
+
+/* Close button */
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  color: #fff;
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+  text-shadow: 0 0 6px rgba(0,0,0,0.8);
+  z-index: 1;
 }

@@ -13,20 +13,12 @@ const faqs = [
     answer: "A wash cleans the surface dirt, while a detail goes deeper—clay barring, polishing, waxing, interior shampooing, leather conditioning, and more."
   },
   {
-    question: "Can detailing remove scratches and swirl marks?",
-    answer: "Yes—light scratches and swirl marks can often be removed or greatly reduced through multi-stage polishing and paint correction techniques."
-  },
-  {
     question: "Are ceramic coatings worth it?",
     answer: "Ceramic coatings provide long-lasting hydrophobic protection (6–12+ months), making maintenance washes easier and helping resist minor scratches and UV damage."
   },
   {
     question: "Is detailing safe for all paint types?",
     answer: "Professional detailers tailor their methods to each finish—metallic, matte, clearcoat or single-stage—to avoid etching or fading."
-  },
-  {
-    question: "Do you clean engine bays during a detail?",
-    answer: "Engine-bay cleaning is an optional add-on. It involves degreasing, gentle rinsing, and dressing to safely remove grime without harming electrical components."
   },
   {
     question: "What interior surfaces get treated?",
