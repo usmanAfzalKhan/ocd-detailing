@@ -200,7 +200,6 @@ input[type="radio"] {
   min-width: 145px;
   max-width: 290px;
   align-self: center;
-  box-shadow: 0 2px 12px #0008;
   transition:
     color 0.16s,
     background 0.17s,
@@ -216,7 +215,6 @@ input[type="radio"] {
   background: rgba(239, 240, 243, 0.84);
   color: #181b20;
   border-color: #fff;
-  box-shadow: 0 3px 20px #d6bfbf26, 0 2px 9px #181b2010;
   transform: scale(1.025);
 }
 

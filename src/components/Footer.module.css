@@ -55,8 +55,8 @@
   margin-right: 0.07rem;
 }
 .iconCircle:hover {
-  background: #353555;
-  box-shadow: 0 2px 8px #0002, 0 0 0 2px #6366f166;
+  background: #ffffff;
+  box-shadow: 0 2px 8px #0002, 0 0 0 2px #00000066;
 }
 
 .icon {
@@ -66,7 +66,7 @@
 }
 .iconLink:focus .icon,
 .iconCircle:hover .icon {
-  color: #6366f1;
+  color: #000000;
   transform: scale(1.13);
 }
 

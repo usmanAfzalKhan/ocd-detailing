@@ -3,14 +3,35 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  /* Ultra-smooth fade/slide animation */
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  will-change: opacity, transform;
+  animation: homepageFadeIn 1s cubic-bezier(.28,1.28,.35,.97) 0.05s both;
+}
+
+@keyframes homepageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  60% {
+    opacity: 0.85;
+    transform: translateY(10px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* WELCOME SECTION */
 .homepageWelcome {
   max-width: 800px;
-  padding: 3.5rem 1rem 0.2rem 1rem;   /* increased top padding ONLY */
+  padding: 3.5rem 1rem 0.2rem 1rem;
   text-align: center;
-  margin-bottom: 1.1rem;              /* section gap below */
+  margin-bottom: 1.1rem;
 }
 
 .homepageWelcome h1 {
@@ -35,7 +56,7 @@
 /* MOBILE STYLES */
 @media (max-width: 600px) {
   .homepageWelcome {
-    padding-top: 2.3rem;    /* was 0.6rem, now much more down on mobile too */
+    padding-top: 2.3rem;
     padding-bottom: 0.06rem;
     margin-bottom: 0.85rem;
   }

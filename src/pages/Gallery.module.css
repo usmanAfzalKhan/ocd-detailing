@@ -101,24 +101,24 @@ html { scroll-behavior: smooth; }
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 9999;
   padding: 1rem;
   overflow: hidden;
 }
 
-/* Modal panel */
+/* Modal panel (centered, boxed on all screens) */
 .modalContent {
   position: relative;
   background: #111;
   padding: 2rem 4rem;
   border-radius: 12px;
-  max-width: 80vw;
+  max-width: 720px;
   max-height: 80vh;
   box-sizing: border-box;
   display: flex;
@@ -126,10 +126,12 @@ html { scroll-behavior: smooth; }
   justify-content: center;
 }
 
-/* Modal image */
+/* Modal image (never overflows box) */
 .modalImage {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 70vh;
+  width: auto;
+  height: auto;
   object-fit: contain;
   border-radius: 8px;
 }
@@ -183,7 +185,7 @@ html { scroll-behavior: smooth; }
   z-index: 1;
 }
 
-/* Mobile tweaks */
+/* Mobile: modal matches desktop look/feel */
 @media (max-width: 600px) {
   .modalContent {
     padding: 1.5rem 2rem;
@@ -196,3 +198,4 @@ html { scroll-behavior: smooth; }
     right: 2rem;
   }
 }
+

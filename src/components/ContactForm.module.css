@@ -9,7 +9,6 @@
 .contactForm {
   background: #fff;
   border-radius: 13px;
-  box-shadow: 0 6px 28px #0002;
   padding: 2.3rem 1.3rem 1.7rem 1.3rem;
   width: 100%;
   max-width: 420px;
@@ -169,7 +168,6 @@ input[type="radio"] {
   padding: 2.7rem 1.2rem;
   font-size: 1.13rem;
   text-align: center;
-  box-shadow: 0 4px 18px #0003;
   margin: 2rem auto;
 }
 
