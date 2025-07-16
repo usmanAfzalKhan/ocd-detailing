@@ -1,3 +1,4 @@
+/* src/pages/contact.module.css */
 /* Ensure consistent box model */
 *,
 *::before,
@@ -10,30 +11,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #18181a; /* dark bg */
-  padding-top: 1rem;   /* pull form up a bit */
+  background: #18181a;
+  padding: 1rem 0;
 }
 
-/* Animated pop-in for the main form */
 .form {
-  background: #232327; /* dark panel */
+  background: #232327;
   border-radius: 13px;
   box-shadow: 0 6px 28px #0007;
-  padding: 1.8rem 1.3rem 1.7rem 1.3rem; /* reduced top padding */
-  margin-top: -0.5rem;                  /* pull form up */
+  padding: 2rem 1.5rem;
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  gap: 0.8rem;
-  color: #fff;
+  gap: 1rem;
+  color: #f3f3fa;
 
-  /* Pop-in animation! */
+  /* Pop‑in animation */
   opacity: 0;
   transform: translateY(36px) scale(0.97);
-  animation: bubblePop 0.78s cubic-bezier(.25,1.7,.38,.96) 0.13s both;
+  animation: bubblePop 0.8s cubic-bezier(.25,1.7,.38,.96) 0.13s both;
 }
 
 @keyframes bubblePop {
@@ -51,244 +48,186 @@
   }
 }
 
-/* Heading uses the logo’s serif font */
 .title {
   text-align: center;
   font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  color: var(--text-primary);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #f3f3fa;
 }
 
 .intro {
+  text-align: center;
   color: #d1d5db;
   font-size: 1rem;
-  margin-top: 0;         /* no extra top gap */
-  margin-bottom: 0.8rem; /* tighten below */
-  text-align: center;
+  margin: 0 0 0.8rem;
 }
 
-/* question labels */
 .label {
+  font-weight: 600;
   color: #d1d5db;
-  font-weight: 700;      /* full bold now */
-  margin: 0;
-  font-size: 1.25rem;       /* increased for clarity */
+  font-size: 1.1rem;
   align-self: flex-start;
-}
-
-@media (max-width: 600px) {
-  .label {
-    font-size: 1.15rem;     /* a bit smaller on mobile */
-  }
 }
 
 .req {
   color: #f43f5e;
-  margin-left: 0.18em;
-  font-weight: bold;
+  margin-left: 0.2em;
 }
 
-.input {
+.input,
+.textarea {
   width: 100%;
-  padding: 0.53rem 0.8rem;
-  border-radius: 7px;
+  padding: 0.6rem;
+  border-radius: 8px;
   background: #18181a;
-  color: #fff;
-  border: 1.3px solid #343444;
-  font-size: 1.05rem;
-  outline: none;
+  color: #f3f3fa;
+  border: 1px solid #343444;
+  font-size: 1rem;
   transition: border 0.18s, background 0.18s;
 }
 
 .input:focus,
 .textarea:focus {
-  border: 1.3px solid #60a5fa;
-  background: #181920;
+  border-color: #6366f1;
+  background: #1f1f24;
 }
 
 .textarea {
-  width: 100%;
-  padding: 0.57rem 0.8rem;
-  border-radius: 7px;
-  background: #18181a;
-  color: #fff;
-  border: 1.3px solid #343444;
-  font-size: 1.06rem;
-  min-height: 95px;
+  min-height: 100px;
   resize: vertical;
 }
 
-/* Phone row: full-width and aligned */
 .phoneRow {
-  width: 100%;
   display: flex;
-  align-items: center;
   gap: 0;
-  margin-top: -0.4rem; /* move inputs up closer */
 }
 
 .plusOne {
   background: #22232a;
-  border: 1.3px solid #343444;
-  border-right: none;
-  border-radius: 7px 0 0 7px;
-  padding: 0.53rem 0.7rem;
+  border: 1px solid #343444;
+  border-radius: 8px 0 0 8px;
+  padding: 0.6rem;
   color: #94a3b8;
-  font-size: 1rem;
-  font-weight: 600;
-  flex-shrink: 0;
 }
 
 .phoneRow .input {
-  border-radius: 0 7px 7px 0;
+  border-radius: 0 8px 8px 0;
   border-left: none;
-  margin-bottom: 0;
 }
 
-/* Services (checkboxes) */
-.servicesGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.58rem 1.12rem;  /* match vehicleGrid */
-  width: 100%;
-  margin-top: -0.4rem;   /* move options up closer */
-  margin-bottom: 0.6rem; /* consistent spacing */
+/* Pop‑in for checkbox options */
+.servicesGrid .checkboxLabel,
+.vehicleGrid .radioLabel,
+.radioGroup .radioLabel {
+  opacity: 0;
+  transform: translateY(34px) scale(0.97);
+  animation: bubblePop 0.6s cubic-bezier(.25,1.7,.38,.96) both;
 }
 
-.checkboxLabel {
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  cursor: pointer;
-  gap: 0.47em;
-  color: #f3f3fa;
-}
+/* Stagger delays for up to 8 options */
+.servicesGrid .checkboxLabel:nth-child(1),
+.vehicleGrid .radioLabel:nth-child(1),
+.radioGroup .radioLabel:nth-child(1) { animation-delay: 0.30s; }
+.servicesGrid .checkboxLabel:nth-child(2),
+.vehicleGrid .radioLabel:nth-child(2),
+.radioGroup .radioLabel:nth-child(2) { animation-delay: 0.44s; }
+.servicesGrid .checkboxLabel:nth-child(3),
+.vehicleGrid .radioLabel:nth-child(3),
+.radioGroup .radioLabel:nth-child(3) { animation-delay: 0.58s; }
+.servicesGrid .checkboxLabel:nth-child(4),
+.vehicleGrid .radioLabel:nth-child(4),
+.radioGroup .radioLabel:nth-child(4) { animation-delay: 0.72s; }
+.servicesGrid .checkboxLabel:nth-child(5),
+.vehicleGrid .radioLabel:nth-child(5),
+.radioGroup .radioLabel:nth-child(5) { animation-delay: 0.86s; }
+.servicesGrid .checkboxLabel:nth-child(6),
+.vehicleGrid .radioLabel:nth-child(6),
+.radioGroup .radioLabel:nth-child(6) { animation-delay: 1.00s; }
+.servicesGrid .checkboxLabel:nth-child(7),
+.vehicleGrid .radioLabel:nth-child(7),
+.radioGroup .radioLabel:nth-child(7) { animation-delay: 1.14s; }
+.servicesGrid .checkboxLabel:nth-child(8),
+.vehicleGrid .radioLabel:nth-child(8),
+.radioGroup .radioLabel:nth-child(8) { animation-delay: 1.28s; }
 
-input[type="checkbox"] {
-  accent-color: #60a5fa;
-  width: 1.13em;
-  height: 1.13em;
-}
-
-/* Vehicles (radios) & radio groups */
+.servicesGrid,
 .vehicleGrid,
 .radioGroup {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.58rem 1.12rem;
-  width: 100%;
-  margin-top: -0.4rem;   /* move options up closer */
+  gap: 0.6rem 1rem;
+  margin-bottom: 0.6rem;
 }
 
+.checkboxLabel,
 .radioLabel {
   display: flex;
   align-items: center;
-  font-size: 1rem;
-  cursor: pointer;
-  gap: 0.47em;
+  gap: 0.5em;
+  font-size: 0.95rem;
   color: #f3f3fa;
 }
 
+input[type="checkbox"],
 input[type="radio"] {
-  accent-color: #60a5fa;
-  width: 1.13em;
-  height: 1.13em;
+  accent-color: #ffffff;
+  width: 1.2em;
+  height: 1.2em;
 }
 
 .error {
-  color: #f43f5e;
   background: #2b1a22;
-  padding: 0.22rem 0.6rem;
-  font-size: 0.96rem;
+  color: #f43f5e;
+  padding: 0.3rem 0.6rem;
   border-radius: 4px;
+  font-size: 0.95rem;
   align-self: flex-start;
 }
 
-/* Button */
-.submitBtn {
-  margin-top: 1.4rem;
-  padding: 0.85rem 0;
-  background: transparent;
-  color: #fff;
-  font-weight: 700;
-  border: 1.5px solid #fff;
-  border-radius: 99px;      /* pill style */
-  font-size: 1.18rem;
-  cursor: pointer;
-  width: 75%;
-  min-width: 145px;
-  max-width: 290px;
-  align-self: center;
-  transition:
-    color 0.16s,
-    background 0.17s,
-    border-color 0.16s,
-    box-shadow 0.13s,
-    transform 0.12s;
-  font-family: 'Inter', sans-serif;
-  letter-spacing: 0.01em;
-}
-
-.submitBtn:hover,
-.submitBtn:focus {
-  background: rgba(239, 240, 243, 0.84);
-  color: #181b20;
-  border-color: #fff;
-  transform: scale(1.025);
-}
-
-.submitBtn:active {
-  transform: scale(0.97);
-}
-
-/* Success box */
 .success {
   background: #222831;
   color: #c9f3c9;
   border-radius: 10px;
-  padding: 2.2rem 1.1rem;
-  font-size: 1.11rem;
+  padding: 2rem;
   text-align: center;
+  font-size: 1.1rem;
   box-shadow: 0 3px 16px #0003;
-  margin: 2rem auto;
+  margin: 2rem auto 0;
+}
+
+.submitBtn {
+  margin: 1rem auto 0;
+  padding: 0.8rem 0;
+  width: 85%;
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid #fff;
+  border-radius: 99px;
+  font-weight: 700;
+  transition: background 0.18s, transform 0.18s;
+}
+
+.submitBtn:hover {
+  background: rgb(255, 255, 255);
+  transform: scale(1.03);
+  color: #000000
 }
 
 @media (max-width: 600px) {
   .form {
-    padding: 1.15rem 0.35rem 0.75rem 0.35rem;
-    width: 95vw;
-    max-width: 360px;
-    gap: 0.6rem;
+    padding: 1.5rem 1rem;
+    max-width: 95vw;
+    gap: 0.8rem;
   }
-  .heading {
-    font-size: 1.13rem;
+  .title {
+    font-size: 1.6rem;
   }
-  .contactSection {
-    padding-top: 0.6rem;
-    min-height: 55vh;
+  .label {
+    font-size: 1rem;
   }
   .submitBtn {
     width: 90%;
-    font-size: 1.03rem;
-    padding: 0.6rem 0;
+    font-size: 1rem;
   }
-}
-
-.link {
-  color: #fff;        /* White */
-  font-weight: 700;   /* Bold */
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.link:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
-/* small gap below each question label */
-.field {
-  margin-bottom: 0.8rem;
 }

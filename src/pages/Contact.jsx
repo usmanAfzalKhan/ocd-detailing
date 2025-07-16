@@ -52,7 +52,8 @@ export default function Contact() {
     if (!f.vehicle) err.vehicle = "Select a vehicle type.";
     if (f.vehicle === "Other" && !f.otherVehicle.trim())
       err.otherVehicle = "Please specify the vehicle type.";
-    if (!f.firstTime) err.firstTime = "Please indicate if this is your first time.";
+    if (!f.firstTime)
+      err.firstTime = "Please indicate if this is your first time.";
     if (!f.referred) err.referred = "Please indicate if you were referred.";
     if (f.referred === "Yes" && !f.referredBy.trim())
       err.referredBy = "Please specify who referred you.";
@@ -63,8 +64,11 @@ export default function Contact() {
     let digits = e.target.value.replace(/\D/g, "").slice(0, 10);
     let formatted = digits;
     if (digits.length > 6)
-      formatted = `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
-    else if (digits.length > 3) formatted = `${digits.slice(0, 3)}-${digits.slice(3)}`;
+      formatted = `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(
+        6
+      )}`;
+    else if (digits.length > 3)
+      formatted = `${digits.slice(0, 3)}-${digits.slice(3)}`;
     setForm((f) => ({ ...f, phone: formatted }));
   }
 
@@ -169,9 +173,16 @@ export default function Contact() {
     <section className={styles.contactSection}>
       <form className={styles.form} onSubmit={handleSubmit} noValidate>
         <h1 className={styles.title}>Contact Us</h1>
-        <p className={styles.intro}>
+        <p className={styles.intro} style={{ color: "#ffffff" }}>
           Have a question? Call us at{" "}
-          <a href="tel:+14167006670" className={styles.link}>
+          <a
+            href="tel:+14167006670"
+            style={{
+              color: "#ffffff",
+              fontWeight: "700",
+              textDecoration: "none",
+            }}
+          >
             +1&nbsp;416-700-6670
           </a>
           , DM us on{" "}
@@ -179,7 +190,11 @@ export default function Contact() {
             href="https://www.instagram.com/ocd.detailinggta"
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.link}
+            style={{
+              color: "#ffffff",
+              fontWeight: "700",
+              textDecoration: "none",
+            }}
           >
             Instagram
           </a>{" "}
@@ -188,7 +203,11 @@ export default function Contact() {
             href="https://www.facebook.com/ocd.detailinggta"
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.link}
+            style={{
+              color: "#ffffff",
+              fontWeight: "700",
+              textDecoration: "none",
+            }}
           >
             Facebook
           </a>
@@ -428,7 +447,11 @@ export default function Contact() {
           onChange={handleChange}
         />
 
-        <button type="submit" className={styles.submitBtn} disabled={submitting}>
+        <button
+          type="submit"
+          className={styles.submitBtn}
+          disabled={submitting}
+        >
           {submitting ? "Sending..." : "Send"}
         </button>
       </form>

@@ -1,5 +1,5 @@
 // src/pages/ReviewsPage.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./ReviewsPage.module.css";
 import ReviewForm from "../components/ReviewForm";
 import { db } from "../firebase";
@@ -11,7 +11,7 @@ import {
   addDoc,
   getDocs,
   deleteDoc,
-  where
+  where,
 } from "firebase/firestore";
 
 const MAX_REVIEWS = 12;
@@ -21,6 +21,8 @@ export default function ReviewsPage() {
   const [showForm, setShowForm] = useState(false);
   const [error, setError] = useState("");
   const [reviewed, setReviewed] = useState(false);
+
+  const addBtnRef = useRef(null);
 
   // load 4–5★ reviews
   useEffect(() => {
@@ -32,7 +34,7 @@ export default function ReviewsPage() {
         limit(MAX_REVIEWS)
       );
       const snap = await getDocs(q);
-      setReviews(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+      setReviews(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
     };
     fetchReviews();
   }, []);
@@ -49,7 +51,11 @@ export default function ReviewsPage() {
     }
 
     // high stars (>=4): try to save
-    const payload = { ...review, rating: Number(review.rating), timestamp: Date.now() };
+    const payload = {
+      ...review,
+      rating: Number(review.rating),
+      timestamp: Date.now(),
+    };
     try {
       await addDoc(collection(db, "reviews"), payload);
       // cleanup oldest if > MAX_REVIEWS
@@ -60,8 +66,9 @@ export default function ReviewsPage() {
       );
       const allSnap = await getDocs(allQ);
       if (allSnap.size > MAX_REVIEWS) {
-        const oldest = allSnap.docs
-          .sort((a, b) => a.data().timestamp - b.data().timestamp)[0];
+        const oldest = allSnap.docs.sort(
+          (a, b) => a.data().timestamp - b.data().timestamp
+        )[0];
         await deleteDoc(oldest.ref);
       }
       // reload
@@ -72,7 +79,7 @@ export default function ReviewsPage() {
         limit(MAX_REVIEWS)
       );
       const freshSnap = await getDocs(freshQ);
-      setReviews(freshSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+      setReviews(freshSnap.docs.map((d) => ({ id: d.id, ...d.data() })));
       setReviewed(true);
     } catch (err) {
       // profanity or other error
@@ -80,7 +87,9 @@ export default function ReviewsPage() {
         err.code === "permission-denied" ||
         (err.message && err.message.includes("insufficient permissions"))
       ) {
-        setError("Sorry, your review could not be posted (contains disallowed words).");
+        setError(
+          "Sorry, your review could not be posted (contains disallowed words)."
+        );
       } else {
         setError("An error occurred. Please try again.");
       }
@@ -89,11 +98,40 @@ export default function ReviewsPage() {
     }
   };
 
+  const scrollToAddBtn = () => {
+    if (addBtnRef.current) {
+      addBtnRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className={styles.reviewsPage}>
       <h1 className={styles.title}>Customer Reviews</h1>
-      <p style={{ textAlign: 'center', marginBottom: '1.5rem', fontFamily: 'Inter, sans-serif' }}>
-        Here are some of the latest testimonials from our satisfied customers.
+      <p
+        style={{
+          textAlign: "center",
+          marginBottom: "1.5rem",
+          fontFamily: "Inter, sans-serif",
+          color: "#ffffff",
+        }}
+      >
+        Here are the latest testimonials from our satisfied clients. To share
+        your own experience, simply click{" "}
+        <button
+          onClick={scrollToAddBtn}
+          style={{
+            background: "none",
+            border: "none",
+            color: "#ffffff",
+            fontWeight: "700",
+            textDecoration: "none",
+            cursor: "pointer",
+            padding: 0,
+          }}
+        >
+          Add a Review
+        </button>
+        .
       </p>
 
       {error && <div className={styles.errorMsg}>{error}</div>}
@@ -103,7 +141,8 @@ export default function ReviewsPage() {
           {reviews.map((r, i) => (
             <div className={styles.card} key={r.id || i}>
               <div className={styles.stars}>
-                {"★".repeat(r.rating)}{"☆".repeat(5 - r.rating)}
+                {"★".repeat(r.rating)}
+                {"☆".repeat(5 - r.rating)}
               </div>
               <div className={styles.text}>{r.text}</div>
               <div className={styles.author}>— {r.name}</div>
@@ -114,7 +153,11 @@ export default function ReviewsPage() {
 
       {/* show “add” only if no thank-you and no form open */}
       {!showForm && !reviewed && !error && (
-        <button className={styles.addBtn} onClick={() => setShowForm(true)}>
+        <button
+          ref={addBtnRef}
+          className={styles.addBtn}
+          onClick={() => setShowForm(true)}
+        >
           Add a Review
         </button>
       )}
@@ -128,15 +171,24 @@ export default function ReviewsPage() {
 
       {/* thank-you message */}
       {reviewed && !showForm && !error && (
-        <div style={{ textAlign: "center", margin: "2rem 0", fontSize: "1.15rem" }}>
-          <span role="img" aria-label="thanks">🙏</span><br/>
+        <div
+          style={{ textAlign: "center", margin: "2rem 0", fontSize: "1.15rem" }}
+        >
+          <span role="img" aria-label="thanks">
+            🙏
+          </span>
+          <br />
           Thanks for your review!
         </div>
       )}
 
       {/* if error, let them try again */}
       {error && !showForm && (
-        <button className={styles.addBtn} onClick={() => setShowForm(true)}>
+        <button
+          ref={addBtnRef}
+          className={styles.addBtn}
+          onClick={() => setShowForm(true)}
+        >
           Add a Review
         </button>
       )}

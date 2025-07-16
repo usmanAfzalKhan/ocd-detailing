@@ -1,6 +1,4 @@
 /* src/pages/ReviewsPage.module.css */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
-
 .reviewsPage {
   max-width: 1100px;
   margin: 0 auto;
@@ -11,7 +9,7 @@
 }
 
 /* Heading uses the logo’s serif font */
-.title {
+.reviewsPage .title {
   text-align: center;
   font-family: 'Playfair Display', serif;
   font-size: 2.2rem;
@@ -20,40 +18,43 @@
   color: var(--text-primary);
 }
 
-.gridWrap {
+.reviewsPage .gridWrap {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.reviewsGrid {
+.reviewsPage .reviewsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.15rem;
   margin-bottom: 2.3rem;
   width: 100%;
   max-width: 1040px;
+  /* Reserve space to prevent layout shift when reviews load */
+  min-height: 620px;
 }
 
 /* Pop-in animation for review cards */
-.reviewsGrid .card {
+.reviewsPage .reviewsGrid .card {
   opacity: 0;
   transform: translateY(34px) scale(0.92);
   animation: bubblePop 0.78s cubic-bezier(.25,1.7,.38,.96) both;
 }
 
-.reviewsGrid .card:nth-child(1) { animation-delay: 0.13s; }
-.reviewsGrid .card:nth-child(2) { animation-delay: 0.26s; }
-.reviewsGrid .card:nth-child(3) { animation-delay: 0.39s; }
-.reviewsGrid .card:nth-child(4) { animation-delay: 0.52s; }
-.reviewsGrid .card:nth-child(5) { animation-delay: 0.65s; }
-.reviewsGrid .card:nth-child(6) { animation-delay: 0.78s; }
-.reviewsGrid .card:nth-child(7) { animation-delay: 0.91s; }
-.reviewsGrid .card:nth-child(8) { animation-delay: 1.04s; }
-.reviewsGrid .card:nth-child(9) { animation-delay: 1.17s; }
-.reviewsGrid .card:nth-child(10) { animation-delay: 1.30s; }
-.reviewsGrid .card:nth-child(11) { animation-delay: 1.43s; }
-.reviewsGrid .card:nth-child(12) { animation-delay: 1.56s; }
+/* Staggered delays */
+.reviewsPage .reviewsGrid .card:nth-child(1) { animation-delay: 0.13s; }
+.reviewsPage .reviewsGrid .card:nth-child(2) { animation-delay: 0.26s; }
+.reviewsPage .reviewsGrid .card:nth-child(3) { animation-delay: 0.39s; }
+.reviewsPage .reviewsGrid .card:nth-child(4) { animation-delay: 0.52s; }
+.reviewsPage .reviewsGrid .card:nth-child(5) { animation-delay: 0.65s; }
+.reviewsPage .reviewsGrid .card:nth-child(6) { animation-delay: 0.78s; }
+.reviewsPage .reviewsGrid .card:nth-child(7) { animation-delay: 0.91s; }
+.reviewsPage .reviewsGrid .card:nth-child(8) { animation-delay: 1.04s; }
+.reviewsPage .reviewsGrid .card:nth-child(9) { animation-delay: 1.17s; }
+.reviewsPage .reviewsGrid .card:nth-child(10) { animation-delay: 1.30s; }
+.reviewsPage .reviewsGrid .card:nth-child(11) { animation-delay: 1.43s; }
+.reviewsPage .reviewsGrid .card:nth-child(12) { animation-delay: 1.56s; }
 
 @keyframes bubblePop {
   0% {
@@ -70,7 +71,7 @@
   }
 }
 
-.card {
+.reviewsPage .card {
   background-color: var(--panel-bg);
   border-radius: 1.2rem;
   box-shadow: 0 3px 20px rgba(0, 0, 0, 0.4), 0 1.5px 7px rgba(0, 0, 0, 0.4);
@@ -85,14 +86,14 @@
   word-break: break-word;
 }
 
-.stars {
+.reviewsPage .stars {
   font-size: 1.27rem;
   margin-bottom: 0.85rem;
   color: #ffc107;
   letter-spacing: 0.05em;
 }
 
-.text {
+.reviewsPage .text {
   font-size: 1.11rem;
   margin-bottom: 1.1rem;
   line-height: 1.6;
@@ -102,14 +103,14 @@
   overflow-wrap: break-word;
 }
 
-.author {
+.reviewsPage .author {
   font-weight: 600;
   font-size: 1.02rem;
   color: var(--text-primary);
   margin-top: auto;
 }
 
-.addBtn {
+.reviewsPage .addBtn {
   display: block;
   margin: 1.2rem auto 0.4rem;
   padding: 0.95rem 2.4rem;
@@ -125,15 +126,15 @@
   transition: box-shadow 0.16s, background 0.16s;
 }
 
-.addBtn:hover,
-.addBtn:focus {
+.reviewsPage .addBtn:hover,
+.reviewsPage .addBtn:focus {
   background: rgba(255, 255, 255, 0.84);
   color: #000;
   box-shadow: 0 3px 20px rgba(255,255,255,0.15), 0 2px 9px #181b2010;
   outline: none;
 }
 
-.errorMsg {
+.reviewsPage .errorMsg {
   color: #fff;
   background: #e33;
   border-radius: 8px;
@@ -148,41 +149,173 @@
 
 /* Responsive grids */
 @media (max-width: 1200px) {
-  .reviewsGrid {
+  .reviewsPage .reviewsGrid {
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
 }
 @media (max-width: 900px) {
-  .reviewsGrid {
+  .reviewsPage .reviewsGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.82rem;
   }
-  .title {
+  .reviewsPage .title {
     font-size: 1.38rem;
     margin: 1.5rem 0 1.1rem;
   }
 }
 @media (max-width: 600px) {
-  .reviewsGrid {
+  .reviewsPage .reviewsGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.68rem;
   }
-  .card {
+  .reviewsPage .card {
     padding: 1rem 0.7rem;
     border-radius: 0.82rem;
   }
-  .text {
+  .reviewsPage .text {
     font-size: 0.98rem;
     margin-bottom: 0.7rem;
   }
-  .author {
+  .reviewsPage .author {
     font-size: 0.93rem;
   }
-  .addBtn {
+  .reviewsPage .addBtn {
     width: 98%;
     padding: 0.84rem 0;
     font-size: 1.01rem;
     border-radius: 9px;
   }
+}
+
+
+/* src/components/ReviewForm.module.css */
+.offersSection {
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.offersSection .heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.offersSection .grid {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .offersSection .grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .offersSection .grid {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+
+offersSection .card {
+  width: 100%;
+  max-width: 300px;
+  background: rgba(24, 24, 24, 0.6);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+@media (max-width: 600px) {
+  .offersSection .card {
+    max-width: 250px;
+    margin: 0 auto;
+  }
+}
+
+offersSection .imageWrapper {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+offersSection .image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.offersSection .logoOverlay {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  width: 25px;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.offersSection .card.open {
+  border-color: #fff;
+}
+
+offersSection .details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 1rem;
+}
+
+offersSection .details.open {
+  max-height: 300px;
+  padding: 1rem 1rem 1.5rem;
+}
+
+.offersSection .title {
+  font-family: 'Playfair Display', serif;
+  color: #fff;
+  font-size: 1.3rem;
+  margin: 0.5rem 0 0.25rem;
+}
+
+.offersSection .text {
+  font-family: 'Inter', sans-serif;
+  color: #ccc;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.offersSection .button {
+  width: 100%;
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+  border: 1.5px solid #fff;
+  border-radius: 6px;
+  padding: 0.75rem 0;
+  box-shadow: 0 2px 12px #0008;
+  cursor: pointer;
+  transition: color 0.16s, background 0.17s, border-color 0.16s, box-shadow 0.13s;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+
+.offersSection .button:hover,
+.offersSection .button:focus {
+  background: rgba(239, 240, 243, 0.84);
+  color: #181b20;
+  border-color: #fff;
+  box-shadow: 0 3px 20px #d6bfbf26, 0 2px 9px #181b2010;
 }
