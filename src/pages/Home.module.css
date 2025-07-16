@@ -32,6 +32,26 @@
   padding: 3.5rem 1rem 0.2rem 1rem;
   text-align: center;
   margin-bottom: 1.1rem;
+
+  /* Pop-in animation, staggered after main fade-in */
+  opacity: 0;
+  transform: translateY(36px) scale(0.96);
+  animation: bubblePop 0.74s cubic-bezier(.25,1.7,.38,.96) 0.38s both;
+}
+
+@keyframes bubblePop {
+  0% {
+    opacity: 0;
+    transform: translateY(36px) scale(0.96);
+  }
+  60% {
+    opacity: 0.93;
+    transform: translateY(-8px) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .homepageWelcome h1 {

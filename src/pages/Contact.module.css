@@ -14,6 +14,7 @@
   padding-top: 1rem;   /* pull form up a bit */
 }
 
+/* Animated pop-in for the main form */
 .form {
   background: #232327; /* dark panel */
   border-radius: 13px;
@@ -28,6 +29,26 @@
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   gap: 0.8rem;
   color: #fff;
+
+  /* Pop-in animation! */
+  opacity: 0;
+  transform: translateY(36px) scale(0.97);
+  animation: bubblePop 0.78s cubic-bezier(.25,1.7,.38,.96) 0.13s both;
+}
+
+@keyframes bubblePop {
+  0% {
+    opacity: 0;
+    transform: translateY(36px) scale(0.97);
+  }
+  60% {
+    opacity: 0.92;
+    transform: translateY(-8px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Heading uses the logo’s serif font */
