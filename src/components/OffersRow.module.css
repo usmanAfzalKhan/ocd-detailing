@@ -6,9 +6,13 @@
 
 .heading {
   font-family: 'Playfair Display', serif;
-  font-size: 2rem;       /* desktop size */
+  font-size: 2rem;
   color: #fff;
   margin-bottom: 0.5rem;
+}
+
+.intro {
+  font-family: 'Inter', sans-serif;
 }
 
 .grid {
@@ -30,7 +34,7 @@
   .grid {
     flex-direction: column;
     align-items: center;
-    justify-content: center;   /* truly center on mobile */
+    justify-content: center;
     gap: 1rem;
     max-width: 100%;
     margin: 0 auto;
@@ -38,18 +42,21 @@
 }
 
 .card {
-  width: 100%;             /* allow responsive shrinking */
-  max-width: 300px;        /* desktop card width */
+  width: 100%;
+  max-width: 300px;
   background: rgba(24, 24, 24, 0.6);
   border: 2px solid transparent;
   border-radius: 8px;
   overflow: hidden;
   transition: border-color 0.3s;
 }
+.card:hover {
+  border-color: #fff;
+}
 
 @media (max-width: 600px) {
   .card {
-    max-width: 250px;      /* slightly smaller on mobile */
+    max-width: 250px;
     margin: 0 auto;
   }
 }
@@ -67,7 +74,6 @@
   object-fit: cover;
 }
 
-/* logo positioned bottom-right */
 .logoOverlay {
   position: absolute;
   bottom: 0.5rem;
@@ -107,7 +113,6 @@
   margin-bottom: 1rem;
 }
 
-/* Hero-style button behavior */
 .button {
   width: 100%;
   background: transparent;
