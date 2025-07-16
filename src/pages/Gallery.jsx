@@ -53,7 +53,7 @@ export default function Gallery() {
         <a href="#our-work" className={styles.highlight} style={{ color: "#fff" }}>
           Our Work
         </a>{" "}
-        for a showcase of our full portfolio, and finally check out{" "}
+        for a showcase of our full portfolio, and finally check out our{" "}
         <a href="#videos" className={styles.highlight} style={{ color: "#fff" }}>
           Videos
         </a>.
