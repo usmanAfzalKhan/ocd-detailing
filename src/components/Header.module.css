@@ -148,15 +148,17 @@
   background: #1a1a1a;
   border: 2.5px solid #fff;
   border-radius: 13px;
-  padding: 0.5rem 0;
+  /* tighter padding */
+  padding: 0.3rem 0;
   box-shadow: 0 8px 32px #13162444, 0 1.5px 10px #6366f124;
-  min-width: 180px;
+  /* narrower width */
+  min-width: 140px;
   z-index: 99;
 }
 /* Reduced spacing between items */
 .headerNav.isOpen .headerLink {
-  margin: 0.2rem 0;               /* tighter vertical spacing */
-  padding: 0.75rem 1.2rem;
+  margin: 0.1rem 0;
+  padding: 0.5rem 1rem;
   font-family: 'Playfair Display', serif;
   font-size: 1.05rem;
   font-weight: 700;
