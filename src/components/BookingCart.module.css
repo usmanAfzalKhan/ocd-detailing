@@ -1,342 +1,145 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap");
 
-.reveal {
-  opacity: 0;
-  transform: translateY(34px);
-  transition:
-    opacity 0.7s ease,
-    transform 0.7s ease;
+@keyframes cartToggleBump {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  35% {
+    transform: translateY(-3px) scale(1.045);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
 }
 
-.revealed {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes cartPanelIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.section {
-  padding: 5.5rem 0;
+@keyframes cartItemIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.sectionAlt {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.015) 0%,
-      rgba(255, 255, 255, 0.03) 100%
-    );
-}
-
-.sectionInner {
-  width: min(1320px, calc(100% - 40px));
-  margin: 0 auto;
-}
-
-.sectionHead {
-  margin-bottom: 1.6rem;
-}
-
-.servicesHead {
-  max-width: 980px;
-}
-
-.kicker {
-  display: inline-block;
-  margin-bottom: 0.85rem;
-  color: rgba(255, 255, 255, 0.56);
+.cartToggle {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1100;
+  min-height: 52px;
+  padding: 0.82rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  border: 1px solid rgba(216, 180, 106, 0.34);
+  background: linear-gradient(180deg, #111113 0%, #17171a 100%);
+  color: #ffffff;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.3);
   font-family: "Inter", sans-serif;
-  font-size: 0.72rem;
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.cartToggle:hover,
+.cartToggle:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(216, 180, 106, 0.56);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.34);
+}
+
+.cartToggleActive {
+  border-color: rgba(216, 180, 106, 0.56);
+}
+
+.cartToggleBump {
+  animation: cartToggleBump 0.42s ease;
+}
+
+.cartToggleLabel {
+  font-size: 0.8rem;
   font-weight: 800;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.sectionTitle,
-.contactTitle {
-  margin: 0;
-  color: #ffffff;
-  font-family: "Playfair Display", serif;
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  line-height: 1.04;
-  letter-spacing: -0.02em;
-  max-width: 13ch;
-}
-
-.servicesHead .sectionTitle {
-  max-width: 18ch;
-}
-
-.sectionText,
-.contactText {
-  max-width: 64ch;
-  margin: 1rem 0 0;
-  color: rgba(255, 255, 255, 0.78);
-  font-family: "Inter", sans-serif;
-  font-size: 1rem;
-  line-height: 1.72;
-}
-
-.primaryLink,
-.secondaryLink,
-.cardLink,
-.cardButton {
+.cartToggleCount {
+  min-width: 28px;
+  height: 28px;
+  padding: 0 0.45rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 6px;
-  text-decoration: none;
+  border-radius: 999px;
+  background: #d8b46a;
+  color: #0d0d0f;
   font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
   font-weight: 800;
-  text-transform: uppercase;
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease,
-    box-shadow 0.2s ease,
-    opacity 0.2s ease;
-  appearance: none;
-  cursor: pointer;
+  box-shadow: 0 0 0 6px rgba(216, 180, 106, 0.08);
 }
 
-.primaryLink,
-.secondaryLink {
-  min-height: 48px;
-  padding: 0 1.1rem;
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
-}
-
-.cardLink,
-.cardButton {
-  min-height: 40px;
-  padding: 0 0.8rem;
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
-  white-space: nowrap;
-  width: 100%;
-}
-
-.primaryLink {
-  background: #ffffff;
-  color: #0d0d0f;
-  border: 1px solid #ffffff;
-}
-
-.primaryLink:hover,
-.primaryLink:focus-visible {
-  transform: translateY(-1px);
-  background: #f2f2f2;
-}
-
-.secondaryLink,
-.cardLink {
-  background: transparent;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-}
-
-.secondaryLink:hover,
-.secondaryLink:focus-visible {
-  transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.28);
-}
-
-.cardLink:hover,
-.cardLink:focus-visible {
-  transform: translateY(-1px);
-  background: #ffffff;
-  color: #0d0d0f;
-  border-color: #ffffff;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
-}
-
-.cardButton {
-  background: rgba(216, 180, 106, 0.08);
-  color: #f1d9a5;
-  border: 1px solid rgba(216, 180, 106, 0.34);
-}
-
-.cardButton:hover,
-.cardButton:focus-visible {
-  transform: translateY(-1px);
-  background: #d8b46a;
-  color: #0d0d0f;
-  border-color: #d8b46a;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
-}
-
-.cardButtonDisabled,
-.cardButton:disabled {
-  background: #d8b46a;
-  color: #0d0d0f;
-  border-color: #d8b46a;
-  cursor: not-allowed;
-  box-shadow: 0 10px 22px rgba(216, 180, 106, 0.14);
-  opacity: 0.95;
-  transform: none;
-}
-
-.cardButtonDisabled:hover,
-.cardButton:disabled:hover,
-.cardButtonDisabled:focus-visible,
-.cardButton:disabled:focus-visible {
-  transform: none;
-  background: #d8b46a;
-  color: #0d0d0f;
-  border-color: #d8b46a;
-  box-shadow: 0 10px 22px rgba(216, 180, 106, 0.14);
-}
-
-.sectionFooter {
-  margin-top: 1.4rem;
-}
-
-.centeredFooter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-}
-
-.servicesGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1rem;
-  align-items: stretch;
-}
-
-.serviceCard,
-.portfolioCard,
-.portfolioThumbCard,
-.faqCard,
-.reviewCard,
-.aboutCopy,
-.aboutPanel,
-.contactBox {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.04) 0%,
-      rgba(255, 255, 255, 0.02) 100%
-    );
-}
-
-.serviceCard {
-  overflow: hidden;
+.cartPanel {
+  position: fixed;
+  right: 18px;
+  bottom: 82px;
+  z-index: 1099;
+  width: min(360px, calc(100vw - 36px));
+  max-height: min(420px, 62vh);
   display: flex;
   flex-direction: column;
-  height: 100%;
-}
-
-.serviceImageWrap {
-  aspect-ratio: 1 / 0.94;
+  background: linear-gradient(180deg, #0f0f11 0%, #141416 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
+  transform: translateY(14px) scale(0.98);
+  transform-origin: bottom right;
+  opacity: 0;
+  pointer-events: none;
   overflow: hidden;
 }
 
-.serviceImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  transition: transform 0.5s ease;
+.cartPanelOpen {
+  opacity: 1;
+  pointer-events: auto;
+  animation: cartPanelIn 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(0) scale(1);
 }
 
-.serviceCard:hover .serviceImage {
-  transform: scale(1.035);
-}
-
-.serviceBody {
-  padding: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.serviceTop {
+.cartHead {
+  position: relative;
+  padding: 1rem 3.2rem 0.92rem 1rem;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 0.8rem;
-}
-
-.serviceTop h3,
-.faqCard h3,
-.aboutPoint span {
-  margin: 0;
-  color: #ffffff;
-  font-family: "Inter", sans-serif;
-  font-size: 1.05rem;
-  font-weight: 700;
-  line-height: 1.35;
-}
-
-.servicePrice {
-  color: #d8b46a;
-  font-family: "Inter", sans-serif;
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  text-shadow: 0 0 12px rgba(216, 180, 106, 0.18);
-}
-
-.serviceBody p,
-.faqCard p,
-.reviewText,
-.aboutPoint p {
-  margin: 0.8rem 0 0;
-  color: rgba(255, 255, 255, 0.74);
-  font-family: "Inter", sans-serif;
-  font-size: 0.94rem;
-  line-height: 1.64;
-}
-
-.cardActions {
-  margin-top: auto;
-  padding-top: 1rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 0.55rem;
-  width: 100%;
-}
-
-.portfolioGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
   gap: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.portfolioCard {
-  overflow: hidden;
-}
-
-.portfolioSplit {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 100%;
-}
-
-.portfolioImage {
-  width: 100%;
-  height: 100%;
-  min-height: 380px;
-  object-fit: cover;
-}
-
-.portfolioMeta {
-  padding: 1.1rem 1.2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.portfolioMeta span {
-  display: inline-block;
-  margin-bottom: 0.45rem;
-  color: rgba(255, 255, 255, 0.52);
+.kicker {
+  margin: 0 0 0.35rem;
+  color: rgba(255, 255, 255, 0.54);
   font-family: "Inter", sans-serif;
   font-size: 0.68rem;
   font-weight: 800;
@@ -344,337 +147,215 @@
   text-transform: uppercase;
 }
 
-.portfolioMeta h3 {
+.title {
   margin: 0;
   color: #ffffff;
   font-family: "Playfair Display", serif;
-  font-size: 1.5rem;
-  line-height: 1.08;
+  font-size: 1.28rem;
+  line-height: 1.05;
 }
 
-.portfolioSideGrid {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  gap: 1rem;
-}
-
-.portfolioThumbCard {
-  overflow: hidden;
-  min-height: 0;
-}
-
-.portfolioThumb {
-  width: 100%;
-  height: 100%;
-  min-height: 140px;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.portfolioThumbCard:hover .portfolioThumb {
-  transform: scale(1.04);
-}
-
-.faqGrid,
-.reviewsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.faqCard,
-.reviewCard,
-.aboutCopy,
-.aboutPanel,
-.contactBox {
-  padding: 1.4rem;
-}
-
-.reviewStars {
+.closeButton {
+  position: absolute;
+  top: 0.68rem;
+  right: 0.72rem;
+  padding: 0;
+  border: none;
+  background: transparent;
   color: #ffffff;
-  font-size: 1rem;
-  letter-spacing: 0.14em;
-}
-
-.reviewText {
-  margin-top: 0.85rem;
-}
-
-.reviewName {
-  display: inline-block;
-  margin-top: 1rem;
-  color: rgba(255, 255, 255, 0.62);
-  font-family: "Inter", sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
-.aboutGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
-  gap: 1rem;
-}
-
-.inlineActions {
-  margin-top: 1.4rem;
-}
-
-.aboutPanel {
-  display: grid;
-  gap: 1rem;
-}
-
-.aboutPoint + .aboutPoint {
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.contactSection {
-  padding-top: 3.5rem;
-  padding-bottom: 6rem;
-}
-
-.contactBox {
-  padding: 2rem;
-}
-
-.contactActions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-  margin-top: 1.7rem;
-}
-
-.contactLinks {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 1.25rem;
-}
-
-.iconLink {
-  width: 46px;
-  height: 46px;
+  cursor: pointer;
+  font-size: 2rem;
+  line-height: 1;
+  width: auto;
+  height: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
-  text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.closeButton:hover,
+.closeButton:focus-visible {
+  color: #d8b46a;
+  transform: scale(1.08);
+  opacity: 1;
+}
+
+.cartBody {
+  padding: 0.9rem 1rem;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+  padding: 0.85rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+}
+
+.cartItemOpen {
+  animation: cartItemIn 0.32s ease both;
+}
+
+.cartItemText {
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.removeButton {
+  flex: 0 0 auto;
+  min-height: 36px;
+  padding: 0 0.85rem;
+  border: 1px solid rgba(216, 180, 106, 0.34);
+  background: rgba(216, 180, 106, 0.08);
+  color: #f1d9a5;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   transition:
     transform 0.2s ease,
     background 0.2s ease,
-    border-color 0.2s ease;
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.iconLink:hover,
-.iconLink:focus-visible {
+.removeButton:hover,
+.removeButton:focus-visible {
   transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.24);
+  background: #d8b46a;
+  color: #0d0d0f;
+  border-color: #d8b46a;
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.18);
 }
 
-@media (max-width: 920px) {
-  .servicesGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.85rem;
-  }
-
-  .servicesGrid > * {
-    min-width: 0;
-  }
-
-  .servicesGrid > *:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-    width: calc((100% - 0.85rem) / 2);
-    justify-self: center;
-  }
-
-  .serviceImageWrap {
-    aspect-ratio: 1 / 0.98;
-  }
-
-  .cardActions {
-    gap: 0.45rem;
-  }
-
-  .cardLink,
-  .cardButton {
-    min-height: 36px;
-    padding: 0 0.65rem;
-    font-size: 0.6rem;
-    letter-spacing: 0.045em;
-  }
+.cartActions {
+  padding: 0.95rem 1rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-@media (max-width: 1100px) {
-  .faqGrid,
-  .reviewsGrid {
-    grid-template-columns: 1fr 1fr;
-  }
+.primaryButton,
+.secondaryButton {
+  min-height: 48px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
 
-  .portfolioGrid,
-  .aboutGrid {
-    grid-template-columns: 1fr;
-  }
+.primaryButton {
+  border: 1px solid #ffffff;
+  background: #ffffff;
+  color: #0d0d0f;
+}
 
-  .portfolioSideGrid {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: none;
-  }
+.primaryButton:hover,
+.primaryButton:focus-visible {
+  transform: translateY(-1px);
+  background: #f3f3f3;
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.16);
+}
 
-  .portfolioThumb {
-    min-height: 180px;
-  }
+.secondaryButton {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: transparent;
+  color: #ffffff;
+}
+
+.secondaryButton:hover,
+.secondaryButton:focus-visible {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 @media (max-width: 640px) {
-  .section {
-    padding: 3.7rem 0;
+  .cartToggle {
+    right: 12px;
+    bottom: 12px;
+    min-height: 48px;
+    padding: 0.72rem 0.88rem;
+    gap: 0.72rem;
   }
 
-  .contactSection {
-    padding-top: 2.4rem;
-    padding-bottom: 4.2rem;
+  .cartToggleLabel {
+    font-size: 0.73rem;
   }
 
-  .sectionInner {
-    width: calc(100% - 20px);
+  .cartPanel {
+    right: 12px;
+    bottom: 68px;
+    width: calc(100vw - 24px);
+    max-height: 56vh;
   }
 
-  .sectionTitle,
-  .contactTitle {
+  .title {
+    font-size: 1.14rem;
+  }
+
+  .cartHead {
+    padding: 0.9rem 2.8rem 0.82rem 0.9rem;
+  }
+
+  .closeButton {
+    top: 0.56rem;
+    right: 0.58rem;
     font-size: 1.85rem;
-    max-width: 100%;
   }
 
-  .servicesHead .sectionTitle {
-    max-width: 100%;
+  .cartBody {
+    padding: 0.8rem 0.9rem;
   }
 
-  .sectionText,
-  .contactText {
-    font-size: 0.92rem;
-    line-height: 1.58;
+  .cartItem {
+    padding: 0.78rem 0.8rem;
   }
 
-  .servicesGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.7rem;
-    align-items: stretch;
+  .cartItemText {
+    font-size: 0.84rem;
   }
 
-  .servicesGrid > * {
-    min-width: 0;
+  .removeButton {
+    min-height: 34px;
+    padding: 0 0.72rem;
+    font-size: 0.64rem;
   }
 
-  .servicesGrid > *:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-    width: calc((100% - 0.7rem) / 2);
-    justify-self: center;
-  }
-
-  .faqGrid,
-  .reviewsGrid,
-  .portfolioSideGrid {
+  .cartActions {
     grid-template-columns: 1fr;
+    padding: 0.85rem 0.9rem 0.9rem;
   }
 
-  .serviceImageWrap {
-    aspect-ratio: 1 / 1.02;
-  }
-
-  .serviceImage {
-    transform: scale(1.02);
-  }
-
-  .serviceBody {
-    padding: 0.78rem;
-  }
-
-  .faqCard,
-  .reviewCard,
-  .aboutCopy,
-  .aboutPanel,
-  .contactBox {
-    padding: 1.2rem;
-  }
-
-  .serviceTop {
-    gap: 0.45rem;
-  }
-
-  .serviceTop h3 {
-    font-size: 0.88rem;
-    line-height: 1.2;
-  }
-
-  .servicePrice {
-    font-size: 0.62rem;
-    letter-spacing: 0.08em;
-  }
-
-  .serviceBody p {
-    margin-top: 0.5rem;
-    font-size: 0.78rem;
-    line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .cardActions {
-    padding-top: 0.65rem;
-    gap: 0.35rem;
-  }
-
-  .cardLink,
-  .cardButton {
-    min-height: 30px;
-    padding: 0 0.46rem;
-    font-size: 0.5rem;
-    letter-spacing: 0.035em;
-  }
-
-  .portfolioMeta {
-    padding: 1rem;
-  }
-
-  .portfolioMeta h3 {
-    font-size: 1.24rem;
-  }
-
-  .portfolioImage {
-    min-height: 260px;
-  }
-
-  .portfolioThumb {
-    min-height: 200px;
-  }
-
-  .contactActions {
-    flex-direction: column;
-  }
-
-  .primaryLink,
-  .secondaryLink {
-    width: 100%;
-  }
-
-  .centeredFooter .primaryLink,
-  .centeredFooter .secondaryLink {
-    width: auto;
-    min-width: 160px;
-    padding: 0 1rem;
-  }
-
-  .sectionFooter {
-    margin-top: 1.2rem;
-  }
-
-  .centeredFooter {
-    gap: 0.65rem;
+  .primaryButton,
+  .secondaryButton {
+    min-height: 44px;
+    font-size: 0.72rem;
   }
 }
