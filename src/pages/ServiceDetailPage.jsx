@@ -1,18 +1,24 @@
-// src/pages/ServiceDetailPage.jsx
-
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { services } from '../data/services';
-import logo from '../assets/images/logo-hero.png';
-import styles from './ServiceDetailPage.module.css';
+import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { services } from "../data/services";
+import { useBookingCart } from "../context/BookingCartContext";
+import logo from "../assets/images/logo-hero.webp";
+import styles from "./ServiceDetailPage.module.css";
 
 export default function ServiceDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addService } = useBookingCart();
+
   const service = services.find((s) => s.id === id);
 
   if (!service) {
     return <p className={styles.notFound}>Service not found.</p>;
+  }
+
+  function handleBookNow() {
+    addService(service.title);
+    navigate("/contact");
   }
 
   return (
@@ -36,12 +42,8 @@ export default function ServiceDetailPage() {
             <span className={styles.priceLabel}>Starting from</span>
             <span className={styles.priceAmount}>{service.price}</span>
           </div>
-          <button
-            className={styles.button}
-            onClick={() =>
-              navigate('/contact', { state: { services: [service.title] } })
-            }
-          >
+
+          <button className={styles.button} onClick={handleBookNow}>
             Book Now
           </button>
         </div>
@@ -56,6 +58,7 @@ export default function ServiceDetailPage() {
             ))}
           </ul>
         </div>
+
         <div className={styles.whySection}>
           <h2 className={styles.subtitle}>Why Choose This</h2>
           <ul className={styles.whyList}>
@@ -79,10 +82,7 @@ export default function ServiceDetailPage() {
         />
       </div>
 
-      <button
-        className={styles.backBtn}
-        onClick={() => navigate('/services')}
-      >
+      <button className={styles.backBtn} onClick={() => navigate("/services")}>
         ← Back to Services
       </button>
     </article>

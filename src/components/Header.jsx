@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaInstagram, FaFacebookF, FaPhoneAlt } from "react-icons/fa";
-import logoImg from "../assets/images/logo-hero.png";
+import logoImg from "../assets/images/logo-hero.webp";
 import styles from "./Header.module.css";
 
 const navItems = [

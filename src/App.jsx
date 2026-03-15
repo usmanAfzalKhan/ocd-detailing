@@ -1,9 +1,10 @@
-// src/App.jsx
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import BookingCart from "./components/BookingCart";
+import { BookingCartProvider } from "./context/BookingCartContext";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Gallery from "./pages/Gallery";
@@ -16,22 +17,25 @@ import "./App.css";
 
 const App = () => (
   <BrowserRouter>
-    <ScrollToTop />
+    <BookingCartProvider>
+      <ScrollToTop />
 
-    <Header />
-    <main style={{ minHeight: "calc(100vh - 120px)" }}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/faq" element={<Faq />} />
-        <Route path="/reviews" element={<Reviews />} />
-        <Route path="/services" element={<ServicesPage />} />
-        <Route path="/services/:id" element={<ServiceDetailPage />} />
-      </Routes>
-    </main>
-    <Footer />
+      <Header />
+      <main style={{ minHeight: "calc(100vh - 120px)" }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/:id" element={<ServiceDetailPage />} />
+        </Routes>
+      </main>
+      <Footer />
+      <BookingCart />
+    </BookingCartProvider>
   </BrowserRouter>
 );
 

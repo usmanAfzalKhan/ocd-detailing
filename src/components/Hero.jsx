@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Hero.module.css";
 import { slides } from "../data/slides";
-import logoImg from "../assets/images/logo-hero.png";
+import logoImg from "../assets/images/logo-hero.webp";
 
 const SWIPE_THRESHOLD = 45;
 

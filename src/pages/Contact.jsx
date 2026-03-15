@@ -1,11 +1,12 @@
-// src/pages/Contact.jsx
-
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./Contact.module.css";
 import { services } from "../data/services";
+import { useBookingCart } from "../context/BookingCartContext";
 
-const servicesList = [...services.map((s) => s.title), "Other"];
+const catalogServiceTitles = services.map((s) => s.title);
+const servicesList = [...catalogServiceTitles, "Other"];
+
 const vehicleTypes = [
   "Sedan",
   "SUV",
@@ -31,14 +32,75 @@ const initialState = {
   message: "",
 };
 
+function sameArray(a, b) {
+  if (a.length !== b.length) return false;
+  return a.every((item, index) => item === b[index]);
+}
+
 export default function Contact() {
   const location = useLocation();
-  const initialPrefill = { ...initialState, ...(location.state || {}) };
+  const {
+    selectedServices,
+    addService,
+    addManyServices,
+    removeService,
+    clearServices,
+  } = useBookingCart();
+
+  const prefilledServices = useMemo(() => {
+    const fromState = Array.isArray(location.state?.services)
+      ? location.state.services
+      : [];
+
+    const merged = [...new Set([...selectedServices, ...fromState])];
+    return merged.filter((title) => catalogServiceTitles.includes(title));
+  }, [location.state, selectedServices]);
+
+  const initialPrefill = {
+    ...initialState,
+    ...(location.state || {}),
+    services: prefilledServices,
+  };
+
   const [form, setForm] = useState(initialPrefill);
   const [touched, setTouched] = useState({});
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    const fromState = Array.isArray(location.state?.services)
+      ? location.state.services.filter((title) =>
+          catalogServiceTitles.includes(title)
+        )
+      : [];
+
+    if (fromState.length) {
+      addManyServices(fromState);
+    }
+  }, [location.state, addManyServices]);
+
+  useEffect(() => {
+    setForm((prev) => {
+      const nonCatalogSelections = prev.services.filter(
+        (item) => !catalogServiceTitles.includes(item)
+      );
+
+      const nextServices = [
+        ...selectedServices,
+        ...nonCatalogSelections.filter((item) => !selectedServices.includes(item)),
+      ];
+
+      if (sameArray(prev.services, nextServices)) {
+        return prev;
+      }
+
+      return {
+        ...prev,
+        services: nextServices,
+      };
+    });
+  }, [selectedServices]);
 
   function validate(f) {
     const err = {};
@@ -63,21 +125,44 @@ export default function Contact() {
   function handlePhoneChange(e) {
     let digits = e.target.value.replace(/\D/g, "").slice(0, 10);
     let formatted = digits;
-    if (digits.length > 6)
+
+    if (digits.length > 6) {
       formatted = `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(
         6
       )}`;
-    else if (digits.length > 3)
+    } else if (digits.length > 3) {
       formatted = `${digits.slice(0, 3)}-${digits.slice(3)}`;
+    }
+
     setForm((f) => ({ ...f, phone: formatted }));
   }
 
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
+
     if (type === "checkbox" && name === "services") {
+      if (value === "Other") {
+        setForm((f) =>
+          checked
+            ? { ...f, services: [...f.services, value] }
+            : {
+                ...f,
+                services: f.services.filter((s) => s !== value),
+                otherService: "",
+              }
+        );
+        return;
+      }
+
+      if (checked) {
+        addService(value);
+      } else {
+        removeService(value);
+      }
+
       setForm((f) =>
         checked
-          ? { ...f, services: [...f.services, value] }
+          ? { ...f, services: [...new Set([...f.services, value])] }
           : { ...f, services: f.services.filter((s) => s !== value) }
       );
     } else if (name === "referred") {
@@ -97,8 +182,10 @@ export default function Contact() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     const currentErrors = validate(form);
     setErrors(currentErrors);
+
     setTouched({
       name: true,
       phone: true,
@@ -111,20 +198,28 @@ export default function Contact() {
       referred: true,
       referredBy: true,
     });
+
     if (Object.keys(currentErrors).length) return;
 
     setSubmitting(true);
+
     try {
       const res = await fetch("/.netlify/functions/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      if (res.ok) setSubmitted(true);
-      else alert("Something went wrong. Please try again later.");
+
+      if (res.ok) {
+        clearServices();
+        setSubmitted(true);
+      } else {
+        alert("Something went wrong. Please try again later.");
+      }
     } catch {
       alert("Could not submit form. Try again later.");
     }
+
     setSubmitting(false);
   }
 
@@ -135,7 +230,7 @@ export default function Contact() {
       <section className={styles.contactSection}>
         <div className={styles.success}>
           <img
-            src="/images/logo-hero.png"
+            src="/images/logo-hero.webp"
             alt="OCD Detailing Logo"
             style={{
               width: "84px",
@@ -173,6 +268,7 @@ export default function Contact() {
     <section className={styles.contactSection}>
       <form className={styles.form} onSubmit={handleSubmit} noValidate>
         <h1 className={styles.title}>Contact Us</h1>
+
         <p className={styles.intro} style={{ color: "#ffffff" }}>
           Have a question? Call us at{" "}
           <a
@@ -211,10 +307,9 @@ export default function Contact() {
           >
             Facebook
           </a>
-          — we’ll get back to you ASAP!
+          — we’ll get back to you ASAP!
         </p>
 
-        {/* Name */}
         <label className={styles.label} htmlFor="name">
           Name<span className={styles.req}>*</span>
         </label>
@@ -233,7 +328,6 @@ export default function Contact() {
           <div className={styles.error}>{errors.name}</div>
         )}
 
-        {/* Phone */}
         <label className={styles.label} htmlFor="phone">
           Phone Number<span className={styles.req}>*</span>
         </label>
@@ -257,7 +351,6 @@ export default function Contact() {
           <div className={styles.error}>{errors.phone}</div>
         )}
 
-        {/* Date */}
         <label className={styles.label} htmlFor="date">
           Preferred Date<span className={styles.req}>*</span>
         </label>
@@ -275,7 +368,6 @@ export default function Contact() {
           <div className={styles.error}>{errors.date}</div>
         )}
 
-        {/* Services Interested In */}
         <label className={styles.label}>
           Services Interested In<span className={styles.req}>*</span>:
         </label>
@@ -297,6 +389,7 @@ export default function Contact() {
         {touched.services && errors.services && (
           <div className={styles.error}>{errors.services}</div>
         )}
+
         {form.services.includes("Other") && (
           <>
             <input
@@ -314,7 +407,6 @@ export default function Contact() {
           </>
         )}
 
-        {/* Vehicle Type */}
         <label className={styles.label}>
           Vehicle Type<span className={styles.req}>*</span>:
         </label>
@@ -336,6 +428,7 @@ export default function Contact() {
         {touched.vehicle && errors.vehicle && (
           <div className={styles.error}>{errors.vehicle}</div>
         )}
+
         {form.vehicle === "Other" && (
           <>
             <input
@@ -353,7 +446,6 @@ export default function Contact() {
           </>
         )}
 
-        {/* First Time */}
         <label className={styles.label}>
           Is this your first time with OCD?<span className={styles.req}>*</span>
         </label>
@@ -385,7 +477,6 @@ export default function Contact() {
           <div className={styles.error}>{errors.firstTime}</div>
         )}
 
-        {/* Referred */}
         <label className={styles.label}>
           Were you referred to us?<span className={styles.req}>*</span>
         </label>
@@ -416,6 +507,7 @@ export default function Contact() {
         {touched.referred && errors.referred && (
           <div className={styles.error}>{errors.referred}</div>
         )}
+
         {form.referred === "Yes" && (
           <>
             <input
@@ -433,7 +525,6 @@ export default function Contact() {
           </>
         )}
 
-        {/* Message */}
         <label className={styles.label} htmlFor="message">
           Your Message (optional)
         </label>
