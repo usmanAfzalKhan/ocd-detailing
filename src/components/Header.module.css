@@ -121,6 +121,25 @@
   gap: 1.35rem;
 }
 
+.desktopServices {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.desktopCaret {
+  display: inline-block;
+  margin-left: 0.45rem;
+  font-size: 0.72rem;
+  transform: translateY(-1px);
+  transition: transform 0.22s ease;
+}
+
+.desktopServices:hover .desktopCaret,
+.desktopServices:focus-within .desktopCaret {
+  transform: translateY(-1px) rotate(180deg);
+}
+
 .navLink {
   position: relative;
   display: inline-flex;
@@ -162,6 +181,85 @@
 
 .navLinkActive {
   color: #ffffff;
+}
+
+.desktopDropdown {
+  position: absolute;
+  top: calc(100% - 10px);
+  left: 0;
+  min-width: 320px;
+  padding: 0.9rem;
+  background: linear-gradient(180deg, #111113 0%, #17171a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.34);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease,
+    visibility 0.22s ease;
+  z-index: 30;
+}
+
+.desktopServices:hover .desktopDropdown,
+.desktopServices:focus-within .desktopDropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdownOverview {
+  display: block;
+  padding: 0.8rem 0.9rem;
+  margin-bottom: 0.55rem;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dropdownOverview:hover,
+.dropdownOverview:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dropdownList {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownLink {
+  display: block;
+  padding: 0.82rem 0.9rem;
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.35;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+.dropdownLink:first-child {
+  border-top: none;
+}
+
+.dropdownLink:hover,
+.dropdownLink:focus-visible,
+.dropdownLinkActive {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.04);
+  padding-left: 1.15rem;
 }
 
 .desktopCta {
@@ -356,6 +454,94 @@
   padding-left: 0.4rem;
 }
 
+.mobileServicesBlock {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobileServicesRow {
+  display: flex;
+  align-items: stretch;
+}
+
+.mobileServicesMainLink {
+  flex: 1;
+  padding: 1rem 0;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    color 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+.mobileServicesMainLink:hover,
+.mobileServicesMainLink:focus-visible {
+  color: #ffffff;
+  padding-left: 0.4rem;
+}
+
+.mobileServicesToggle {
+  width: 54px;
+  flex: 0 0 54px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.mobileServicesToggle span {
+  display: inline-block;
+  transition: transform 0.22s ease;
+}
+
+.mobileServicesToggleOpen span {
+  transform: rotate(180deg);
+}
+
+.mobileServicesToggle:hover,
+.mobileServicesToggle:focus-visible {
+  color: #ffffff;
+}
+
+.mobileServicesDropdown {
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.28s ease,
+    padding-bottom 0.28s ease;
+}
+
+.mobileServicesDropdownOpen {
+  max-height: 420px;
+  padding-bottom: 0.7rem;
+}
+
+.mobileSubLink {
+  display: block;
+  padding: 0.78rem 0 0.78rem 1rem;
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.35;
+  transition:
+    color 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+.mobileSubLink:hover,
+.mobileSubLink:focus-visible,
+.mobileSubLinkActive {
+  color: #ffffff;
+  padding-left: 1.3rem;
+}
+
 .mobileBottom {
   margin-top: auto;
   display: flex;
@@ -482,9 +668,15 @@
     font-size: 1.35rem;
   }
 
-  .mobileLink {
+  .mobileLink,
+  .mobileServicesMainLink {
     font-size: 0.94rem;
-    padding: 0.92rem 0;
+    padding-top: 0.92rem;
+    padding-bottom: 0.92rem;
+  }
+
+  .mobileSubLink {
+    font-size: 0.86rem;
   }
 
   .mobileCta {

@@ -1,88 +1,157 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from './Hero.module.css';
-import logo from '../assets/images/logo-hero.png';
-import { slides } from '../data/slides';
+import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./Hero.module.css";
+import { slides } from "../data/slides";
+import logoImg from "../assets/images/logo-hero.png";
+
+const SWIPE_THRESHOLD = 45;
 
 export default function Hero() {
-  const [current, setCurrent] = useState(0);
   const navigate = useNavigate();
-  const len = slides.length;
+  const [current, setCurrent] = useState(0);
 
-  let touchStartX = null, touchEndX = null;
-  const minSwipe = 35;
-  const onTouchStart = e => { touchStartX = e.touches[0].clientX; };
-  const onTouchMove  = e => { touchEndX   = e.touches[0].clientX; };
-  const onTouchEnd   = () => {
-    if (touchStartX != null && touchEndX != null) {
-      const dx = touchEndX - touchStartX;
-      if (dx > minSwipe) prev();
-      else if (dx < -minSwipe) next();
-    }
-    touchStartX = touchEndX = null;
+  const touchStartX = useRef(null);
+  const touchEndX = useRef(null);
+
+  const totalSlides = slides.length;
+
+  const nextSlide = () => {
+    setCurrent((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
   };
 
-  const next = () => setCurrent(i => (i === len - 1 ? 0 : i + 1));
-  const prev = () => setCurrent(i => (i === 0      ? len - 1 : i - 1));
+  const prevSlide = () => {
+    setCurrent((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
+  };
+
+  const handleTouchStart = (event) => {
+    touchStartX.current = event.touches[0].clientX;
+  };
+
+  const handleTouchMove = (event) => {
+    touchEndX.current = event.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current == null || touchEndX.current == null) {
+      touchStartX.current = null;
+      touchEndX.current = null;
+      return;
+    }
+
+    const delta = touchEndX.current - touchStartX.current;
+
+    if (delta > SWIPE_THRESHOLD) prevSlide();
+    if (delta < -SWIPE_THRESHOLD) nextSlide();
+
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
 
   return (
     <section
       className={styles.hero}
-      onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
-      onTouchEnd={onTouchEnd}
+      aria-label="OCD Detailing hero"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
-      <button
-        className={`${styles.arrow} ${styles.left}`}
-        onClick={prev}
-        aria-label="Previous slide"
-      >&lt;</button>
-
       <div
-        className={styles.slider}
+        className={styles.sliderTrack}
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
-        {slides.map(slide => (
-          <div className={styles.slide} key={slide.id}>
+        {slides.map((slide, index) => (
+          <article
+            key={slide.id}
+            className={`${styles.slide} ${
+              index === current ? styles.activeSlide : ""
+            }`}
+          >
             <img
               src={slide.imgUrl}
               alt={slide.title}
-              className={styles.image}
+              className={styles.slideImage}
               draggable={false}
             />
 
-            <div className={styles.overlayContent}>
-              <h2 className={styles.heading}>{slide.title}</h2>
-              <p className={styles.subtitle}>{slide.description}</p>
-              <button
-                className={styles.button}
-                onClick={() => navigate(slide.button.path)}
-              >
-                {slide.button.label}
-              </button>
+            <img
+              src={logoImg}
+              alt="OCD Detailing logo"
+              className={styles.slideLogo}
+              draggable={false}
+            />
+
+            <div className={styles.topFade} />
+            <div className={styles.leftFade} />
+            <div className={styles.bottomFade} />
+
+            <div className={styles.contentShell}>
+              <div className={styles.contentBox}>
+                <h1 className={styles.title}>{slide.title}</h1>
+
+                <p className={styles.description}>{slide.description}</p>
+
+                <div className={styles.actions}>
+                  <button
+                    type="button"
+                    className={styles.primaryButton}
+                    onClick={() => navigate(slide.button.path)}
+                  >
+                    {slide.button.label}
+                  </button>
+
+                  <button
+                    type="button"
+                    className={styles.secondaryButton}
+                    onClick={() => navigate("/gallery")}
+                  >
+                    View Gallery
+                  </button>
+                </div>
+              </div>
             </div>
+          </article>
+        ))}
+      </div>
+
+      <div className={styles.bottomControls}>
+        <div className={styles.pagination}>
+          {slides.map((slide, index) => (
+            <button
+              key={slide.id}
+              type="button"
+              className={`${styles.paginationItem} ${
+                index === current ? styles.paginationItemActive : ""
+              }`}
+              onClick={() => setCurrent(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            >
+              <span className={styles.paginationLine} />
+            </button>
+          ))}
+        </div>
+
+        <div className={styles.controlsMeta}>
+          <div className={styles.arrowCluster}>
+            <button
+              type="button"
+              className={styles.arrowButton}
+              onClick={prevSlide}
+              aria-label="Previous slide"
+            >
+              <span>‹</span>
+            </button>
+
+            <button
+              type="button"
+              className={styles.arrowButton}
+              onClick={nextSlide}
+              aria-label="Next slide"
+            >
+              <span>›</span>
+            </button>
           </div>
-        ))}
+        </div>
       </div>
-
-      <button
-        className={`${styles.arrow} ${styles.right}`}
-        onClick={next}
-        aria-label="Next slide"
-      >&gt;</button>
-
-      <div className={styles.indicators}>
-        {slides.map((_, idx) => (
-          <span
-            key={idx}
-            className={`${styles.dot} ${current === idx ? styles.active : ''}`}
-            onClick={() => setCurrent(idx)}
-          />
-        ))}
-      </div>
-
-      {/* use the new logoCorner class so mobile pushes it into the top‐right */}
-      <img src={logo} alt="logo" className={styles.logoCorner} />
     </section>
   );
 }

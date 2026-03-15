@@ -6,7 +6,6 @@ import styles from "./Header.module.css";
 
 const navItems = [
   { label: "Home", to: "/" },
-  { label: "Services", to: "/services" },
   { label: "Gallery", to: "/gallery" },
   { label: "Reviews", to: "/reviews" },
   { label: "FAQ", to: "/faq" },
@@ -14,12 +13,25 @@ const navItems = [
   { label: "Contact", to: "/contact" },
 ];
 
+const serviceItems = [
+  { label: "Mobile Detailing", to: "/services/mobile-detailing" },
+  { label: "Ceramic Coating", to: "/services/ceramic-coating" },
+  { label: "Paint Correction", to: "/services/paint-correction" },
+  { label: "Shampooing Carpets & Seats", to: "/services/shampoo-carpets-seats" },
+  { label: "Clay Bar Treatment", to: "/services/clay-bar" },
+];
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const location = useLocation();
+
+  const servicesActive =
+    location.pathname === "/services" || location.pathname.startsWith("/services/");
 
   useEffect(() => {
     setMenuOpen(false);
+    setMobileServicesOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -29,7 +41,10 @@ export default function Header() {
     }
 
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        setMobileServicesOpen(false);
+      }
     };
 
     document.body.style.overflow = "hidden";
@@ -69,6 +84,42 @@ export default function Header() {
 
           <div className={styles.desktopSide}>
             <nav className={styles.desktopNav} aria-label="Primary">
+              <div className={styles.desktopServices}>
+                <NavLink
+                  to="/services"
+                  className={({ isActive }) =>
+                    `${styles.navLink} ${
+                      isActive || servicesActive ? styles.navLinkActive : ""
+                    }`
+                  }
+                >
+                  Services
+                  <span className={styles.desktopCaret}>▾</span>
+                </NavLink>
+
+                <div className={styles.desktopDropdown}>
+                  <Link to="/services" className={styles.dropdownOverview}>
+                    All Services
+                  </Link>
+
+                  <div className={styles.dropdownList}>
+                    {serviceItems.map((item) => (
+                      <NavLink
+                        key={item.to}
+                        to={item.to}
+                        className={({ isActive }) =>
+                          `${styles.dropdownLink} ${
+                            isActive ? styles.dropdownLinkActive : ""
+                          }`
+                        }
+                      >
+                        {item.label}
+                      </NavLink>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
               {navItems.map((item) => (
                 <NavLink
                   key={item.to}
@@ -115,7 +166,10 @@ export default function Header() {
           type="button"
           className={styles.backdrop}
           aria-label="Close menu"
-          onClick={() => setMenuOpen(false)}
+          onClick={() => {
+            setMenuOpen(false);
+            setMobileServicesOpen(false);
+          }}
         />
 
         <aside
@@ -135,22 +189,80 @@ export default function Header() {
               type="button"
               className={styles.closeButton}
               aria-label="Close navigation"
-              onClick={() => setMenuOpen(false)}
+              onClick={() => {
+                setMenuOpen(false);
+                setMobileServicesOpen(false);
+              }}
             >
               ×
             </button>
           </div>
 
           <nav className={styles.mobileNav}>
-            {navItems.map((item) => (
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                `${styles.mobileLink} ${isActive ? styles.mobileLinkActive : ""}`
+              }
+            >
+              Home
+            </NavLink>
+
+            <div className={styles.mobileServicesBlock}>
+              <div className={styles.mobileServicesRow}>
+                <NavLink
+                  to="/services"
+                  className={({ isActive }) =>
+                    `${styles.mobileServicesMainLink} ${
+                      isActive || servicesActive ? styles.mobileLinkActive : ""
+                    }`
+                  }
+                >
+                  Services
+                </NavLink>
+
+                <button
+                  type="button"
+                  className={`${styles.mobileServicesToggle} ${
+                    mobileServicesOpen ? styles.mobileServicesToggleOpen : ""
+                  }`}
+                  aria-label="Toggle service list"
+                  aria-expanded={mobileServicesOpen}
+                  onClick={() => setMobileServicesOpen((prev) => !prev)}
+                >
+                  <span>▾</span>
+                </button>
+              </div>
+
+              <div
+                className={`${styles.mobileServicesDropdown} ${
+                  mobileServicesOpen ? styles.mobileServicesDropdownOpen : ""
+                }`}
+              >
+                {serviceItems.map((item) => (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    className={({ isActive }) =>
+                      `${styles.mobileSubLink} ${
+                        isActive ? styles.mobileSubLinkActive : ""
+                      }`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                ))}
+              </div>
+            </div>
+
+            {navItems.slice(1).map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 end={item.to === "/"}
                 className={({ isActive }) =>
-                  `${styles.mobileLink} ${
-                    isActive ? styles.mobileLinkActive : ""
-                  }`
+                  `${styles.mobileLink} ${isActive ? styles.mobileLinkActive : ""}`
                 }
               >
                 {item.label}
