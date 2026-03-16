@@ -101,7 +101,6 @@ export default function Gallery() {
 
                   <div className={styles.pairMeta}>
                     <span>Before &amp; After</span>
-                    <h3>Detailing transformation {index + 1}</h3>
                   </div>
                 </article>
               ))}
