@@ -16,8 +16,8 @@ export default function Home() {
       <div className={styles.previewStack}>
         <HomeServicesPreview />
         <HomePortfolioPreview />
-        <HomeFaqPreview />
         <HomeReviewsPreview />
+        <HomeFaqPreview />
         <HomeAboutPreview />
         <HomeContactPreview />
       </div>

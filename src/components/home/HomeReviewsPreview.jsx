@@ -40,7 +40,7 @@ export default function HomeReviewsPreview() {
           collection(db, "reviews"),
           where("rating", ">=", 4),
           orderBy("timestamp", "desc"),
-          limit(3)
+          limit(6)
         );
         const snap = await getDocs(q);
         const fetched = snap.docs.map((doc) => ({
@@ -56,36 +56,45 @@ export default function HomeReviewsPreview() {
     loadReviews();
   }, []);
 
+  const marqueeReviews = [...reviews, ...reviews];
+
   return (
     <section className={`${styles.section} ${styles.sectionAlt}`}>
       <div className={styles.sectionInner}>
         <SectionReveal>
           <div className={styles.sectionHead}>
             <span className={styles.kicker}>Reviews</span>
-            <h2 className={styles.sectionTitle}>What the finish feels like after the job is done.</h2>
+            <h2 className={styles.sectionTitle}>
+              What the finish feels like after the job is done.
+            </h2>
           </div>
         </SectionReveal>
 
-        <div className={styles.reviewsGrid}>
-          {reviews.map((review, index) => (
-            <SectionReveal
-              key={review.id || `${review.name}-${index}`}
-              delay={index * 90}
-            >
-              <article className={styles.reviewCard}>
-                <div className={styles.reviewStars}>
-                  {"★".repeat(Math.min(review.rating || 5, 5))}
-                </div>
-                <p className={styles.reviewText}>{review.text}</p>
-                <span className={styles.reviewName}>— {review.name}</span>
-              </article>
-            </SectionReveal>
-          ))}
-        </div>
+        <SectionReveal delay={90}>
+          <div className={styles.reviewsTickerWrap}>
+            <div className={styles.reviewsTickerViewport}>
+              <div className={styles.reviewsTickerTrack}>
+                {marqueeReviews.map((review, index) => (
+                  <article
+                    key={`${review.id || `${review.name}-${index}`}-${index}`}
+                    className={`${styles.reviewCard} ${styles.reviewTickerCard}`}
+                  >
+                    <div className={styles.reviewStars}>
+                      {"★".repeat(Math.min(review.rating || 5, 5))}
+                      {"☆".repeat(Math.max(5 - (review.rating || 5), 0))}
+                    </div>
+                    <p className={styles.reviewText}>{review.text}</p>
+                    <span className={styles.reviewName}>— {review.name}</span>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </SectionReveal>
 
         <SectionReveal delay={220}>
-          <div className={styles.sectionFooter}>
-            <Link to="/reviews" className={styles.secondaryLink}>
+          <div className={`${styles.sectionFooter} ${styles.centeredFooter}`}>
+            <Link to="/reviews" className={styles.primaryLink}>
               View All Reviews
             </Link>
           </div>

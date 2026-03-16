@@ -9,7 +9,6 @@ const navItems = [
   { label: "Reviews", to: "/reviews" },
   { label: "FAQ", to: "/faq" },
   { label: "About", to: "/about" },
-  { label: "Contact", to: "/contact" },
 ];
 
 const serviceItems = [
@@ -190,7 +189,7 @@ export default function Header() {
             </nav>
 
             <Link to="/contact" className={styles.desktopCta}>
-              Book Now
+              Contact Us
             </Link>
           </div>
 
@@ -403,7 +402,7 @@ export default function Header() {
             </div>
 
             <Link to="/contact" className={styles.mobileCta}>
-              Book an Appointment
+              Contact Us
             </Link>
           </div>
         </aside>
