@@ -6,7 +6,6 @@ import styles from "./Header.module.css";
 
 const navItems = [
   { label: "Home", to: "/" },
-  { label: "Gallery", to: "/gallery" },
   { label: "Reviews", to: "/reviews" },
   { label: "FAQ", to: "/faq" },
   { label: "About", to: "/about" },
@@ -21,18 +20,32 @@ const serviceItems = [
   { label: "Clay Bar Treatment", to: "/services/clay-bar" },
 ];
 
+const galleryItems = [
+  { label: "Our Work", to: "/gallery#our-work", hash: "#our-work" },
+  { label: "Before & After", to: "/gallery#before-after", hash: "#before-after" },
+  { label: "Videos", to: "/gallery#videos", hash: "#videos" },
+];
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileGalleryOpen, setMobileGalleryOpen] = useState(false);
   const location = useLocation();
 
   const servicesActive =
     location.pathname === "/services" || location.pathname.startsWith("/services/");
 
+  const galleryActive = location.pathname === "/gallery";
+
+  function isGalleryHashActive(hash) {
+    return galleryActive && location.hash === hash;
+  }
+
   useEffect(() => {
     setMenuOpen(false);
     setMobileServicesOpen(false);
-  }, [location.pathname]);
+    setMobileGalleryOpen(false);
+  }, [location.pathname, location.hash]);
 
   useEffect(() => {
     if (!menuOpen) {
@@ -44,6 +57,7 @@ export default function Header() {
       if (event.key === "Escape") {
         setMenuOpen(false);
         setMobileServicesOpen(false);
+        setMobileGalleryOpen(false);
       }
     };
 
@@ -84,6 +98,16 @@ export default function Header() {
 
           <div className={styles.desktopSide}>
             <nav className={styles.desktopNav} aria-label="Primary">
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) =>
+                  `${styles.navLink} ${isActive ? styles.navLinkActive : ""}`
+                }
+              >
+                Home
+              </NavLink>
+
               <div className={styles.desktopServices}>
                 <NavLink
                   to="/services"
@@ -120,11 +144,42 @@ export default function Header() {
                 </div>
               </div>
 
-              {navItems.map((item) => (
+              <div className={styles.desktopServices}>
+                <NavLink
+                  to="/gallery"
+                  className={() =>
+                    `${styles.navLink} ${galleryActive ? styles.navLinkActive : ""}`
+                  }
+                >
+                  Gallery
+                  <span className={styles.desktopCaret}>▾</span>
+                </NavLink>
+
+                <div className={styles.desktopDropdown}>
+                  <Link to="/gallery" className={styles.dropdownOverview}>
+                    Full Gallery
+                  </Link>
+
+                  <div className={styles.dropdownList}>
+                    {galleryItems.map((item) => (
+                      <Link
+                        key={item.to}
+                        to={item.to}
+                        className={`${styles.dropdownLink} ${
+                          isGalleryHashActive(item.hash) ? styles.dropdownLinkActive : ""
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {navItems.slice(1).map((item) => (
                 <NavLink
                   key={item.to}
                   to={item.to}
-                  end={item.to === "/"}
                   className={({ isActive }) =>
                     `${styles.navLink} ${isActive ? styles.navLinkActive : ""}`
                   }
@@ -169,6 +224,7 @@ export default function Header() {
           onClick={() => {
             setMenuOpen(false);
             setMobileServicesOpen(false);
+            setMobileGalleryOpen(false);
           }}
         />
 
@@ -192,6 +248,7 @@ export default function Header() {
               onClick={() => {
                 setMenuOpen(false);
                 setMobileServicesOpen(false);
+                setMobileGalleryOpen(false);
               }}
             >
               ×
@@ -256,11 +313,55 @@ export default function Header() {
               </div>
             </div>
 
+            <div className={styles.mobileServicesBlock}>
+              <div className={styles.mobileServicesRow}>
+                <NavLink
+                  to="/gallery"
+                  className={() =>
+                    `${styles.mobileServicesMainLink} ${
+                      galleryActive ? styles.mobileLinkActive : ""
+                    }`
+                  }
+                >
+                  Gallery
+                </NavLink>
+
+                <button
+                  type="button"
+                  className={`${styles.mobileServicesToggle} ${
+                    mobileGalleryOpen ? styles.mobileServicesToggleOpen : ""
+                  }`}
+                  aria-label="Toggle gallery list"
+                  aria-expanded={mobileGalleryOpen}
+                  onClick={() => setMobileGalleryOpen((prev) => !prev)}
+                >
+                  <span>▾</span>
+                </button>
+              </div>
+
+              <div
+                className={`${styles.mobileServicesDropdown} ${
+                  mobileGalleryOpen ? styles.mobileServicesDropdownOpen : ""
+                }`}
+              >
+                {galleryItems.map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className={`${styles.mobileSubLink} ${
+                      isGalleryHashActive(item.hash) ? styles.mobileSubLinkActive : ""
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
             {navItems.slice(1).map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
-                end={item.to === "/"}
                 className={({ isActive }) =>
                   `${styles.mobileLink} ${isActive ? styles.mobileLinkActive : ""}`
                 }

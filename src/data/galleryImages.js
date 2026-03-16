@@ -1,45 +1,42 @@
 // src/data/galleryImages.js
 
-// Defines before/after image pairs for the gallery
 export const galleryPairs = [
-  { before: "/images/before1.jpeg",  after: "/images/after1.jpeg"  },
-  { before: "/images/before2.jpeg",  after: "/images/after2.jpeg"  },
-  { before: "/images/before3.jpeg",  after: "/images/after3.jpeg"  },
-  { before: "/images/before4.jpeg",  after: "/images/after4.jpeg"  },
-  { before: "/images/before5.jpeg",  after: "/images/after5.jpeg"  },
-  { before: "/images/before6.jpeg",  after: "/images/after6.jpeg"  },
-  { before: "/images/before7.jpeg",  after: "/images/after7.jpeg"  },
-  { before: "/images/before8.jpeg",  after: "/images/after8.jpeg"  },
-  { before: "/images/before9.jpeg",  after: "/images/after9.jpeg"  },
-  { before: "/images/before10.jpeg", after: "/images/after10.jpeg" },
-  { before: "/images/before11.jpeg", after: "/images/after11.jpeg" },
-  { before: "/images/before12.jpeg", after: "/images/after12.jpeg" },
-  { before: "/images/before13.jpeg", after: "/images/after13.jpeg" },
-  { before: "/images/before14.jpeg", after: "/images/after14.jpeg" },
-  { before: "/images/before15.png",  after: "/images/after15.png"  },
-  { before: "/images/before16.jpeg", after: "/images/after16.jpeg" }
+  { before: "/images/before1.webp", after: "/images/after1.webp" },
+  { before: "/images/before2.webp", after: "/images/after2.webp" },
+  { before: "/images/before3.webp", after: "/images/after3.webp" },
+  { before: "/images/before4.webp", after: "/images/after4.webp" },
+  { before: "/images/before5.webp", after: "/images/after5.webp" },
+  { before: "/images/before6.webp", after: "/images/after6.webp" },
+  { before: "/images/before7.webp", after: "/images/after7.webp" },
+  { before: "/images/before8.webp", after: "/images/after8.webp" },
+  { before: "/images/before9.webp", after: "/images/after9.webp" },
+  { before: "/images/before10.webp", after: "/images/after10.webp" },
+  { before: "/images/before11.webp", after: "/images/after11.webp" },
+  { before: "/images/before12.webp", after: "/images/after12.webp" },
+  { before: "/images/before13.webp", after: "/images/after13.webp" },
+  { before: "/images/before14.webp", after: "/images/after14.webp" },
+  { before: "/images/before15.webp", after: "/images/after15.webp" },
+  { before: "/images/before16.webp", after: "/images/after16.webp" },
 ];
 
-// Defines “Our Work” images
 export const workImages = [
-  "/images/work1.png",
-  "/images/work2.png",
-  "/images/work3.png",
-  "/images/work4.jpeg",
-  "/images/work5.png",
-  "/images/work6.jpeg",
-  "/images/work7.png",
-  "/images/work8.png",
-  "/images/work9.jpg",
-  "/images/work10.png",
-  "/images/work11.png",
-  "/images/work12.png"
+  "/images/work1.webp",
+  "/images/work2.webp",
+  "/images/work3.webp",
+  "/images/work4.webp",
+  "/images/work5.webp",
+  "/images/work6.webp",
+  "/images/work7.webp",
+  "/images/work8.webp",
+  "/images/work9.webp",
+  "/images/work10.webp",
+  "/images/work11.webp",
+  "/images/work12.webp",
 ];
 
-// Defines videos to show in the Videos section
 export const videoList = [
   "/videos/work1.mp4",
   "/videos/work2.mp4",
   "/videos/work3.mp4",
-  "/videos/work4.mp4"
+  "/videos/work4.mp4",
 ];
