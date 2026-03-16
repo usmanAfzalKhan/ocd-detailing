@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import { galleryPairs, workImages, videoList } from "../data/galleryImages";
 import BeforeAfterSlider from "../components/shared/BeforeAfterSlider";
+import ClickToPlayVideo from "../components/shared/ClickToPlayVideo";
 import styles from "./Gallery.module.css";
 
 export default function Gallery() {
   const location = useLocation();
+  const [activeVideoId, setActiveVideoId] = useState(null);
 
   useEffect(() => {
     if (!location.hash) {
@@ -115,33 +118,72 @@ export default function Gallery() {
                 <span className={styles.sectionKicker}>Videos</span>
                 <h2 className={styles.sectionTitle}>Reels that show the finish in motion.</h2>
                 <p className={styles.sectionText}>
-                  Clips that show reflections, cleanliness, gloss, and final
-                  presentation better than stills alone.
+                  Click any clip to play it.
                 </p>
               </div>
             </div>
 
             <div className={styles.videoGrid}>
-              {videoList.map((video, index) => (
-                <article key={video} className={styles.videoCard}>
-                  <video
-                    src={video}
-                    className={styles.video}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    aria-label={`OCD Detailing video ${index + 1}`}
-                  />
-                </article>
-              ))}
+              {videoList.map((video, index) => {
+                const videoId = `gallery-video-${index}`;
+
+                return (
+                  <article key={video} className={styles.videoCard}>
+                    <ClickToPlayVideo
+                      src={video}
+                      videoId={videoId}
+                      activeVideoId={activeVideoId}
+                      setActiveVideoId={setActiveVideoId}
+                      ariaLabel={`OCD Detailing video ${index + 1}`}
+                    />
+                  </article>
+                );
+              })}
             </div>
 
             <div className={styles.footer}>
               <Link to="/contact" className={styles.primaryLink}>
                 Book Now
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.inner}>
+          <div className={styles.socialCard}>
+            <div className={styles.socialHead}>
+              <span className={styles.sectionKicker}>View More</span>
+              <h2 className={styles.sectionTitle}>
+                Want more clips and fresh work?
+              </h2>
+              <p className={styles.sectionText}>
+                To view more recent details, clips, and updates, follow OCD
+                Detailing on Instagram and Facebook.
+              </p>
+            </div>
+
+            <div className={styles.socialActions}>
+              <a
+                href="https://www.instagram.com/ocd.detailinggta?igsh=ZmJ5MTFnb242dzdr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialLink}
+              >
+                <FaInstagram />
+                <span>View More on Instagram</span>
+              </a>
+
+              <a
+                href="https://www.facebook.com/ocd.detailinggta?rdid=JbcjbL3eUCWUoRup&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1GJqLKZkhZ%2F#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialLink}
+              >
+                <FaFacebookF />
+                <span>View More on Facebook</span>
+              </a>
             </div>
           </div>
         </div>

@@ -66,7 +66,8 @@
 .sectionCard,
 .workCard,
 .pairCard,
-.videoCard {
+.videoCard,
+.socialCard {
   border: 1px solid rgba(255, 255, 255, 0.08);
   background:
     linear-gradient(
@@ -76,7 +77,8 @@
     );
 }
 
-.sectionCard {
+.sectionCard,
+.socialCard {
   padding: 1.3rem;
 }
 
@@ -146,7 +148,8 @@
 
 .videoGrid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 320px));
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -194,6 +197,50 @@
   background: #f2f2f2;
 }
 
+.socialHead {
+  max-width: 760px;
+}
+
+.socialActions {
+  margin-top: 1.35rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  min-height: 48px;
+  padding: 0 1.15rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
+}
+
+.socialLink:hover,
+.socialLink:focus-visible {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+
 @media (max-width: 1100px) {
   .workGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -201,6 +248,7 @@
 
   .videoGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: stretch;
   }
 }
 
@@ -239,7 +287,8 @@
     line-height: 1.58;
   }
 
-  .sectionCard {
+  .sectionCard,
+  .socialCard {
     padding: 1rem;
   }
 
@@ -265,17 +314,23 @@
     font-size: 1.04rem;
   }
 
-  .primaryLink {
+  .videoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .primaryLink,
+  .socialLink {
     width: 100%;
+  }
+
+  .socialActions {
+    flex-direction: column;
+    gap: 0.7rem;
   }
 }
 
 @media (max-width: 420px) {
   .workGrid {
     grid-template-columns: 1fr;
-  }
-
-  .videoGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

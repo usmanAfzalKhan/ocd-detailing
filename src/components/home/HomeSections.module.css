@@ -475,6 +475,188 @@
   border-color: rgba(255, 255, 255, 0.24);
 }
 
+/* HOME GALLERY */
+.galleryCollage {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr 0.82fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.galleryBeforeReveal,
+.galleryWorkReveal,
+.galleryVideoReveal {
+  min-width: 0;
+}
+
+.galleryFeatureCard {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.galleryCardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 1rem 1rem 0;
+}
+
+.galleryCardKicker {
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  color: rgba(255, 255, 255, 0.52);
+  font-family: "Inter", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.galleryCardTitle {
+  margin: 0;
+  color: #ffffff;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.12rem, 1.7vw, 1.55rem);
+  line-height: 1.08;
+  max-width: 16ch;
+}
+
+.galleryInlineLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+  white-space: nowrap;
+}
+
+.galleryInlineLink:hover,
+.galleryInlineLink:focus-visible {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.galleryInlineLinkMobile {
+  display: none;
+}
+
+.galleryCardBottom {
+  padding: 0.85rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.galleryCardText {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.74);
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.54;
+}
+
+.galleryBeforeAfterStack {
+  padding: 0.95rem 1rem 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.galleryBeforeAfterMedia {
+  padding: 0;
+}
+
+.galleryBeforeAfterSecondary {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.galleryMiniLabel {
+  padding: 0.6rem 0.75rem;
+  color: rgba(255, 255, 255, 0.68);
+  font-family: "Inter", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.galleryMosaicGrid {
+  padding: 0.95rem 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: 150px 110px 110px;
+  gap: 0.65rem;
+}
+
+.galleryMosaicItem {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.galleryMosaicItemLarge {
+  grid-row: 1 / span 2;
+}
+
+.galleryMosaicImage {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.galleryMosaicItem:hover .galleryMosaicImage {
+  transform: scale(1.04);
+}
+
+.galleryVideoFeatureMedia {
+  padding: 0.95rem 1rem 0;
+  flex: 1;
+}
+
+.galleryVideoPanel {
+  min-height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.03), transparent 50%),
+    rgba(255, 255, 255, 0.015);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.85rem;
+}
+
+.galleryVideoFrame {
+  width: min(100%, 235px);
+}
+
 @media (max-width: 920px) {
   .servicesGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -526,6 +708,22 @@
 
   .portfolioThumb {
     min-height: 180px;
+  }
+
+  .galleryCollage {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .galleryBeforeReveal {
+    grid-column: 1 / -1;
+  }
+
+  .galleryCardTitle {
+    max-width: 100%;
+  }
+
+  .galleryMosaicGrid {
+    grid-template-rows: 135px 100px 100px;
   }
 }
 
@@ -677,165 +875,49 @@
   .centeredFooter {
     gap: 0.65rem;
   }
-}
 
-.galleryPreviewStack {
-  display: grid;
-  gap: 1.25rem;
-}
-
-.galleryBlock {
-  display: grid;
-  gap: 0.95rem;
-}
-
-.galleryBlockTop {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.galleryBlockHead {
-  max-width: 760px;
-}
-
-.galleryBlockKicker {
-  display: inline-block;
-  margin-bottom: 0.45rem;
-  color: rgba(255, 255, 255, 0.52);
-  font-family: "Inter", sans-serif;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.galleryBlockTitle {
-  margin: 0;
-  color: #ffffff;
-  font-family: "Playfair Display", serif;
-  font-size: clamp(1.4rem, 2.4vw, 2rem);
-  line-height: 1.08;
-}
-
-.galleryBlockText {
-  max-width: 58ch;
-  margin: 0.65rem 0 0;
-  color: rgba(255, 255, 255, 0.72);
-  font-family: "Inter", sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-.galleryBlockAction {
-  min-width: 190px;
-}
-
-.gallerySplitLabels {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.gallerySplitLabels span {
-  padding: 0.72rem 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
-  font-family: "Inter", sans-serif;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.gallerySplitLabels span + span {
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.galleryWorkGrid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.galleryWorkCard,
-.galleryVideoCard {
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.04) 0%,
-      rgba(255, 255, 255, 0.02) 100%
-    );
-}
-
-.galleryWorkThumb {
-  width: 100%;
-  height: 100%;
-  min-height: 220px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease;
-}
-
-.galleryWorkCard:hover .galleryWorkThumb {
-  transform: scale(1.04);
-}
-
-.galleryVideoGrid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.galleryVideo {
-  width: 100%;
-  display: block;
-  aspect-ratio: 9 / 16;
-  object-fit: cover;
-  background: #050505;
-}
-
-@media (max-width: 1100px) {
-  .galleryWorkGrid,
-  .galleryVideoGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .galleryBlockTop {
-    align-items: stretch;
+  .galleryCollage {
+    grid-template-columns: 1fr;
   }
 
-  .galleryBlockTitle {
-    font-size: 1.22rem;
+  .galleryCardTop {
+    padding: 0.9rem 0.9rem 0;
   }
 
-  .galleryBlockText {
-    font-size: 0.86rem;
-    line-height: 1.5;
+  .galleryCardTitle {
+    font-size: 1.16rem;
   }
 
-  .galleryBlockAction {
+  .galleryInlineLinkDesktop {
+    display: none;
+  }
+
+  .galleryInlineLinkMobile {
+    display: inline-flex;
     width: 100%;
   }
 
-  .gallerySplitLabels span {
-    padding: 0.62rem 0.72rem;
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
+  .galleryBeforeAfterStack,
+  .galleryVideoFeatureMedia,
+  .galleryMosaicGrid {
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
   }
 
-  .galleryWorkGrid,
-  .galleryVideoGrid {
-    gap: 0.7rem;
+  .galleryCardBottom {
+    padding: 0.85rem 0.9rem 0.9rem;
   }
 
-  .galleryWorkThumb {
-    min-height: 145px;
+  .galleryMosaicGrid {
+    grid-template-rows: 135px 95px 95px;
+    gap: 0.55rem;
+  }
+
+  .galleryVideoPanel {
+    padding: 0.85rem;
+  }
+
+  .galleryVideoFrame {
+    width: min(100%, 260px);
   }
 }

@@ -36,7 +36,6 @@ export const workImages = [
 
 export const videoList = [
   "/videos/work1.mp4",
-  "/videos/work2.mp4",
-  "/videos/work3.mp4",
   "/videos/work4.mp4",
+  "/videos/work2.mp4",
 ];
