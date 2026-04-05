@@ -41,11 +41,38 @@ export default function Contact() {
   const location = useLocation();
   const {
     selectedServices,
+    selectedOffers,
     addService,
     addManyServices,
     removeService,
     clearServices,
   } = useBookingCart();
+
+  const selectedOffersState = useMemo(() => {
+    const merged = {
+      firstTime: "",
+      referred: "",
+      messages: [],
+    };
+
+    selectedOffers.forEach((offer) => {
+      const state = offer?.contactState || {};
+
+      if (state.firstTime === "Yes") {
+        merged.firstTime = "Yes";
+      }
+
+      if (state.referred === "Yes") {
+        merged.referred = "Yes";
+      }
+
+      if (typeof state.message === "string" && state.message.trim()) {
+        merged.messages.push(state.message.trim());
+      }
+    });
+
+    return merged;
+  }, [selectedOffers]);
 
   const prefilledServices = useMemo(() => {
     const fromState = Array.isArray(location.state?.services)
@@ -56,9 +83,22 @@ export default function Contact() {
     return merged.filter((title) => catalogServiceTitles.includes(title));
   }, [location.state, selectedServices]);
 
+  const resolvedMessage =
+    location.state?.message ??
+    (selectedOffersState.messages.length
+      ? [...new Set(selectedOffersState.messages)].join(" ")
+      : "");
+
   const initialPrefill = {
     ...initialState,
+    ...(selectedOffersState.firstTime
+      ? { firstTime: selectedOffersState.firstTime }
+      : {}),
+    ...(selectedOffersState.referred
+      ? { referred: selectedOffersState.referred }
+      : {}),
     ...(location.state || {}),
+    message: resolvedMessage,
     services: prefilledServices,
   };
 

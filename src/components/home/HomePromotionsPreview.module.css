@@ -134,6 +134,14 @@
   line-height: 1.56;
 }
 
+.disclaimer {
+  margin: 0.1rem 0 0;
+  color: rgba(255, 255, 255, 0.54);
+  font-family: "Inter", sans-serif;
+  font-size: 0.74rem;
+  line-height: 1.4;
+}
+
 .actionWrap {
   display: flex;
 }
@@ -169,11 +177,6 @@
     max-width: 100%;
     font-size: 0.9rem;
     line-height: 1.58;
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.7rem;
   }
 
   .card {
@@ -213,6 +216,11 @@
   .note {
     font-size: 0.74rem;
     line-height: 1.38;
+  }
+
+  .disclaimer {
+    font-size: 0.66rem;
+    line-height: 1.35;
   }
 
   .actionWrap {

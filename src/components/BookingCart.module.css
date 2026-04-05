@@ -1,14 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap");
 
-@keyframes cartToggleBump {
+@keyframes cartCountPulse {
   0% {
-    transform: translateY(0) scale(1);
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(216, 180, 106, 0.08);
   }
-  35% {
-    transform: translateY(-3px) scale(1.045);
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 10px rgba(216, 180, 106, 0.14);
   }
   100% {
-    transform: translateY(0) scale(1);
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(216, 180, 106, 0.08);
   }
 }
 
@@ -73,10 +76,6 @@
   border-color: rgba(216, 180, 106, 0.56);
 }
 
-.cartToggleBump {
-  animation: cartToggleBump 0.42s ease;
-}
-
 .cartToggleLabel {
   font-size: 0.8rem;
   font-weight: 800;
@@ -100,13 +99,17 @@
   box-shadow: 0 0 0 6px rgba(216, 180, 106, 0.08);
 }
 
+.cartToggleCountPulse {
+  animation: cartCountPulse 0.42s ease;
+}
+
 .cartPanel {
   position: fixed;
   right: 18px;
   bottom: 82px;
   z-index: 1099;
   width: min(360px, calc(100vw - 36px));
-  max-height: min(420px, 62vh);
+  max-height: min(440px, 64vh);
   display: flex;
   flex-direction: column;
   background: linear-gradient(180deg, #0f0f11 0%, #141416 100%);
@@ -192,9 +195,10 @@
   gap: 0.7rem;
 }
 
+.offerCard,
 .cartItem {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.9rem;
   padding: 0.85rem 0.9rem;
@@ -203,8 +207,65 @@
   border-radius: 10px;
 }
 
+.offerCard {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(216, 180, 106, 0.1) 0%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
+  border-color: rgba(216, 180, 106, 0.22);
+}
+
 .cartItemOpen {
   animation: cartItemIn 0.32s ease both;
+}
+
+.offerMeta {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.offerBadge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 24px;
+  padding: 0 0.55rem;
+  border: 1px solid rgba(216, 180, 106, 0.26);
+  background: rgba(216, 180, 106, 0.08);
+  color: #f1d9a5;
+  font-family: "Inter", sans-serif;
+  font-size: 0.56rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.offerTitle {
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.offerText,
+.offerDisclaimer {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  line-height: 1.45;
+}
+
+.offerText {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.84rem;
+}
+
+.offerDisclaimer {
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.74rem;
 }
 
 .cartItemText {
@@ -334,12 +395,22 @@
     padding: 0.8rem 0.9rem;
   }
 
+  .offerCard,
   .cartItem {
     padding: 0.78rem 0.8rem;
   }
 
+  .offerTitle,
   .cartItemText {
     font-size: 0.84rem;
+  }
+
+  .offerText {
+    font-size: 0.78rem;
+  }
+
+  .offerDisclaimer {
+    font-size: 0.7rem;
   }
 
   .removeButton {
