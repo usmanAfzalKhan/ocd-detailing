@@ -375,14 +375,209 @@
   transform: scale(1.04);
 }
 
-.faqGrid,
 .reviewsGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
 
-.faqCard,
+.faqLayout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.92fr) minmax(0, 1.08fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.faqIntroReveal {
+  height: 100%;
+}
+
+.faqIntro {
+  height: 100%;
+  padding: 1.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.045) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+  display: flex;
+  flex-direction: column;
+}
+
+.faqHead {
+  margin-bottom: 0;
+  max-width: none;
+}
+
+.faqHead .sectionTitle {
+  max-width: 10ch;
+}
+
+.faqIntroText {
+  max-width: 34ch;
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+.faqFeatureRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+}
+
+.faqFeatureBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 0.82rem;
+  border: 1px solid rgba(216, 180, 106, 0.26);
+  background: rgba(216, 180, 106, 0.08);
+  color: #f1d9a5;
+  font-family: "Inter", sans-serif;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.faqIntroPanel {
+  margin-top: 1rem;
+  padding: 1rem 1.05rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  display: grid;
+  gap: 0.45rem;
+}
+
+.faqIntroPanelLabel {
+  color: #f1d9a5;
+  font-family: "Inter", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.faqIntroPanel p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-family: "Inter", sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.58;
+}
+
+.faqIntroActions {
+  margin-top: auto;
+  padding-top: 1.15rem;
+  display: flex;
+}
+
+.faqStack {
+  display: grid;
+  gap: 0.85rem;
+  align-content: start;
+}
+
+.faqCard {
+  padding: 0;
+  overflow: hidden;
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.faqCard:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 14px 28px rgba(0, 0, 0, 0.14);
+}
+
+.faqPreviewQuestion {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.28rem 1.35rem;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.faqPreviewQuestionText {
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.42;
+}
+
+.faqPreviewIcon {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1;
+  transition:
+    background 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease,
+    transform 0.22s ease;
+}
+
+.faqPreviewQuestion:hover .faqPreviewIcon,
+.faqPreviewQuestion[aria-expanded="true"] .faqPreviewIcon {
+  background: #d8b46a;
+  color: #0d0d0f;
+  border-color: #d8b46a;
+  transform: translateY(-1px);
+}
+
+.faqPreviewAnswer {
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.32s ease,
+    border-color 0.32s ease;
+  border-top: 1px solid transparent;
+}
+
+.faqPreviewAnswerOpen {
+  max-height: 360px;
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.faqPreviewAnswer p {
+  margin: 0;
+  padding: 0.95rem 1.35rem 1.25rem;
+  color: rgba(255, 255, 255, 0.76);
+  font-family: "Inter", sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.64;
+}
+
 .reviewCard,
 .aboutCopy,
 .aboutPanel,
@@ -409,14 +604,78 @@
   font-weight: 700;
 }
 
+.aboutHead {
+  max-width: 760px;
+  margin-bottom: 1.9rem;
+}
+
+.aboutHead .sectionTitle {
+  max-width: 12ch;
+}
+
+.aboutLead {
+  max-width: 60ch;
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
 .aboutGrid {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
   gap: 1rem;
 }
 
+.aboutCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.aboutBadgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.aboutBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0 0.85rem;
+  border: 1px solid rgba(216, 180, 106, 0.26);
+  background: rgba(216, 180, 106, 0.08);
+  color: #f1d9a5;
+  font-family: "Inter", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.aboutCopyBody {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.aboutCopyBody p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: "Inter", sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.72;
+}
+
+.aboutCopyLead {
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
 .inlineActions {
-  margin-top: 1.4rem;
+  margin-top: 0.2rem;
 }
 
 .aboutPanel {
@@ -691,14 +950,24 @@
 }
 
 @media (max-width: 1100px) {
-  .faqGrid,
   .reviewsGrid {
     grid-template-columns: 1fr 1fr;
   }
 
+  .faqLayout,
   .portfolioGrid,
   .aboutGrid {
     grid-template-columns: 1fr;
+  }
+
+  .faqHead .sectionTitle,
+  .faqIntroText {
+    max-width: 100%;
+  }
+
+  .faqIntroActions {
+    margin-top: 1rem;
+    padding-top: 0;
   }
 
   .portfolioSideGrid {
@@ -757,6 +1026,55 @@
     line-height: 1.58;
   }
 
+  .faqLayout {
+    gap: 0.85rem;
+  }
+
+  .faqIntro {
+    padding: 1.1rem;
+  }
+
+  .faqIntroText {
+    max-width: 100%;
+    font-size: 0.9rem;
+    line-height: 1.58;
+  }
+
+  .faqFeatureRow {
+    gap: 0.45rem;
+    margin-top: 0.9rem;
+  }
+
+  .faqFeatureBadge {
+    min-height: 30px;
+    padding: 0 0.68rem;
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+  }
+
+  .faqIntroPanel {
+    margin-top: 0.85rem;
+    padding: 0.9rem;
+  }
+
+  .faqIntroPanelLabel {
+    font-size: 0.58rem;
+  }
+
+  .faqIntroPanel p {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .aboutHead {
+    margin-bottom: 1.35rem;
+  }
+
+  .aboutLead {
+    font-size: 0.9rem;
+    line-height: 1.58;
+  }
+
   .servicesGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.7rem;
@@ -773,7 +1091,6 @@
     justify-self: center;
   }
 
-  .faqGrid,
   .reviewsGrid,
   .portfolioSideGrid {
     grid-template-columns: 1fr;
@@ -791,12 +1108,58 @@
     padding: 0.78rem;
   }
 
+  .faqPreviewQuestion {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .faqPreviewQuestionText {
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+
+  .faqPreviewIcon {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+  }
+
+  .faqPreviewAnswer p {
+    padding: 0.85rem 1rem 1rem;
+    font-size: 0.84rem;
+    line-height: 1.56;
+  }
+
   .faqCard,
   .reviewCard,
   .aboutCopy,
   .aboutPanel,
   .contactBox {
     padding: 1.2rem;
+  }
+
+  .faqCard {
+    padding: 0;
+  }
+
+  .aboutBadgeRow {
+    gap: 0.5rem;
+  }
+
+  .aboutBadge {
+    min-height: 32px;
+    padding: 0 0.7rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+  }
+
+  .aboutCopyBody {
+    gap: 0.8rem;
+  }
+
+  .aboutCopyBody p {
+    font-size: 0.86rem;
+    line-height: 1.56;
   }
 
   .serviceTop {
@@ -1129,5 +1492,416 @@
 
   .reviewTickerCard {
     transition: none;
+  }
+}
+.promotionsHead {
+  max-width: 760px;
+  margin-bottom: 1.25rem;
+}
+
+.promotionsHead .sectionTitle {
+  max-width: 12ch;
+}
+
+.promotionsText {
+  max-width: 58ch;
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+.promotionsCompactGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.promoImageCard {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.045) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 14px 28px rgba(0, 0, 0, 0.12);
+  transition:
+    transform 0.24s ease,
+    border-color 0.24s ease,
+    box-shadow 0.24s ease,
+    background 0.24s ease;
+}
+
+.promoImageCard:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.16);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.055) 0%,
+      rgba(255, 255, 255, 0.025) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 34px rgba(0, 0, 0, 0.16);
+}
+
+.promoImageShell {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #0b0d0f;
+}
+
+.promoImageShell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.08) 0%,
+      rgba(0, 0, 0, 0.04) 30%,
+      rgba(0, 0, 0, 0.28) 100%
+    );
+  pointer-events: none;
+}
+
+.promoImage {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 0.45s ease;
+}
+
+.promoImageCard:hover .promoImage {
+  transform: scale(1.03);
+}
+
+.promoImageBadge {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 0.8rem;
+  border: 1px solid rgba(216, 180, 106, 0.26);
+  background: rgba(12, 14, 18, 0.72);
+  backdrop-filter: blur(8px);
+  color: #f1d9a5;
+  font-family: "Inter", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.promoCardInfo {
+  padding: 1rem 1rem 1.05rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: grid;
+  gap: 0.55rem;
+}
+
+.promoCardLabel {
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.promoCardNote {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.56;
+}
+
+.promoCardActions {
+  padding-top: 0.2rem;
+  display: flex;
+}
+
+.promoCardActions .secondaryLink {
+  min-width: 150px;
+}
+
+@media (max-width: 900px) {
+  .promotionsCompactGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .promotionsHead {
+    margin-bottom: 1rem;
+  }
+
+  .promotionsHead .sectionTitle {
+    max-width: 100%;
+  }
+
+  .promotionsText {
+    max-width: 100%;
+    font-size: 0.9rem;
+    line-height: 1.58;
+  }
+
+  .promoImageBadge {
+    top: 0.7rem;
+    left: 0.7rem;
+    min-height: 30px;
+    padding: 0 0.68rem;
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+  }
+
+  .promoCardInfo {
+    padding: 0.9rem;
+    gap: 0.45rem;
+  }
+
+  .promoCardLabel {
+    font-size: 0.82rem;
+  }
+
+  .promoCardNote {
+    font-size: 0.84rem;
+    line-height: 1.48;
+  }
+
+  .promoCardActions .secondaryLink {
+    min-width: 0;
+  }
+}
+
+.sectionCompact {
+  padding: 3.2rem 0 2.5rem;
+}
+
+.head {
+  max-width: 760px;
+  margin-bottom: 1rem;
+}
+
+.title {
+  max-width: 11ch;
+}
+
+.text {
+  max-width: 58ch;
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.card {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.045) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 14px 28px rgba(0, 0, 0, 0.12);
+  transition:
+    transform 0.24s ease,
+    border-color 0.24s ease,
+    box-shadow 0.24s ease,
+    background 0.24s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.16);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.055) 0%,
+      rgba(255, 255, 255, 0.025) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 34px rgba(0, 0, 0, 0.16);
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #090b0d;
+}
+
+.media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0) 38%,
+      rgba(0, 0, 0, 0.24) 100%
+    );
+  pointer-events: none;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 0.45s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.03);
+}
+
+.badge {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 0.8rem;
+  border: 1px solid rgba(216, 180, 106, 0.26);
+  background: rgba(12, 14, 18, 0.72);
+  backdrop-filter: blur(8px);
+  color: #f1d9a5;
+  font-family: "Inter", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.bottom {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.meta {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.label {
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.note {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.56;
+}
+
+.actionWrap {
+  flex-shrink: 0;
+}
+
+.actionLink {
+  min-width: 150px;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .sectionCompact {
+    padding: 2.7rem 0 2rem;
+  }
+
+  .head {
+    margin-bottom: 0.9rem;
+  }
+
+  .title {
+    max-width: 100%;
+  }
+
+  .text {
+    max-width: 100%;
+    font-size: 0.9rem;
+    line-height: 1.58;
+  }
+
+  .badge {
+    top: 0.7rem;
+    left: 0.7rem;
+    min-height: 30px;
+    padding: 0 0.68rem;
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+  }
+
+  .bottom {
+    padding: 0.9rem;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .label {
+    font-size: 0.78rem;
+  }
+
+  .note {
+    font-size: 0.84rem;
+    line-height: 1.48;
+  }
+
+  .actionWrap {
+    width: 100%;
+  }
+
+  .actionLink {
+    width: 100%;
+    min-width: 0;
   }
 }

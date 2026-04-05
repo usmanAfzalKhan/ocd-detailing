@@ -1,5 +1,6 @@
 import React from "react";
 import Hero from "../components/Hero";
+import HomePromotionsPreview from "../components/home/HomePromotionsPreview";
 import HomeAboutPreview from "../components/home/HomeAboutPreview";
 import HomeContactPreview from "../components/home/HomeContactPreview";
 import HomeFaqPreview from "../components/home/HomeFaqPreview";
@@ -14,6 +15,7 @@ export default function Home() {
       <Hero />
 
       <div className={styles.previewStack}>
+        <HomePromotionsPreview/>  
         <HomeServicesPreview />
         <HomePortfolioPreview />
         <HomeReviewsPreview />
