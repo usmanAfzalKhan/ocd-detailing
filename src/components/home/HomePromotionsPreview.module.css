@@ -171,36 +171,48 @@
     line-height: 1.58;
   }
 
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+  }
+
   .card {
     grid-template-columns: 1fr;
   }
 
   .mediaWrap {
-    padding: 0.85rem 0.85rem 0;
+    padding: 0.75rem 0.75rem 0;
     border-right: 0;
+    justify-content: center;
   }
 
   .media {
-    max-width: 170px;
+    width: 100%;
+    max-width: 118px;
   }
 
   .content {
-    padding: 0.9rem;
-    gap: 0.8rem;
+    padding: 0.75rem;
+    gap: 0.65rem;
+  }
+
+  .copy {
+    gap: 0.28rem;
   }
 
   .eyebrow {
-    font-size: 0.56rem;
-    letter-spacing: 0.1em;
+    font-size: 0.5rem;
+    letter-spacing: 0.08em;
   }
 
   .cardTitle {
-    font-size: 1.2rem;
+    font-size: 0.96rem;
+    line-height: 1.08;
   }
 
   .note {
-    font-size: 0.84rem;
-    line-height: 1.48;
+    font-size: 0.74rem;
+    line-height: 1.38;
   }
 
   .actionWrap {
@@ -210,5 +222,9 @@
   .actionLink {
     width: 100%;
     min-width: 0;
+    min-height: 38px;
+    padding: 0 0.6rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.05em;
   }
 }
