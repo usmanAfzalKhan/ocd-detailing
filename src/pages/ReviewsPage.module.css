@@ -1,24 +1,36 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap");
 
 .reviewsPage {
-  width: min(1320px, calc(100% - 40px));
+  width: min(1240px, calc(100% - 40px));
   margin: 0 auto;
-  padding: 3.1rem 0 5.2rem;
-  color: #ffffff;
+  padding: 2.25rem 0 4.5rem;
+  color: var(--text-primary);
   font-family: "Inter", sans-serif;
+  opacity: 0;
+  transform: translateY(28px);
+  animation: pageFadeIn 0.8s ease forwards;
 }
 
-.headerBlock {
-  max-width: 860px;
-  margin: 0 auto 2rem;
+@keyframes pageFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero {
+  width: 100%;
+  margin: 0 auto 1.55rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .kicker {
   display: inline-block;
   margin-bottom: 0.85rem;
   color: rgba(255, 255, 255, 0.56);
-  font-family: "Inter", sans-serif;
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.18em;
@@ -26,21 +38,23 @@
 }
 
 .title {
-  margin: 0;
+  margin: 0 auto;
   color: #ffffff;
   font-family: "Playfair Display", serif;
   font-size: clamp(2.2rem, 4vw, 3.4rem);
-  line-height: 1.04;
-  letter-spacing: -0.02em;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  max-width: 10ch;
+  text-align: center;
 }
 
 .intro {
+  max-width: 66ch;
   margin: 1rem auto 0;
-  max-width: 60ch;
   color: rgba(255, 255, 255, 0.78);
-  font-family: "Inter", sans-serif;
   font-size: 1rem;
   line-height: 1.72;
+  text-align: center;
 }
 
 .inlineButton {
@@ -63,6 +77,29 @@
   outline: none;
 }
 
+.heroMeta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 1.15rem;
+}
+
+.metaPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0 0.88rem;
+  border: 1px solid rgba(216, 180, 106, 0.28);
+  background: rgba(216, 180, 106, 0.08);
+  color: #f1d9a5;
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 .errorMsg {
   color: #ffffff;
   background: rgba(227, 51, 51, 0.16);
@@ -81,107 +118,142 @@
 
 .reviewsGrid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 1rem;
   align-items: stretch;
 }
 
-/* pop-in */
-.reviewsGrid .card {
+.card {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 282px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.045) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 14px 28px rgba(0, 0, 0, 0.12);
+  padding: 1.2rem 1.1rem;
   opacity: 0;
-  transform: translateY(34px) scale(0.94);
-  animation: reviewPop 0.72s cubic-bezier(0.24, 1.28, 0.34, 1) both;
+  transform: translateY(30px) scale(0.98);
+  animation: cardIn 0.7s ease forwards;
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    background 0.22s ease;
 }
 
-.reviewsGrid .card:nth-child(1) { animation-delay: 0.08s; }
-.reviewsGrid .card:nth-child(2) { animation-delay: 0.16s; }
-.reviewsGrid .card:nth-child(3) { animation-delay: 0.24s; }
-.reviewsGrid .card:nth-child(4) { animation-delay: 0.32s; }
-.reviewsGrid .card:nth-child(5) { animation-delay: 0.40s; }
-.reviewsGrid .card:nth-child(6) { animation-delay: 0.48s; }
-.reviewsGrid .card:nth-child(7) { animation-delay: 0.56s; }
-.reviewsGrid .card:nth-child(8) { animation-delay: 0.64s; }
-.reviewsGrid .card:nth-child(9) { animation-delay: 0.72s; }
-.reviewsGrid .card:nth-child(10) { animation-delay: 0.80s; }
-.reviewsGrid .card:nth-child(11) { animation-delay: 0.88s; }
-.reviewsGrid .card:nth-child(12) { animation-delay: 0.96s; }
+.card:nth-child(1) {
+  animation-delay: 0.08s;
+}
+.card:nth-child(2) {
+  animation-delay: 0.16s;
+}
+.card:nth-child(3) {
+  animation-delay: 0.24s;
+}
+.card:nth-child(4) {
+  animation-delay: 0.32s;
+}
+.card:nth-child(5) {
+  animation-delay: 0.4s;
+}
+.card:nth-child(6) {
+  animation-delay: 0.48s;
+}
+.card:nth-child(7) {
+  animation-delay: 0.56s;
+}
+.card:nth-child(8) {
+  animation-delay: 0.64s;
+}
+.card:nth-child(9) {
+  animation-delay: 0.72s;
+}
+.card:nth-child(10) {
+  animation-delay: 0.8s;
+}
+.card:nth-child(11) {
+  animation-delay: 0.88s;
+}
+.card:nth-child(12) {
+  animation-delay: 0.96s;
+}
 
-@keyframes reviewPop {
-  0% {
-    opacity: 0;
-    transform: translateY(34px) scale(0.94);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-6px) scale(1.01);
-  }
-  100% {
+@keyframes cardIn {
+  to {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 }
 
-.card {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.04) 0%,
-      rgba(255, 255, 255, 0.02) 100%
-    );
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 1.35rem 1.15rem;
-  min-height: 318px;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.03),
-    0 14px 28px rgba(0, 0, 0, 0.14);
-  transition:
-    transform 0.22s ease,
-    border-color 0.22s ease,
-    background 0.22s ease,
-    box-shadow 0.22s ease;
-  word-break: break-word;
-}
-
 .card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.15);
   background:
     linear-gradient(
       180deg,
       rgba(255, 255, 255, 0.055) 0%,
-      rgba(255, 255, 255, 0.026) 100%
+      rgba(255, 255, 255, 0.024) 100%
     );
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 18px 34px rgba(0, 0, 0, 0.18);
+    0 20px 34px rgba(0, 0, 0, 0.18);
+}
+
+.card:nth-last-child(2):nth-child(3n + 1) {
+  grid-column: 2 / span 2;
+}
+
+.card:last-child:nth-child(3n + 2) {
+  grid-column: 4 / span 2;
 }
 
 .stars {
-  font-size: 1rem;
-  margin-bottom: 0.95rem;
   color: #d8b46a;
-  letter-spacing: 0.12em;
+  font-size: 0.94rem;
+  letter-spacing: 0.14em;
+  line-height: 1;
 }
 
 .text {
-  color: rgba(255, 255, 255, 0.84);
-  font-size: 0.98rem;
-  line-height: 1.68;
-  max-width: 100%;
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.96rem;
+  line-height: 1.66;
   overflow-wrap: break-word;
 }
 
-.author {
+.authorWrap {
   margin-top: auto;
-  padding-top: 1rem;
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 0.88rem;
+  padding-top: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.metaDivider {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  flex-shrink: 0;
+}
+
+.author {
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.82rem;
   font-weight: 800;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .actionRow {
@@ -194,98 +266,81 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
+  min-height: 46px;
   padding: 0 1.1rem;
-  border-radius: 6px;
+  border-radius: 0;
+  cursor: pointer;
   font-family: "Inter", sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  border: 1px solid #ffffff;
   background: #ffffff;
   color: #0d0d0f;
-  border: 1px solid #ffffff;
   transition:
     transform 0.2s ease,
     background 0.2s ease,
     border-color 0.2s ease,
     color 0.2s ease,
     box-shadow 0.2s ease;
-  cursor: pointer;
 }
 
 .addBtn:hover,
 .addBtn:focus-visible {
   transform: translateY(-1px);
   background: #f2f2f2;
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.16);
   outline: none;
 }
 
 .thankYou {
+  width: min(100%, 560px);
+  margin: 1.6rem auto 0;
+  padding: 1.1rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 14px 28px rgba(0, 0, 0, 0.12);
   text-align: center;
-  margin: 2rem 0 0;
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.86);
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 980px) {
   .reviewsGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .card {
-    min-height: 295px;
-  }
-}
-
-@media (max-width: 900px) {
-  .reviewsPage {
-    width: calc(100% - 24px);
-    padding: 2.5rem 0 4.3rem;
+    grid-column: span 1;
   }
 
-  .headerBlock {
-    margin-bottom: 1.6rem;
-  }
-
-  .reviewsGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.85rem;
+  .card:nth-last-child(2):nth-child(3n + 1),
+  .card:last-child:nth-child(3n + 2) {
+    grid-column: auto;
   }
 
   .title {
-    font-size: 1.9rem;
-  }
-
-  .intro {
-    font-size: 0.94rem;
-    line-height: 1.6;
-  }
-
-  .card {
-    min-height: 272px;
-    padding: 1.15rem 1rem;
-  }
-
-  .text {
-    font-size: 0.93rem;
-    line-height: 1.58;
-  }
-
-  .author {
-    font-size: 0.82rem;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 640px) {
   .reviewsPage {
     width: calc(100% - 20px);
-    padding: 2.05rem 0 3.4rem;
+    padding: 1.55rem 0 3rem;
   }
 
-  .headerBlock {
-    margin-bottom: 1.35rem;
+  .hero {
+    margin-bottom: 1rem;
   }
 
   .title {
@@ -294,28 +349,45 @@
   }
 
   .intro {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     line-height: 1.58;
+  }
+
+  .heroMeta {
+    gap: 0.5rem;
+    margin-top: 0.9rem;
+  }
+
+  .metaPill {
+    min-height: 32px;
+    padding: 0 0.72rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
   }
 
   .reviewsGrid {
     grid-template-columns: 1fr;
-    gap: 0.75rem;
+    gap: 0.8rem;
   }
 
   .card {
+    grid-column: span 1;
     min-height: 0;
-    padding: 1.1rem 0.95rem;
+    padding: 0.95rem;
+  }
+
+  .stars {
+    font-size: 0.84rem;
+    letter-spacing: 0.1em;
   }
 
   .text {
     font-size: 0.9rem;
-    line-height: 1.52;
+    line-height: 1.54;
   }
 
   .author {
-    font-size: 0.8rem;
-    padding-top: 0.85rem;
+    font-size: 0.72rem;
   }
 
   .actionRow {
@@ -324,11 +396,22 @@
 
   .addBtn {
     width: 100%;
+    min-height: 40px;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+  }
+
+  .thankYou {
+    margin-top: 1.2rem;
+    padding: 0.95rem 0.9rem;
+    font-size: 0.92rem;
+    line-height: 1.58;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reviewsGrid .card {
+  .reviewsPage,
+  .card {
     animation: none;
     opacity: 1;
     transform: none;
@@ -339,4 +422,4 @@
   .inlineButton {
     transition: none;
   }
-} 
+}

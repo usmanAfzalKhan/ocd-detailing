@@ -1,5 +1,5 @@
-// src/components/ReviewForm.jsx
 import React, { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import styles from "./ReviewForm.module.css";
 
 const MAX_CHARS = 200;
@@ -10,56 +10,90 @@ export default function ReviewForm({ onClose, onSubmit }) {
   const [text, setText] = useState("");
   const [touched, setTouched] = useState({});
   const [hover, setHover] = useState(0);
-  const boxRef = useRef();
+  const [mounted, setMounted] = useState(false);
+  const boxRef = useRef(null);
 
-  // ESC
   useEffect(() => {
-    const onKey = e => e.key === "Escape" && onClose();
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
-  // click outside
   useEffect(() => {
-    const onDown = e => {
+    const onDown = (e) => {
       if (boxRef.current && !boxRef.current.contains(e.target)) {
         onClose();
       }
     };
+
     document.addEventListener("mousedown", onDown);
-    return () => document.removeEventListener("mousedown", onDown);
+    document.addEventListener("touchstart", onDown);
+
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("touchstart", onDown);
+    };
   }, [onClose]);
+
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+
+    const prevHtmlOverflow = html.style.overflow;
+    const prevBodyOverflow = body.style.overflow;
+
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+
+    return () => {
+      html.style.overflow = prevHtmlOverflow;
+      body.style.overflow = prevBodyOverflow;
+    };
+  }, []);
 
   const validate = () => {
     const errs = {};
     if (!name.trim()) errs.name = "Please enter your name.";
-    if (!rating)     errs.rating = "Please select a star rating.";
+    if (!rating) errs.rating = "Please select a star rating.";
     if (!text.trim()) errs.text = "Please write your review.";
     return errs;
   };
+
   const errors = validate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setTouched({ name: true, rating: true, text: true });
+
     if (Object.keys(errors).length) return;
-    // pass everything to parent
+
     await onSubmit({
       name: name.trim(),
       rating,
-      text: text.trim().slice(0, MAX_CHARS)
+      text: text.trim().slice(0, MAX_CHARS),
     });
-    // parent will hide form / show thank you
   };
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <div className={styles.overlay} role="dialog" aria-modal="true">
       <div className={styles.box} ref={boxRef}>
         <button
           className={styles.close}
           onClick={onClose}
           aria-label="Close review form"
-        >×</button>
+          type="button"
+        >
+          ×
+        </button>
 
         <h2 className={styles.title}>Add Your Review</h2>
 
@@ -71,8 +105,8 @@ export default function ReviewForm({ onClose, onSubmit }) {
               value={name}
               maxLength={22}
               className={styles.input}
-              onChange={e => setName(e.target.value)}
-              onBlur={() => setTouched(t => ({ ...t, name: true }))}
+              onChange={(e) => setName(e.target.value)}
+              onBlur={() => setTouched((t) => ({ ...t, name: true }))}
               placeholder="Enter your name"
             />
             {touched.name && errors.name && (
@@ -83,18 +117,29 @@ export default function ReviewForm({ onClose, onSubmit }) {
           <label className={styles.label}>
             Rating<span className={styles.req}>*</span>
             <div className={styles.starsInput}>
-              {[1,2,3,4,5].map(i => (
+              {[1, 2, 3, 4, 5].map((i) => (
                 <span
                   key={i}
-                  className={(hover||rating) >= i ? styles.starFilled : styles.starEmpty}
+                  className={
+                    (hover || rating) >= i
+                      ? styles.starFilled
+                      : styles.starEmpty
+                  }
                   onMouseEnter={() => setHover(i)}
                   onMouseLeave={() => setHover(0)}
                   onClick={() => setRating(i)}
                   tabIndex={0}
-                  onKeyDown={e => (e.key==="Enter"||e.key===" ") && setRating(i)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setRating(i);
+                    }
+                  }}
                   role="button"
-                  aria-label={`Rate ${i} star${i>1?"s":""}`}
-                >★</span>
+                  aria-label={`Rate ${i} star${i > 1 ? "s" : ""}`}
+                >
+                  ★
+                </span>
               ))}
             </div>
             {touched.rating && errors.rating && (
@@ -109,8 +154,8 @@ export default function ReviewForm({ onClose, onSubmit }) {
               className={styles.textarea}
               maxLength={MAX_CHARS}
               rows={4}
-              onChange={e => setText(e.target.value)}
-              onBlur={() => setTouched(t => ({ ...t, text: true }))}
+              onChange={(e) => setText(e.target.value)}
+              onBlur={() => setTouched((t) => ({ ...t, text: true }))}
               placeholder="Write your review here"
             />
             <div className={styles.counter}>
@@ -126,6 +171,7 @@ export default function ReviewForm({ onClose, onSubmit }) {
           </button>
         </form>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

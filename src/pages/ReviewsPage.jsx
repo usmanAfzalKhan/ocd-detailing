@@ -102,7 +102,7 @@ export default function ReviewsPage() {
 
   return (
     <main className={styles.reviewsPage}>
-      <div className={styles.headerBlock}>
+      <div className={styles.hero}>
         <span className={styles.kicker}>Reviews</span>
         <h1 className={styles.title}>Customer Reviews</h1>
         <p className={styles.intro}>
@@ -115,8 +115,13 @@ export default function ReviewsPage() {
           >
             Add a Review
           </button>
-          .
         </p>
+
+        <div className={styles.heroMeta}>
+          <span className={styles.metaPill}>Recent Clients</span>
+          <span className={styles.metaPill}>Verified Feedback</span>
+          <span className={styles.metaPill}>Premium Care</span>
+        </div>
       </div>
 
       {error && <div className={styles.errorMsg}>{error}</div>}
@@ -129,8 +134,13 @@ export default function ReviewsPage() {
                 {"★".repeat(r.rating)}
                 {"☆".repeat(5 - r.rating)}
               </div>
+
               <div className={styles.text}>“{r.text}”</div>
-              <div className={styles.author}>— {r.name}</div>
+
+              <div className={styles.authorWrap}>
+                <span className={styles.metaDivider} />
+                <div className={styles.author}>— {r.name}</div>
+              </div>
             </article>
           ))}
         </div>
