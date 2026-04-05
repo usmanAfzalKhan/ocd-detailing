@@ -1,20 +1,32 @@
+/* Gallery.module.css */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap");
 
-.page {
-  padding: 0 0 6rem;
+.galleryPage {
+  width: min(1240px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 2.25rem 0 4.5rem;
+  color: var(--text-primary);
+  font-family: "Inter", sans-serif;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(28px);
+  animation: pageFadeIn 0.8s ease forwards;
 }
 
-.inner {
-  width: min(1320px, calc(100% - 40px));
-  margin: 0 auto;
+@keyframes pageFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero {
-  padding: 4rem 0 1.2rem;
-}
-
-.heroCopy {
-  max-width: 760px;
+  width: 100%;
+  margin: 0 auto 1.55rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .kicker,
@@ -22,7 +34,6 @@
   display: inline-block;
   margin-bottom: 0.85rem;
   color: rgba(255, 255, 255, 0.56);
-  font-family: "Inter", sans-serif;
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.18em;
@@ -31,64 +42,115 @@
 
 .title,
 .sectionTitle {
-  margin: 0;
+  margin: 0 auto;
   color: #ffffff;
   font-family: "Playfair Display", serif;
-  line-height: 1.04;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  text-align: center;
 }
 
 .title {
   font-size: clamp(2.2rem, 4vw, 3.4rem);
-  max-width: 13ch;
+  line-height: 1.02;
+  max-width: 12ch;
 }
 
 .sectionTitle {
-  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-  max-width: 20ch;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.04;
+  max-width: 14ch;
 }
 
-.text,
+.intro,
 .sectionText {
-  margin: 1rem 0 0;
+  max-width: 66ch;
+  margin: 1rem auto 0;
   color: rgba(255, 255, 255, 0.78);
-  font-family: "Inter", sans-serif;
   font-size: 1rem;
   line-height: 1.72;
-  max-width: 64ch;
+  text-align: center;
+}
+
+.heroMeta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 1.15rem;
+}
+
+.metaPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0 0.88rem;
+  border: 1px solid rgba(216, 180, 106, 0.28);
+  background: rgba(216, 180, 106, 0.08);
+  color: #f1d9a5;
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .section {
-  padding-top: 1.2rem;
+  margin-top: 1rem;
   scroll-margin-top: 110px;
 }
 
-.sectionCard,
+.sectionPanel,
+.socialPanel,
 .workCard,
 .pairCard,
-.videoCard,
-.socialCard {
+.videoCard {
   border: 1px solid rgba(255, 255, 255, 0.08);
   background:
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0.045) 0%,
       rgba(255, 255, 255, 0.02) 100%
     );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 14px 28px rgba(0, 0, 0, 0.12);
 }
 
-.sectionCard,
-.socialCard {
+.sectionPanel,
+.socialPanel {
   padding: 1.3rem;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: sectionIn 0.7s ease forwards;
 }
 
-.sectionTop {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
+.section:nth-of-type(1) .sectionPanel {
+  animation-delay: 0.08s;
+}
+
+.section:nth-of-type(2) .sectionPanel {
+  animation-delay: 0.16s;
+}
+
+.section:nth-of-type(3) .sectionPanel {
+  animation-delay: 0.24s;
+}
+
+.section:nth-of-type(4) .socialPanel {
+  animation-delay: 0.32s;
+}
+
+@keyframes sectionIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sectionHead {
+  max-width: 760px;
+  margin: 0 auto 1rem;
+  text-align: center;
 }
 
 .workGrid {
@@ -101,6 +163,28 @@
 .pairCard,
 .videoCard {
   overflow: hidden;
+  min-width: 0;
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    background 0.22s ease;
+}
+
+.workCard:hover,
+.pairCard:hover,
+.videoCard:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.15);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.055) 0%,
+      rgba(255, 255, 255, 0.024) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 20px 34px rgba(0, 0, 0, 0.18);
 }
 
 .workImage {
@@ -113,7 +197,7 @@
 }
 
 .workCard:hover .workImage {
-  transform: scale(1.035);
+  transform: scale(1.04);
 }
 
 .pairsGrid {
@@ -125,25 +209,16 @@
 .pairMeta {
   padding: 1rem 1.05rem 1.05rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
 }
 
 .pairMeta span {
   display: inline-block;
-  margin-bottom: 0.4rem;
   color: rgba(255, 255, 255, 0.52);
-  font-family: "Inter", sans-serif;
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-}
-
-.pairMeta h3 {
-  margin: 0;
-  color: #ffffff;
-  font-family: "Playfair Display", serif;
-  font-size: 1.22rem;
-  line-height: 1.12;
 }
 
 .videoGrid {
@@ -151,14 +226,6 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 320px));
   justify-content: center;
   gap: 1rem;
-}
-
-.video {
-  width: 100%;
-  display: block;
-  aspect-ratio: 9 / 16;
-  object-fit: cover;
-  background: #050505;
 }
 
 .footer {
@@ -175,7 +242,6 @@
   padding: 0 1.1rem;
   border-radius: 6px;
   text-decoration: none;
-  font-family: "Inter", sans-serif;
   font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -197,15 +263,12 @@
   background: #f2f2f2;
 }
 
-.socialHead {
-  max-width: 760px;
-}
-
 .socialActions {
   margin-top: 1.35rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.9rem;
+  justify-content: center;
 }
 
 .socialLink {
@@ -217,7 +280,6 @@
   padding: 0 1.15rem;
   border-radius: 6px;
   text-decoration: none;
-  font-family: "Inter", sans-serif;
   font-size: 0.8rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -263,12 +325,13 @@
 }
 
 @media (max-width: 640px) {
-  .inner {
+  .galleryPage {
     width: calc(100% - 20px);
+    padding: 1.55rem 0 3rem;
   }
 
   .hero {
-    padding: 3rem 0 0.9rem;
+    margin-bottom: 1rem;
   }
 
   .title {
@@ -281,20 +344,31 @@
     max-width: 100%;
   }
 
-  .text,
+  .intro,
   .sectionText {
     font-size: 0.92rem;
     line-height: 1.58;
   }
 
-  .sectionCard,
-  .socialCard {
-    padding: 1rem;
+  .heroMeta {
+    gap: 0.5rem;
+    margin-top: 0.9rem;
   }
 
-  .sectionTop {
-    align-items: stretch;
-    margin-bottom: 0.85rem;
+  .metaPill {
+    min-height: 32px;
+    padding: 0 0.72rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+  }
+
+  .section {
+    margin-top: 0.8rem;
+  }
+
+  .sectionPanel,
+  .socialPanel {
+    padding: 1rem;
   }
 
   .workGrid,
@@ -308,10 +382,6 @@
 
   .pairMeta {
     padding: 0.9rem;
-  }
-
-  .pairMeta h3 {
-    font-size: 1.04rem;
   }
 
   .videoGrid {
@@ -332,5 +402,24 @@
 @media (max-width: 420px) {
   .workGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .galleryPage,
+  .sectionPanel,
+  .socialPanel {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .workCard,
+  .pairCard,
+  .videoCard,
+  .workImage,
+  .primaryLink,
+  .socialLink {
+    transition: none;
   }
 }

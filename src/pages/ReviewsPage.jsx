@@ -101,7 +101,7 @@ export default function ReviewsPage() {
   };
 
   return (
-    <main className={styles.reviewsPage}>
+    <section className={styles.reviewsPage}>
       <div className={styles.hero}>
         <span className={styles.kicker}>Reviews</span>
         <h1 className={styles.title}>Customer Reviews</h1>
@@ -115,6 +115,7 @@ export default function ReviewsPage() {
           >
             Add a Review
           </button>
+          .
         </p>
 
         <div className={styles.heroMeta}>
@@ -188,6 +189,6 @@ export default function ReviewsPage() {
           </button>
         </div>
       )}
-    </main>
+    </section>
   );
 }

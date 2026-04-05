@@ -6,16 +6,6 @@
   padding: 2.25rem 0 4.5rem;
   color: var(--text-primary);
   font-family: "Inter", sans-serif;
-  opacity: 0;
-  transform: translateY(28px);
-  animation: pageFadeIn 0.8s ease forwards;
-}
-
-@keyframes pageFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .hero {
@@ -410,7 +400,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reviewsPage,
   .card {
     animation: none;
     opacity: 1;
